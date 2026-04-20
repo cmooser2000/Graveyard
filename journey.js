@@ -59,11 +59,6 @@
       yearsEl.classList.add('hidden');
     }
 
-    var mapImg = document.getElementById('mapImage');
-    mapImg.src = grave.mapImage;
-    mapImg.alt = 'Map showing the location of ' + grave.name + "'s stone";
-
-    document.getElementById('mapCaption').textContent = grave.mapCaption || '';
     document.getElementById('prompt').textContent = grave.prompt || 'Enter the year';
 
     document.getElementById('video').src = grave.video;
