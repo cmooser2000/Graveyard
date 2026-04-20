@@ -14,7 +14,13 @@
       max-width: 600px;
       margin: 0 auto 1.25rem;
     }
-    .masthead img { display: block; width: 100%; height: auto; }
+    .masthead img {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* Drop the white background so the artwork sits directly on the paper */
+      mix-blend-mode: multiply;
+    }
 
     @media (min-width: 700px) {
       .masthead { max-width: 680px; }
