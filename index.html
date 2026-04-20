@@ -44,9 +44,28 @@
   </p>
 
   <div class="cta-group">
-    <a href="/journey.html" class="btn">Start Your Journey</a>
+    <a href="/journey.html" class="btn" id="startBtn">Start Your Journey</a>
     <a href="/about.html" class="btn-outline">Learn More About This Project</a>
   </div>
+
+  <script>
+    // If the visitor has already progressed past grave 1, turn the hero
+    // button into a "Continue" that jumps straight to where they left off.
+    (function () {
+      try {
+        var raw = localStorage.getItem('eden_progress');
+        if (!raw) return;
+        var p = JSON.parse(raw);
+        if (!p || !Array.isArray(p.unlocked)) return;
+        var highest = p.unlocked.reduce(function (m, n) { return n > m ? n : m; }, 1);
+        if (highest <= 1) return;
+        var btn = document.getElementById('startBtn');
+        if (!btn) return;
+        btn.textContent = 'Continue Your Journey';
+        btn.href = '/journey.html?grave=' + highest;
+      } catch (e) {}
+    })();
+  </script>
 
   <p class="page-footer">A project at the Mount Desert Street Cemetery &middot; Bar Harbor, Maine</p>
 </main>

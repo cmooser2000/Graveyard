@@ -420,5 +420,24 @@ p {
   text-align: center;
 }
 
+/* ── Back-home link (journey pages) ──────── */
+.back-home {
+  align-self: flex-start;
+  margin: -1rem 0 1rem;
+}
+.back-home a {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding: 10px 6px;
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
+}
+.back-home a:hover,
+.back-home a:focus,
+.back-home a:active { color: var(--ink); }
+
 /* ── Utilities ───────────────────────────── */
 .hidden { display: none !important; }

@@ -34,9 +34,15 @@
   }
 
   // ── URL param ──────────────────────────────
-  function getGraveNum() {
+  function getGraveNum(progress) {
     var params = new URLSearchParams(window.location.search);
-    var n = parseInt(params.get('grave'), 10);
+    var raw = params.get('grave');
+    if (raw === null) {
+      // No query param — resume where they left off (highest unlocked),
+      // so clicking Home and coming back lands them on their latest page.
+      return progress ? highestUnlocked(progress) : 1;
+    }
+    var n = parseInt(raw, 10);
     if (isNaN(n) || n < 1 || n > TOTAL_GRAVES) return 1;
     return n;
   }
@@ -167,6 +173,7 @@
     var postVideo   = document.getElementById('postVideo');
     var continueBtn = document.getElementById('continueBtn');
     var watchAgain  = document.getElementById('watchAgainBtn');
+    var hasPlayed   = false;
 
     // Tap anywhere on the video → toggle play/pause
     wrap.addEventListener('click', function (e) {
@@ -180,12 +187,20 @@
     });
 
     video.addEventListener('play', function () {
+      hasPlayed = true;
       wrap.classList.add('playing');
       wrap.classList.remove('ended');
     });
 
     video.addEventListener('pause', function () {
       wrap.classList.remove('playing');
+      // If the user has started watching and then paused (including by
+      // tapping "Done" in iOS's native fullscreen player before the clip
+      // ends), surface the Continue / Watch again controls so they have
+      // a way forward without having to replay to the end.
+      if (hasPlayed && !video.ended) {
+        postVideo.classList.add('visible');
+      }
     });
 
     video.addEventListener('ended', function () {
@@ -215,8 +230,8 @@
 
   // ── Init ───────────────────────────────────
   function init() {
-    var num = getGraveNum();
     var progress = loadProgress();
+    var num = getGraveNum(progress);
 
     // Gate: if not unlocked, redirect to highest unlocked
     if (progress.unlocked.indexOf(num) === -1) {
