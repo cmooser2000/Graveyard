@@ -5,7 +5,7 @@
     "name": "Frederick Jarvis Alley",
     "years": "",
     "unlockYear": 1911,
-    "mapImage": "/maps/01-alley.jpg",
+    "mapImage": "/maps/placeholder.png",
     "mapCaption": "Find his stone.",
     "prompt": "Enter the year of his passing",
     "video": "/videos/01-alley.mp4"
@@ -16,7 +16,7 @@
     "name": "Israel & Polly Higgins",
     "years": "",
     "unlockYear": 1832,
-    "mapImage": "/maps/02-higgins.jpg",
+    "mapImage": "/maps/placeholder.png",
     "mapCaption": "Find their stones.",
     "prompt": "Enter the year of Israel's passing",
     "video": "/videos/02-higgins.mp4"
@@ -27,7 +27,7 @@
     "name": "Tobias Lord Roberts, Sr.",
     "years": "",
     "unlockYear": 1870,
-    "mapImage": "/maps/03-roberts.jpg",
+    "mapImage": "/maps/placeholder.png",
     "mapCaption": "Find his stone.",
     "prompt": "Enter the year of his passing",
     "video": "/videos/03-roberts.mp4"
@@ -38,7 +38,7 @@
     "name": "Lucretia Douglass",
     "years": "",
     "unlockYear": 1853,
-    "mapImage": "/maps/04-douglass.jpg",
+    "mapImage": "/maps/placeholder.png",
     "mapCaption": "Find her stone.",
     "prompt": "Enter the year of her passing",
     "video": "/videos/04-douglass.mp4"
@@ -49,7 +49,7 @@
     "name": "Elmer Ellsworth Wasgatt",
     "years": "",
     "unlockYear": 1877,
-    "mapImage": "/maps/05-wasgatt.jpg",
+    "mapImage": "/maps/placeholder.png",
     "mapCaption": "Find his stone.",
     "prompt": "Enter the year of his passing",
     "video": "/videos/05-wasgatt.mp4"
@@ -60,7 +60,7 @@
     "name": "Irene Roberts Alley",
     "years": "",
     "unlockYear": 1897,
-    "mapImage": "/maps/06-irene-alley.jpg",
+    "mapImage": "/maps/placeholder.png",
     "mapCaption": "Find her stone.",
     "prompt": "Enter the year of her passing",
     "video": "/videos/06-irene-alley.mp4"
@@ -71,7 +71,7 @@
     "name": "Juliette Nickerson",
     "years": "",
     "unlockYear": 1925,
-    "mapImage": "/maps/07-nickerson.jpg",
+    "mapImage": "/maps/placeholder.png",
     "mapCaption": "Find her stone.",
     "prompt": "Enter the year of her passing",
     "video": "/videos/07-nickerson.mp4"

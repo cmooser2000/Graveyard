@@ -292,12 +292,12 @@ p {
 /* ── Map block ────────────────────────────── */
 .map-block {
   width: 100%;
-  margin: 0 0 2rem;
+  max-width: 320px;
+  margin: 0 auto 2rem;
 }
 .map-block img {
   display: block;
   width: 100%;
-  max-width: 100%;
   height: auto;
   border-radius: var(--radius);
 }

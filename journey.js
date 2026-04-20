@@ -100,6 +100,11 @@
       yearsEl.classList.add('hidden');
     }
 
+    var mapImg = document.getElementById('mapImage');
+    mapImg.src = grave.mapImage;
+    mapImg.alt = 'Map showing the location of ' + grave.name + "'s stone";
+    document.getElementById('mapCaption').textContent = grave.mapCaption || '';
+
     document.getElementById('prompt').textContent = grave.prompt || 'Enter the year';
 
     var videoEl = document.getElementById('video');
@@ -157,8 +162,10 @@
       }
       saveProgress(progress);
 
-      // Hide the form, reveal the video
+      // Hide the map + form (they've served their purpose: find the
+      // stone, enter the year). Reveal the video.
       formBlock.classList.add('hidden');
+      document.getElementById('mapBlock').classList.add('hidden');
       videoBlock.classList.add('visible');
 
       // Start buffering the next grave's video while they watch this one.
@@ -256,9 +263,10 @@
         bindForm(grave, num, progress);
         bindVideo(num);
 
-        // If already completed, skip form and show video immediately,
+        // If already completed, skip map + form and show video immediately,
         // and start preloading the next grave so Continue is instant.
         if (progress.completed.indexOf(num) !== -1) {
+          document.getElementById('mapBlock').classList.add('hidden');
           document.getElementById('formBlock').classList.add('hidden');
           document.getElementById('videoBlock').classList.add('visible');
           preloadNextGrave(num);
