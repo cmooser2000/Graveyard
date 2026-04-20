@@ -1,0 +1,424 @@
+/* ───────────────────────────────────────────────
+   When This Was Eden — styles
+   Antique paper · aged ink · hairline rules
+   ─────────────────────────────────────────────── */
+
+/* Fonts — self-hosted WOFF2, placed in /fonts/ */
+@font-face {
+  font-family: 'Mayflower Antique';
+  src: url('/fonts/MayflowerAntique.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OldNewspaperTypes';
+  src: url('/fonts/OldNewspaperTypes.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Tokens ───────────────────────────────── */
+:root {
+  --paper:       #F0E8D6;
+  --ink:         #261C14;
+  --ink-muted:   #6E5C46;
+  --rule:        #A58C6E;
+
+  --font-display: 'Mayflower Antique', Georgia, serif;
+  --font-body:    'OldNewspaperTypes', Georgia, serif;
+
+  --content-max: 640px;
+  --gutter: 20px;
+
+  --radius: 2px;
+  --tap-min: 48px;
+}
+
+/* ── Reset & base ─────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 18px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  font-size: 1rem;
+  min-height: 100vh;
+  padding: 40px var(--gutter) 60px;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 100%;
+  max-width: var(--content-max);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  html { font-size: 20px; }
+  body { padding: 64px var(--gutter) 96px; }
+}
+
+/* ── Typography ───────────────────────────── */
+h1, h2, h3, .display, .chapter, .prompt {
+  font-family: var(--font-display);
+  font-weight: normal;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 700px) {
+  .hero-title { font-size: 3.4rem; }
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+}
+
+.chapter {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--ink-muted);
+  margin-bottom: 1.25rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin-bottom: 0.35rem;
+}
+@media (min-width: 700px) {
+  .name { font-size: 2.8rem; }
+}
+
+.years {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.prompt {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.intro {
+  max-width: 540px;
+  margin-bottom: 2rem;
+}
+
+.muted { color: var(--ink-muted); }
+
+.small {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── Rule with center ornament ────────────── */
+.rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 320px;
+  margin: 1.5rem auto 2rem;
+  color: var(--rule);
+}
+.rule::before,
+.rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.rule-mark {
+  width: 6px;
+  height: 6px;
+  background: var(--rule);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.rule-mark.diamond {
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+/* ── Buttons ──────────────────────────────── */
+.btn {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  padding: 22px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: var(--radius);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+  min-height: var(--tap-min);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active {
+  background: #120c08;
+  transform: scale(0.985);
+}
+
+.btn-outline {
+  display: block;
+  width: 60%;
+  min-width: 220px;
+  max-width: 360px;
+  padding: 14px 20px;
+  margin: 14px auto 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--ink-muted);
+  border-radius: var(--radius);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+  min-height: var(--tap-min);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-outline:active {
+  background: rgba(38, 28, 20, 0.06);
+  transform: scale(0.985);
+}
+
+.cta-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* ── Form input ───────────────────────────── */
+.year-input {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto 1rem;
+  padding: 14px 18px;
+  background: transparent;
+  border: 1px solid var(--ink-muted);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.15em;
+  min-height: var(--tap-min);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.year-input:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+/* Hide number spinners */
+.year-input::-webkit-outer-spin-button,
+.year-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.year-input[type='number'] { -moz-appearance: textfield; }
+
+.form-error {
+  min-height: 1.5rem;
+  margin: 0.25rem 0 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.form-error.show { opacity: 1; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.shake { animation: shake 0.35s ease; }
+
+/* ── Map block ────────────────────────────── */
+.map-block {
+  width: 100%;
+  margin: 0 0 2rem;
+}
+.map-block img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+.map-caption {
+  margin-top: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+/* ── Form block ───────────────────────────── */
+.form-block {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* ── Video player ─────────────────────────── */
+.video-block {
+  width: 100%;
+  margin: 2rem 0 1.5rem;
+  display: none; /* shown after correct answer */
+}
+.video-block.visible { display: block; }
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  max-height: 85vh;
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.video-wrap video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+.play-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  border-radius: 50%;
+  background: rgba(240, 232, 214, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.play-indicator::after {
+  content: '';
+  width: 0;
+  height: 0;
+  margin-left: 6px;
+  border-left: 22px solid var(--ink);
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+}
+.video-wrap.playing .play-indicator { opacity: 0; }
+.video-wrap.ended    .play-indicator { opacity: 0; }
+
+/* Post-video controls — shown after the video ends */
+.post-video {
+  display: none;
+  width: 100%;
+  margin-top: 1.25rem;
+  flex-direction: column;
+  align-items: center;
+}
+.post-video.visible { display: flex; }
+
+.watch-again {
+  display: inline-block;
+  margin-top: 14px;
+  background: none;
+  border: none;
+  padding: 6px 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.watch-again:active { color: var(--ink); }
+
+/* ── Chapter crumb ───────────────────────── */
+.crumb {
+  margin-top: 3rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+}
+
+/* ── Page footer ─────────────────────────── */
+.page-footer {
+  margin-top: 4rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+/* ── Utilities ───────────────────────────── */
+.hidden { display: none !important; }
