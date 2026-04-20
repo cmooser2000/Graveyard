@@ -44,6 +44,41 @@
   // ── Chapter word (spelled out) ─────────────
   var CHAPTER_WORDS = ['One','Two','Three','Four','Five','Six','Seven'];
 
+  // ── Preload helpers ────────────────────────
+  // Cell service is spotty at the cemetery; we aggressively preload so the
+  // next video is already in the browser cache by the time the user walks
+  // to the next stone.
+  var gravesData = null;
+  var preloadedUrls = {};
+
+  function connectionIsSlow() {
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (!conn) return false;
+    if (conn.saveData) return true;
+    // effectiveType is one of: 'slow-2g', '2g', '3g', '4g'
+    if (conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g') return true;
+    return false;
+  }
+
+  function preloadVideo(url) {
+    if (!url || preloadedUrls[url]) return;
+    if (connectionIsSlow()) return;
+    var v = document.createElement('video');
+    v.preload = 'auto';
+    v.muted = true;
+    v.src = url;
+    v.style.display = 'none';
+    document.body.appendChild(v);
+    try { v.load(); } catch (e) {}
+    preloadedUrls[url] = true;
+  }
+
+  function preloadNextGrave(currentNum) {
+    if (!gravesData || currentNum >= TOTAL_GRAVES) return;
+    var next = gravesData.find(function (g) { return g.id === currentNum + 1; });
+    if (next && next.video) preloadVideo(next.video);
+  }
+
   // ── Render ─────────────────────────────────
   function renderGrave(grave, num) {
     document.title = grave.name + ' — When This Was Eden';
@@ -61,7 +96,12 @@
 
     document.getElementById('prompt').textContent = grave.prompt || 'Enter the year';
 
-    document.getElementById('video').src = grave.video;
+    var videoEl = document.getElementById('video');
+    // Upgrade to aggressive preload while the user is typing the year,
+    // unless the connection is slow — then stick with metadata only.
+    videoEl.preload = connectionIsSlow() ? 'metadata' : 'auto';
+    videoEl.src = grave.video;
+    preloadedUrls[grave.video] = true;
 
     document.getElementById('crumb').textContent = 'Chapter ' + (CHAPTER_WORDS[num - 1] || num).toLowerCase() + ' of seven';
   }
@@ -114,6 +154,9 @@
       // Hide the form, reveal the video
       formBlock.classList.add('hidden');
       videoBlock.classList.add('visible');
+
+      // Start buffering the next grave's video while they watch this one.
+      preloadNextGrave(num);
     }
   }
 
@@ -188,6 +231,7 @@
         return r.json();
       })
       .then(function (graves) {
+        gravesData = graves;
         var grave = graves.find(function (g) { return g.id === num; });
         if (!grave) {
           window.location.replace('/journey.html?grave=1');
@@ -197,10 +241,12 @@
         bindForm(grave, num, progress);
         bindVideo(num);
 
-        // If already completed, skip form and show video immediately
+        // If already completed, skip form and show video immediately,
+        // and start preloading the next grave so Continue is instant.
         if (progress.completed.indexOf(num) !== -1) {
           document.getElementById('formBlock').classList.add('hidden');
           document.getElementById('videoBlock').classList.add('visible');
+          preloadNextGrave(num);
         }
       })
       .catch(function (err) {
