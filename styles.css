@@ -19,6 +19,8 @@
   --ink-muted:   #6E5C46;
   --rule:        #A58C6E;
   --moss:        #4F6B3A;
+  --cadmium:     #006B3C;
+  --cadmium-dk:  #004D2A;
 
   --font-display: 'Demo Love Struck', Georgia, serif;
   --font-body:    Georgia, serif;
@@ -200,38 +202,24 @@ p {
   transform: scale(0.985);
 }
 
-.btn-outline {
-  display: block;
-  width: 60%;
-  min-width: 220px;
-  max-width: 360px;
-  padding: 14px 20px;
-  margin: 14px auto 0;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  border: 1px solid var(--ink-muted);
-  border-radius: var(--radius);
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
-  min-height: var(--tap-min);
-  -webkit-tap-highlight-color: transparent;
-}
-.btn-outline:active {
-  background: rgba(38, 28, 20, 0.06);
-  transform: scale(0.985);
-}
-
 .cta-group {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 14px;
   margin-top: 1rem;
+}
+/* Homepage CTAs share size and the cadmium-green palette */
+.cta-group .btn {
+  background: var(--cadmium);
+  color: var(--paper);
+  margin: 0;
+  border: none;
+  font-family: var(--font-display);
+}
+.cta-group .btn:active {
+  background: var(--cadmium-dk);
 }
 
 /* ── Form input ───────────────────────────── */

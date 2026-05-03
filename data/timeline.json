@@ -102,7 +102,7 @@
       "date": "1742",
       "body": "Israel Higgins Sr. born.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/israel-higgins.jpg"
     },
     {
       "id": "french-indian-war",
@@ -134,7 +134,7 @@
       "date": "1771",
       "body": "Israel and Mary Higgins become the first European settlers in present-day Bar Harbor.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/israel-higgins.jpg"
     },
     {
       "id": "revolutionary-war",
@@ -158,7 +158,7 @@
       "date": "1778",
       "body": "Captain Israel Higgins born.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/israel-higgins.jpg"
     },
     {
       "id": "penobscot-expedition",
@@ -190,7 +190,7 @@
       "date": "1806",
       "body": "Tobias Lord Roberts Sr. born.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/tobias-roberts.jpg"
     },
     {
       "id": "war-of-1812",
@@ -206,7 +206,7 @@
       "date": "January 26, 1818",
       "body": "Polly \"Mary\" Hull Higgins dies, age 36.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/polly-higgins.jpg"
     },
     {
       "id": "maine-statehood",
@@ -230,7 +230,7 @@
       "date": "1838",
       "body": "Frederick Jarvis Alley and Irene Ophelia Roberts born.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/irene-alley.jpg"
     },
     {
       "id": "lucretia-douglass",
@@ -238,7 +238,7 @@
       "date": "1841–1853",
       "body": "Life and death of Lucretia Douglass — dies in a fall at age 12.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/lucretia-douglass.jpg"
     },
     {
       "id": "hudson-river-school",
@@ -262,7 +262,7 @@
       "date": "1855",
       "body": "Tobias Roberts Sr. opens The Agamont Hotel.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/tobias-roberts.jpg"
     },
     {
       "id": "civil-war",
@@ -278,7 +278,7 @@
       "date": "1862",
       "body": "Elmer Ellsworth Wasgatt born.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/elmer-wasgatt.jpg"
     },
     {
       "id": "wabanaki-encampments",
@@ -294,7 +294,7 @@
       "date": "1863",
       "body": "Wasgatt's father dies of tuberculosis while serving the Union.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/elmer-wasgatt.jpg"
     },
     {
       "id": "roberts-wharf",
@@ -302,7 +302,7 @@
       "date": "1868",
       "body": "Roberts builds a Bar Harbor wharf, boosting tourism.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/tobias-roberts.jpg"
     },
     {
       "id": "saint-sauveur-hotel-built",
@@ -310,7 +310,7 @@
       "date": "1870",
       "body": "St. Sauveur Hotel built by Frederick Alley.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/frederick-alley.jpg"
     },
     {
       "id": "disease-outbreak",
@@ -326,7 +326,7 @@
       "date": "1881",
       "body": "St. Sauveur Hotel burns and is rebuilt.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/frederick-alley.jpg"
     },
     {
       "id": "cleveland-1",
@@ -374,7 +374,7 @@
       "date": "1897",
       "body": "Irene Ophelia Alley dies. Bar Harbor Civil War monument erected.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/irene-alley.jpg"
     },
     {
       "id": "frederick-alley-dies",
@@ -382,7 +382,7 @@
       "date": "1911",
       "body": "Frederick Jarvis Alley dies.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/frederick-alley.jpg"
     },
     {
       "id": "world-war-1",
@@ -407,6 +407,14 @@
       "body": "Diphtheria toxoid vaccine developed by Gaston Ramon.",
       "link": "https://en.wikipedia.org/wiki/Diphtheria_vaccine",
       "image": "/timeline-images/diphtheria-vaccine.jpg"
+    },
+    {
+      "id": "juliette-nickerson-dies",
+      "type": "person",
+      "date": "1925",
+      "body": "Juliette Nickerson dies.",
+      "link": null,
+      "image": "/timeline-images/juliette-nickerson.jpg"
     },
     {
       "id": "saint-sauveur-demolished",
