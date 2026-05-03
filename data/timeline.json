@@ -14,7 +14,7 @@
       "date": "~5,000–6,000 years ago",
       "body": "Earliest shell middens (mounded deposits of clam, oyster, and mussel shells from Wabanaki coastal camps) preserved along the central Maine coast. Older coastal sites are now submerged.",
       "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
-      "image": null
+      "image": "/timeline-images/shell-middens.jpg"
     },
     {
       "id": "wabanaki-3000",
@@ -22,7 +22,7 @@
       "date": "~3,000 years ago",
       "body": "Wabanaki living in a natural world very similar to today's Maine.",
       "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
-      "image": null
+      "image": "/timeline-images/wabanaki-3000.jpg"
     },
     {
       "id": "woodland-pottery",
@@ -38,7 +38,7 @@
       "date": "~2,300–2,200 years ago",
       "body": "Birchbark canoes in widespread use.",
       "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
-      "image": null
+      "image": "/timeline-images/birchbark-canoes.jpg"
     },
     {
       "id": "corn-beans-squash",
@@ -46,7 +46,7 @@
       "date": "~1100 A.D.",
       "body": "Corn, bean, and squash horticulture arrives in southernmost Maine. Mount Desert Island is believed to be used seasonally.",
       "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
-      "image": null
+      "image": "/timeline-images/corn-beans-squash.jpg"
     },
     {
       "id": "dum-diversas",
@@ -70,7 +70,7 @@
       "date": "1609",
       "body": "Henry Hudson's crew aboard the Half Moon bombards and loots a Wabanaki village on the Penobscot River.",
       "link": "https://wabanakialliance.com/passamaquoddy-tribe/",
-      "image": null
+      "image": "/timeline-images/henry-hudson-1609.jpg"
     },
     {
       "id": "saint-sauveur-founded",
@@ -78,7 +78,7 @@
       "date": "May 1613",
       "body": "French Jesuits aboard the Jonah found Saint Sauveur somewhere in Frenchman Bay near MDI, after being invited by Asticou, the local Wabanaki sakom (chief).",
       "link": "https://en.wikipedia.org/wiki/Mount_Desert_Island",
-      "image": null
+      "image": "/timeline-images/saint-sauveur-founded.jpg"
     },
     {
       "id": "saint-sauveur-destroyed",
@@ -94,7 +94,7 @@
       "date": "1616–1619",
       "body": "\"The Great Dying\" — pandemic kills up to 95% of Native people from Penobscot Bay to Cape Cod (likely closer to 75% east of the Penobscot, including MDI).",
       "link": "https://en.wikipedia.org/wiki/1616%E2%80%931619_New_England_epidemic",
-      "image": null
+      "image": "/timeline-images/great-dying.jpg"
     },
     {
       "id": "higgins-sr-born",
@@ -118,7 +118,7 @@
       "date": "1755",
       "body": "The Phips Proclamation declares the Penobscot \"enemies, rebels and traitors\" and offers cash bounties for the scalps of Penobscot men, women, and children.",
       "link": "https://en.wikipedia.org/wiki/Spencer_Phips",
-      "image": null
+      "image": "/timeline-images/phips-proclamation.jpg"
     },
     {
       "id": "treaty-paris-1763",
@@ -150,7 +150,7 @@
       "date": "1777",
       "body": "General George Washington writes a letter promising to respect Penobscot territory and provide aid, but this is largely forgotten after the war.",
       "link": "https://wabanakialliance.com/penobscot-nation/",
-      "image": null
+      "image": "/timeline-images/washington-letter.jpg"
     },
     {
       "id": "captain-higgins-born",
@@ -174,7 +174,7 @@
       "date": "1783",
       "body": "Revolutionary War ends. Captain Samuel Hull settles Hull's Cove.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/samuel-hull-settles.jpg"
     },
     {
       "id": "george-washington",
@@ -222,7 +222,7 @@
       "date": "1823",
       "body": "Johnson v. M'Intosh — the Supreme Court (Chief Justice John Marshall) solidifies the Doctrine of Discovery into U.S. law, ruling that Indigenous peoples have only a \"right of occupancy,\" not legal title to their lands.",
       "link": "https://en.wikipedia.org/wiki/Johnson_v._M%27Intosh",
-      "image": null
+      "image": "/timeline-images/johnson-mcintosh.jpg"
     },
     {
       "id": "alley-roberts-born",
@@ -254,7 +254,7 @@
       "date": "1842",
       "body": "Passamaquoddies gain a nonvoting representative in the Maine state legislature.",
       "link": "https://wabanakialliance.com/passamaquoddy-tribe/",
-      "image": null
+      "image": "/timeline-images/passamaquoddy-rep.jpg"
     },
     {
       "id": "agamont-hotel",
@@ -286,7 +286,7 @@
       "date": "1860s–1890",
       "body": "Wabanaki encampments rotate among six different locations in Bar Harbor — most commonly the foot of Bridge Street, Albert Meadow, and the end of Ledgelawn Avenue (\"Squaw Hollow\").",
       "link": "https://www.abbemuseum.org/s/Naming-the-Dawnland-George-Neptune_web.pdf",
-      "image": null
+      "image": "/timeline-images/wabanaki-encampments.jpg"
     },
     {
       "id": "wasgatt-father-dies",
@@ -366,7 +366,7 @@
       "date": "1893",
       "body": "Wabanaki encampments banned from the Bar Harbor shoreline.",
       "link": "https://www.abbemuseum.org/s/Naming-the-Dawnland-George-Neptune_web.pdf",
-      "image": null
+      "image": "/timeline-images/wabanaki-encampments.jpg"
     },
     {
       "id": "irene-alley-dies",
