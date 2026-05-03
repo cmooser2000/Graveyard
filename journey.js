@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────────
-   When This Was Eden — journey.js
+   Headstone History — journey.js
    Data-driven grave template · vanilla JS
    ─────────────────────────────────────────────── */
 
@@ -87,7 +87,7 @@
 
   // ── Render ─────────────────────────────────
   function renderGrave(grave, num) {
-    document.title = grave.name + ' — When This Was Eden';
+    document.title = grave.name + ' — Headstone History';
 
     document.getElementById('chapter').textContent = 'Chapter ' + (grave.chapter || CHAPTER_WORDS[num - 1] || num);
     document.getElementById('name').textContent = grave.name;

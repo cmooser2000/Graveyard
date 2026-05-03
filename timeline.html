@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F0E8D6">
+  <title>Timeline · Headstone History</title>
+  <meta name="description" content="A vertical timeline of Bar Harbor, Mount Desert Island, and the people buried at the Mount Desert Street Cemetery.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<main class="timeline-page">
+  <p class="back-home"><a href="/">&larr; Home</a></p>
+
+  <header class="timeline-intro">
+    <h1 class="hero-title">A Timeline</h1>
+    <p class="hero-subtitle">Of this place, and the people in it.</p>
+    <div class="rule" aria-hidden="true">
+      <span class="rule-mark diamond"></span>
+    </div>
+    <p class="small timeline-legend">
+      <span class="legend-swatch legend-swatch--history"></span> historical events
+      &nbsp;&nbsp;
+      <span class="legend-swatch legend-swatch--person"></span> the people of Bar Harbor
+    </p>
+  </header>
+
+  <div class="timeline" id="timeline" aria-live="polite"></div>
+</main>
+
+<script src="/timeline.js"></script>
+</body>
+</html>

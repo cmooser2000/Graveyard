@@ -1,6 +1,8 @@
-# When This Was Eden
+# Headstone History
 
 A mobile-first static scavenger hunt through seven 19th-century graves at the Mount Desert Street Cemetery in Bar Harbor, Maine. Visitors walk between stones, enter the year of passing on each one, and unlock a short portrait video about that person's life.
+
+The project was originally called "When This Was Eden"; renamed to "Headstone History" mid-development. Local working folder is still `when-this-was-eden`, GitHub repo is `cmooser2000/Graveyard`, custom domain is `headstonehistory.org` (purchased through Vercel). The localStorage progress key is still `eden_progress` — internal only, never user-visible, kept to avoid breaking any in-progress runs.
 
 ## Tech stack
 

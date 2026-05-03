@@ -1,4 +1,4 @@
-# When This Was Eden
+# Headstone History
 
 A mobile-first scavenger hunt through seven 19th-century graves at the Mount Desert Street Cemetery in Bar Harbor, Maine.
 

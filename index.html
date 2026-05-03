@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F0E8D6">
-  <title>When This Was Eden</title>
+  <title>Headstone History</title>
   <meta name="description" content="A scavenger hunt through seven 19th-century graves at the Mount Desert Street Cemetery in Bar Harbor, Maine.">
   <link rel="stylesheet" href="/styles.css">
   <style>
@@ -33,7 +33,7 @@
 
   <!-- Hero masthead -->
   <div class="masthead">
-    <img src="/hero%20header.png" alt="Cemetery Stories — Mount Desert St. Cemetery, Bar Harbor, Maine">
+    <img src="/hero-header.jpg" alt="Headstone History — Mount Desert St. Cemetery, Bar Harbor, Maine">
   </div>
 
   <p class="intro">
@@ -45,8 +45,16 @@
 
   <div class="cta-group">
     <a href="/journey.html" class="btn" id="startBtn">Start Your Journey</a>
-    <a href="/about.html" class="btn-outline">Learn More About This Project</a>
+    <a href="/about.html" class="btn-outline">About This Project</a>
+    <button type="button" class="btn-outline" id="timelineToggleBtn"
+            aria-expanded="false" aria-controls="homeTimelineSection">
+      Open Timeline
+    </button>
   </div>
+
+  <section id="homeTimelineSection" class="home-timeline" hidden>
+    <div id="homeTimeline" class="timeline"></div>
+  </section>
 
   <script>
     // If the visitor has already progressed past grave 1, turn the hero
@@ -65,10 +73,26 @@
         btn.href = '/journey.html?grave=' + highest;
       } catch (e) {}
     })();
+
+    // Lazy-mount the timeline only when the visitor opens it.
+    (function () {
+      var btn = document.getElementById('timelineToggleBtn');
+      var sec = document.getElementById('homeTimelineSection');
+      var mount = document.getElementById('homeTimeline');
+      btn.addEventListener('click', function () {
+        var open = sec.hidden;
+        sec.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+        btn.textContent = open ? 'Close Timeline' : 'Open Timeline';
+        if (open && window.renderTimelineInto) window.renderTimelineInto(mount);
+      });
+    })();
   </script>
 
   <p class="page-footer">A project at the Mount Desert Street Cemetery &middot; Bar Harbor, Maine</p>
 </main>
+
+<script src="/timeline.js" defer></script>
 
 </body>
 </html>

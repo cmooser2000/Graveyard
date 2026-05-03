@@ -1,0 +1,436 @@
+{
+  "entries": [
+    {
+      "id": "paleo-indians",
+      "type": "history",
+      "date": "~13,000 years ago",
+      "body": "First people (Paleoindians) move into Maine after the Laurentide ice sheet retreats. Tundra and open spruce parkland environment, similar to Labrador today. The shoreline of the time is now ~200 feet underwater.",
+      "link": "https://en.wikipedia.org/wiki/Paleo-Indians",
+      "image": "/timeline-images/paleo-indians.jpg"
+    },
+    {
+      "id": "shell-middens",
+      "type": "history",
+      "date": "~5,000–6,000 years ago",
+      "body": "Earliest shell middens (mounded deposits of clam, oyster, and mussel shells from Wabanaki coastal camps) preserved along the central Maine coast. Older coastal sites are now submerged.",
+      "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
+      "image": null
+    },
+    {
+      "id": "wabanaki-3000",
+      "type": "history",
+      "date": "~3,000 years ago",
+      "body": "Wabanaki living in a natural world very similar to today's Maine.",
+      "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
+      "image": null
+    },
+    {
+      "id": "woodland-pottery",
+      "type": "history",
+      "date": "~2,800 years ago",
+      "body": "People begin using fired clay pottery (start of the Ceramic Period).",
+      "link": "https://en.wikipedia.org/wiki/Woodland_period",
+      "image": "/timeline-images/woodland-pottery.gif"
+    },
+    {
+      "id": "birchbark-canoes",
+      "type": "history",
+      "date": "~2,300–2,200 years ago",
+      "body": "Birchbark canoes in widespread use.",
+      "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
+      "image": null
+    },
+    {
+      "id": "corn-beans-squash",
+      "type": "history",
+      "date": "~1100 A.D.",
+      "body": "Corn, bean, and squash horticulture arrives in southernmost Maine. Mount Desert Island is believed to be used seasonally.",
+      "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
+      "image": null
+    },
+    {
+      "id": "dum-diversas",
+      "type": "history",
+      "date": "1452",
+      "body": "Pope Nicholas V issues the papal bull Dum Diversas declaring war against all non-Christians — foundation of the Doctrine of Discovery.",
+      "link": "https://en.wikipedia.org/wiki/Dum_Diversas",
+      "image": "/timeline-images/dum-diversas.jpg"
+    },
+    {
+      "id": "champlain-mdi",
+      "type": "history",
+      "date": "1604",
+      "body": "Samuel de Champlain and Pierre Dugua de Monts sail past Mount Desert Island. Champlain names it Île des Monts Déserts (\"island of the bare/lonely mountains\").",
+      "link": "https://en.wikipedia.org/wiki/Mount_Desert_Island",
+      "image": "/timeline-images/champlain-mdi.jpg"
+    },
+    {
+      "id": "henry-hudson-1609",
+      "type": "history",
+      "date": "1609",
+      "body": "Henry Hudson's crew aboard the Half Moon bombards and loots a Wabanaki village on the Penobscot River.",
+      "link": "https://wabanakialliance.com/passamaquoddy-tribe/",
+      "image": null
+    },
+    {
+      "id": "saint-sauveur-founded",
+      "type": "history",
+      "date": "May 1613",
+      "body": "French Jesuits aboard the Jonah found Saint Sauveur somewhere in Frenchman Bay near MDI, after being invited by Asticou, the local Wabanaki sakom (chief).",
+      "link": "https://en.wikipedia.org/wiki/Mount_Desert_Island",
+      "image": null
+    },
+    {
+      "id": "saint-sauveur-destroyed",
+      "type": "history",
+      "date": "Summer 1613",
+      "body": "English Captain Samuel Argall destroys Saint Sauveur after less than three months.",
+      "link": "https://en.wikipedia.org/wiki/Mount_Desert_Island",
+      "image": "/timeline-images/saint-sauveur-destroyed.jpg"
+    },
+    {
+      "id": "great-dying",
+      "type": "history",
+      "date": "1616–1619",
+      "body": "\"The Great Dying\" — pandemic kills up to 95% of Native people from Penobscot Bay to Cape Cod (likely closer to 75% east of the Penobscot, including MDI).",
+      "link": "https://en.wikipedia.org/wiki/1616%E2%80%931619_New_England_epidemic",
+      "image": null
+    },
+    {
+      "id": "higgins-sr-born",
+      "type": "person",
+      "date": "1742",
+      "body": "Israel Higgins Sr. born.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "french-indian-war",
+      "type": "history",
+      "date": "1754–1763",
+      "body": "French and Indian War. Higgins Sr. fights as a British subject.",
+      "link": "https://en.wikipedia.org/wiki/French_and_Indian_War",
+      "image": "/timeline-images/french-indian-war.png"
+    },
+    {
+      "id": "phips-proclamation",
+      "type": "history",
+      "date": "1755",
+      "body": "The Phips Proclamation declares the Penobscot \"enemies, rebels and traitors\" and offers cash bounties for the scalps of Penobscot men, women, and children.",
+      "link": "https://en.wikipedia.org/wiki/Spencer_Phips",
+      "image": null
+    },
+    {
+      "id": "treaty-paris-1763",
+      "type": "history",
+      "date": "1760",
+      "body": "In the aftermath of the Seven Years' War, the English claim all Wabanaki lands \"by right of conquest.\" English settlement spreads along the Maine coast.",
+      "link": "https://en.wikipedia.org/wiki/Treaty_of_Paris_(1763)",
+      "image": "/timeline-images/treaty-paris-1763.png"
+    },
+    {
+      "id": "higgins-first-settlers",
+      "type": "person",
+      "date": "1771",
+      "body": "Israel and Mary Higgins become the first European settlers in present-day Bar Harbor.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "revolutionary-war",
+      "type": "history",
+      "date": "1775",
+      "body": "American Revolutionary War begins. Christopher Bartlett settles on the island.",
+      "link": "https://en.wikipedia.org/wiki/American_Revolutionary_War",
+      "image": "/timeline-images/revolutionary-war.jpg"
+    },
+    {
+      "id": "washington-letter",
+      "type": "history",
+      "date": "1777",
+      "body": "General George Washington writes a letter promising to respect Penobscot territory and provide aid, but this is largely forgotten after the war.",
+      "link": "https://wabanakialliance.com/penobscot-nation/",
+      "image": null
+    },
+    {
+      "id": "captain-higgins-born",
+      "type": "person",
+      "date": "1778",
+      "body": "Captain Israel Higgins born.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "penobscot-expedition",
+      "type": "history",
+      "date": "1779",
+      "body": "Battle of Bagaduce / Penobscot Expedition.",
+      "link": "https://en.wikipedia.org/wiki/Penobscot_Expedition",
+      "image": "/timeline-images/penobscot-expedition.jpg"
+    },
+    {
+      "id": "samuel-hull-settles",
+      "type": "person",
+      "date": "1783",
+      "body": "Revolutionary War ends. Captain Samuel Hull settles Hull's Cove.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "george-washington",
+      "type": "history",
+      "date": "1789",
+      "body": "George Washington becomes the first U.S. president.",
+      "link": "https://en.wikipedia.org/wiki/George_Washington",
+      "image": "/timeline-images/george-washington.jpg"
+    },
+    {
+      "id": "tobias-roberts-born",
+      "type": "person",
+      "date": "1806",
+      "body": "Tobias Lord Roberts Sr. born.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "war-of-1812",
+      "type": "history",
+      "date": "1812–1815",
+      "body": "War of 1812.",
+      "link": "https://en.wikipedia.org/wiki/War_of_1812",
+      "image": "/timeline-images/war-of-1812.jpg"
+    },
+    {
+      "id": "polly-higgins-dies",
+      "type": "person",
+      "date": "January 26, 1818",
+      "body": "Polly \"Mary\" Hull Higgins dies, age 36.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "maine-statehood",
+      "type": "history",
+      "date": "1820",
+      "body": "Maine becomes a state.",
+      "link": "https://en.wikipedia.org/wiki/Maine",
+      "image": "/timeline-images/maine-statehood.png"
+    },
+    {
+      "id": "johnson-mcintosh",
+      "type": "history",
+      "date": "1823",
+      "body": "Johnson v. M'Intosh — the Supreme Court (Chief Justice John Marshall) solidifies the Doctrine of Discovery into U.S. law, ruling that Indigenous peoples have only a \"right of occupancy,\" not legal title to their lands.",
+      "link": "https://en.wikipedia.org/wiki/Johnson_v._M%27Intosh",
+      "image": null
+    },
+    {
+      "id": "alley-roberts-born",
+      "type": "person",
+      "date": "1838",
+      "body": "Frederick Jarvis Alley and Irene Ophelia Roberts born.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "lucretia-douglass",
+      "type": "person",
+      "date": "1841–1853",
+      "body": "Life and death of Lucretia Douglass — dies in a fall at age 12.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "hudson-river-school",
+      "type": "history",
+      "date": "1840s–1850s",
+      "body": "Hudson River School artists come to the island.",
+      "link": "https://en.wikipedia.org/wiki/Hudson_River_School",
+      "image": "/timeline-images/hudson-river-school.jpg"
+    },
+    {
+      "id": "passamaquoddy-rep",
+      "type": "history",
+      "date": "1842",
+      "body": "Passamaquoddies gain a nonvoting representative in the Maine state legislature.",
+      "link": "https://wabanakialliance.com/passamaquoddy-tribe/",
+      "image": null
+    },
+    {
+      "id": "agamont-hotel",
+      "type": "person",
+      "date": "1855",
+      "body": "Tobias Roberts Sr. opens The Agamont Hotel.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "civil-war",
+      "type": "history",
+      "date": "1861–1865",
+      "body": "American Civil War.",
+      "link": "https://en.wikipedia.org/wiki/American_Civil_War",
+      "image": "/timeline-images/civil-war.png"
+    },
+    {
+      "id": "wasgatt-born",
+      "type": "person",
+      "date": "1862",
+      "body": "Elmer Ellsworth Wasgatt born.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "wabanaki-encampments",
+      "type": "history",
+      "date": "1860s–1890",
+      "body": "Wabanaki encampments rotate among six different locations in Bar Harbor — most commonly the foot of Bridge Street, Albert Meadow, and the end of Ledgelawn Avenue (\"Squaw Hollow\").",
+      "link": "https://www.abbemuseum.org/s/Naming-the-Dawnland-George-Neptune_web.pdf",
+      "image": null
+    },
+    {
+      "id": "wasgatt-father-dies",
+      "type": "person",
+      "date": "1863",
+      "body": "Wasgatt's father dies of tuberculosis while serving the Union.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "roberts-wharf",
+      "type": "person",
+      "date": "1868",
+      "body": "Roberts builds a Bar Harbor wharf, boosting tourism.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "saint-sauveur-hotel-built",
+      "type": "person",
+      "date": "1870",
+      "body": "St. Sauveur Hotel built by Frederick Alley.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "disease-outbreak",
+      "type": "person",
+      "date": "1873",
+      "body": "Disease outbreak leads Bar Harbor to modernize water and sewage systems.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "saint-sauveur-burns",
+      "type": "person",
+      "date": "1881",
+      "body": "St. Sauveur Hotel burns and is rebuilt.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "cleveland-1",
+      "type": "history",
+      "date": "1885–1889",
+      "body": "Grover Cleveland, U.S. president (1st term).",
+      "link": "https://en.wikipedia.org/wiki/Grover_Cleveland",
+      "image": "/timeline-images/cleveland-1.jpg"
+    },
+    {
+      "id": "diphtheria-1886",
+      "type": "person",
+      "date": "1886",
+      "body": "Diphtheria kills Aquaie and Ophelia Alley.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "bar-harbor-1890s",
+      "type": "history",
+      "date": "1890s",
+      "body": "The richest Americans arrive: Rockefellers, Morgans, Astors.",
+      "link": "https://en.wikipedia.org/wiki/Bar_Harbor,_Maine",
+      "image": "/timeline-images/bar-harbor-1890s.jpg"
+    },
+    {
+      "id": "cleveland-2",
+      "type": "history",
+      "date": "1893–1897",
+      "body": "Grover Cleveland, U.S. president (2nd term).",
+      "link": "https://en.wikipedia.org/wiki/Grover_Cleveland",
+      "image": "/timeline-images/cleveland-2.jpg"
+    },
+    {
+      "id": "encampments-banned",
+      "type": "history",
+      "date": "1893",
+      "body": "Wabanaki encampments banned from the Bar Harbor shoreline.",
+      "link": "https://www.abbemuseum.org/s/Naming-the-Dawnland-George-Neptune_web.pdf",
+      "image": null
+    },
+    {
+      "id": "irene-alley-dies",
+      "type": "person",
+      "date": "1897",
+      "body": "Irene Ophelia Alley dies. Bar Harbor Civil War monument erected.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "frederick-alley-dies",
+      "type": "person",
+      "date": "1911",
+      "body": "Frederick Jarvis Alley dies.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "world-war-1",
+      "type": "history",
+      "date": "1914–1918",
+      "body": "World War I.",
+      "link": "https://en.wikipedia.org/wiki/World_War_I",
+      "image": "/timeline-images/world-war-1.jpg"
+    },
+    {
+      "id": "acadia-national-park",
+      "type": "history",
+      "date": "1919",
+      "body": "Mount Desert Island recognized as a National Park (originally Lafayette National Park, later renamed Acadia in 1929). Woodrow Wilson president.",
+      "link": "https://en.wikipedia.org/wiki/Acadia_National_Park",
+      "image": "/timeline-images/acadia-national-park.jpg"
+    },
+    {
+      "id": "diphtheria-vaccine",
+      "type": "history",
+      "date": "1923",
+      "body": "Diphtheria toxoid vaccine developed by Gaston Ramon.",
+      "link": "https://en.wikipedia.org/wiki/Diphtheria_vaccine",
+      "image": "/timeline-images/diphtheria-vaccine.jpg"
+    },
+    {
+      "id": "saint-sauveur-demolished",
+      "type": "person",
+      "date": "1945",
+      "body": "St. Sauveur Hotel demolished.",
+      "link": null,
+      "image": null
+    },
+    {
+      "id": "great-fires-1947",
+      "type": "history",
+      "date": "1947",
+      "body": "The Great Fires destroy many of Bar Harbor's historic homes and hotels, changing the town forever.",
+      "link": "https://www.nps.gov/places/fire-ecology.htm",
+      "image": null
+    },
+    {
+      "id": "maine-voting-1954",
+      "type": "history",
+      "date": "1954",
+      "body": "Maine grants reservation Indians the right to vote in federal elections — Maine was the last state to do so.",
+      "link": "https://wabanakialliance.com/passamaquoddy-tribe/",
+      "image": null
+    }
+  ]
+}
