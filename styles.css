@@ -210,12 +210,13 @@ p {
   gap: 14px;
   margin-top: 1rem;
 }
-/* Homepage CTAs share size and the cadmium-green palette */
+/* Homepage CTAs share size, pill shape, and the cadmium-green palette */
 .cta-group .btn {
   background: var(--cadmium);
   color: var(--paper);
   margin: 0;
   border: none;
+  border-radius: 999px;
   font-family: var(--font-display);
 }
 .cta-group .btn:active {
