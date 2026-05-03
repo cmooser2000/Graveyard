@@ -609,6 +609,32 @@ a.timeline-card:active { transform: scale(0.995); }
   text-decoration-color: var(--ink);
 }
 
+/* ── Contributors page ──────────────────── */
+.contributors {
+  margin-top: 2rem;
+}
+.contributor {
+  margin-bottom: 2.5rem;
+}
+.contributor:last-child { margin-bottom: 0; }
+.contributor-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.contributor-name a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 4px;
+}
+.contributor-name a:hover,
+.contributor-name a:focus {
+  text-decoration-color: var(--ink);
+}
+
 /* ── Homepage timeline disclosure ────────── */
 .home-timeline {
   width: 100%;

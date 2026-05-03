@@ -18,8 +18,11 @@
       display: block;
       width: 100%;
       height: auto;
-      /* Drop the white background so the artwork sits directly on the paper */
-      mix-blend-mode: multiply;
+      /* Dissolve the (near-)white background into the cream paper.
+         `darken` is friendlier to JPEGs than `multiply`: it keeps the dark
+         ink crisp and lets the paper color win wherever the image is paler
+         than the paper. */
+      mix-blend-mode: darken;
     }
 
     @media (min-width: 700px) {
