@@ -342,7 +342,7 @@
       "date": "1886",
       "body": "Diphtheria kills Aquaie and Ophelia Alley.",
       "link": null,
-      "image": null
+      "image": "/timeline-images/irene-alley.jpg"
     },
     {
       "id": "bar-harbor-1890s",
@@ -430,7 +430,7 @@
       "date": "1947",
       "body": "The Great Fires destroy many of Bar Harbor's historic homes and hotels, changing the town forever.",
       "link": "https://www.nps.gov/places/fire-ecology.htm",
-      "image": null
+      "image": "/timeline-images/great-fires-1947.jpg"
     },
     {
       "id": "maine-voting-1954",
@@ -438,7 +438,7 @@
       "date": "1954",
       "body": "Maine grants reservation Indians the right to vote in federal elections — Maine was the last state to do so.",
       "link": "https://wabanakialliance.com/passamaquoddy-tribe/",
-      "image": null
+      "image": "/timeline-images/maine-voting-1954.jpg"
     }
   ]
 }
