@@ -738,5 +738,252 @@ a.timeline-card:active { transform: scale(0.995); }
   transform: translateX(3px);
 }
 
+/* ── Bio pages (Meet the Residents) ──────── */
+.bio {
+  max-width: 640px;
+  text-align: left;
+  width: 100%;
+}
+
+.bio .bio-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.bio .bio-header .chapter { margin-bottom: 0.75rem; }
+.bio .bio-header .hero-title {
+  margin-bottom: 0.4rem;
+}
+.bio .bio-header .years {
+  margin-bottom: 1rem;
+}
+.bio .epitaph {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 30rem;
+  margin: 0.5rem auto 0;
+}
+
+.bio article p {
+  margin-bottom: 1.1rem;
+}
+.bio article p:last-child { margin-bottom: 0; }
+
+.bio h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 2.5rem 0 0.75rem;
+  color: var(--ink);
+}
+
+.bio .lede::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  float: left;
+  line-height: 0.85;
+  padding: 0.3rem 0.55rem 0 0;
+  color: var(--ink);
+}
+
+.bio a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+}
+.bio a:hover,
+.bio a:focus { text-decoration-color: var(--ink); }
+
+.bio sup a {
+  font-size: 0.75em;
+  text-decoration: none;
+  color: var(--ink-muted);
+  padding: 0 2px;
+}
+.bio sup a:hover { color: var(--ink); }
+
+/* Ornament between sections */
+.bio .ornament {
+  text-align: center;
+  margin: 2.5rem 0;
+  color: var(--rule);
+  letter-spacing: 0.6em;
+  font-size: 0.9rem;
+}
+.bio .ornament::before { content: '✦   ✦   ✦'; }
+
+/* Pull quote */
+.bio blockquote {
+  margin: 1.75rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 2px solid var(--rule);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+.bio blockquote p { margin-bottom: 0.75rem; }
+.bio blockquote p:last-child { margin-bottom: 0; }
+.bio blockquote cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.bio blockquote cite::before { content: '— '; }
+
+/* Figures — newspaper clippings & photos */
+.bio figure {
+  margin: 2rem 0;
+}
+.bio figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  background: #F8F1DD;
+  border: 1px solid rgba(165, 140, 110, 0.45);
+  box-shadow: 0 6px 18px -10px rgba(38, 28, 20, 0.35);
+}
+.bio figure.clipping img {
+  filter: sepia(0.15) contrast(1.02);
+}
+.bio figure.inset {
+  max-width: 72%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bio figcaption {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin-top: 0.65rem;
+  line-height: 1.45;
+  text-align: center;
+}
+.bio figcaption strong {
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: normal;
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+
+/* Sidebar note */
+.bio aside.note {
+  background: rgba(165, 140, 110, 0.10);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.25rem 1.25rem;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+.bio aside.note h3 {
+  font-family: var(--font-display);
+  font-weight: normal;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.bio aside.note p:last-child { margin-bottom: 0; }
+
+/* Sources / footnotes */
+.bio .sources {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+.bio .sources h2 {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: normal;
+  color: var(--ink-muted);
+  margin: 0 0 1.25rem;
+}
+.bio .sources ol {
+  padding-left: 1.4rem;
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+.bio .sources li {
+  margin-bottom: 0.55rem;
+}
+.bio .sources li cite {
+  font-style: italic;
+  color: var(--ink);
+}
+.bio .sources a { word-break: break-word; }
+
+@media (min-width: 700px) {
+  .bio h2 { font-size: 1.7rem; }
+  .bio .lede::first-letter { font-size: 4.2rem; }
+  .bio figure.inset { max-width: 65%; }
+}
+
+/* ── Residents index list ────────────────── */
+.residents-list {
+  width: 100%;
+  max-width: 520px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+}
+.resident-link,
+.resident-pending {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 18px 6px;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+.resident-link:first-child,
+.resident-pending:first-child { border-top: 1px solid var(--rule); }
+.resident-link .resident-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+.resident-pending .resident-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: var(--ink-muted);
+}
+.resident-years {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.03em;
+  margin-top: 0.2rem;
+}
+.resident-pending .resident-years::after {
+  content: ' · bio coming soon';
+  font-style: italic;
+}
+.resident-link:hover,
+.resident-link:focus {
+  padding-left: 12px;
+  outline: none;
+}
+
 /* ── Utilities ───────────────────────────── */
 .hidden { display: none !important; }
