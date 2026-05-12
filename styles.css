@@ -898,6 +898,50 @@ a.timeline-card:active { transform: scale(0.995); }
 }
 .bio aside.note p:last-child { margin-bottom: 0; }
 
+/* Family stones — closing index of related graves */
+.bio .family-stones {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+.bio .family-stones h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.bio .family-stones ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bio .family-stones li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(165, 140, 110, 0.35);
+}
+.bio .family-stones li:last-child { border-bottom: none; }
+.bio .family-stones .stone-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.bio .family-stones .stone-dates {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+  margin-top: 0.1rem;
+}
+.bio .family-stones .stone-relation {
+  display: inline-block;
+  margin-top: 0.15rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
 /* Sources / footnotes */
 .bio .sources {
   margin-top: 3.5rem;
