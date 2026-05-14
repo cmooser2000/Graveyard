@@ -26,13 +26,6 @@
 
 <main>
 
-  <!-- Shooting star animation -->
-  <div class="sky" aria-hidden="true">
-    <span class="shooting-star shooting-star--a"></span>
-    <span class="shooting-star shooting-star--b"></span>
-    <span class="shooting-star shooting-star--c"></span>
-  </div>
-
   <h1 class="hero-title congrats-title">Congratulations!</h1>
   <p class="congrats-subtitle">You found all the graves.</p>
 
@@ -40,17 +33,54 @@
     <span class="rule-mark"></span>
   </div>
 
-  <p class="intro">
-    You have walked from stone to stone. You have spoken their years aloud. For a moment, their lives returned to them.
-  </p>
-  <p class="intro">
-    These seven were not the only ones. The cemetery holds a whole community &mdash; farmers and ministers, fishermen and mothers, children who never grew older than the year carved beneath their names. Every stone here is a story somebody waited to hear.
-  </p>
-  <p class="intro">
-    Thank you for listening.
-  </p>
+  <!-- Certificate-of-completion generator -->
+  <section class="cert" aria-label="Certificate of completion">
 
-  <div class="cta-group">
+    <!-- Form (visible until generated) -->
+    <div class="cert-form" id="certForm">
+      <p class="cert-pitch">Make your Headstone History certificate of completion.</p>
+      <form id="certFormForm" novalidate>
+        <label class="cert-field">
+          <span>First name</span>
+          <input type="text" id="firstName" autocomplete="given-name" required maxlength="40">
+        </label>
+        <label class="cert-field">
+          <span>Last name</span>
+          <input type="text" id="lastName" autocomplete="family-name" required maxlength="40">
+        </label>
+        <label class="cert-field">
+          <span>Date</span>
+          <input type="date" id="completionDate" required>
+        </label>
+        <button type="submit" class="btn">Make my certificate</button>
+      </form>
+    </div>
+
+    <!-- Generated headstone (revealed on submit) -->
+    <figure class="cert-stone" id="certStone" hidden>
+      <div class="stone-arch">
+        <span class="stone-ornament" aria-hidden="true">&#x2767;</span>
+        <p class="stone-eyebrow">In Memory of&hellip;</p>
+        <p class="stone-name" id="certName"></p>
+        <span class="stone-divider" aria-hidden="true"></span>
+        <p class="stone-body">
+          completed the<br>
+          Mount Desert Street<br>
+          Cemetery Tour on
+        </p>
+        <p class="stone-date" id="certDate"></p>
+        <span class="stone-bottom-ornament" aria-hidden="true">&#x2767;</span>
+      </div>
+      <figcaption class="cert-hint">Screenshot to save your certificate.</figcaption>
+    </figure>
+
+    <div class="cert-actions" id="certActions" hidden>
+      <button type="button" class="cert-link" id="makeAnotherBtn">&larr; Make another</button>
+    </div>
+
+  </section>
+
+  <div class="cta-group cert-cta-group">
     <a href="/journey.html?grave=1" class="btn">Go back to your stories</a>
     <button type="button" class="btn" id="playAgainBtn">Play again</button>
   </div>
@@ -60,9 +90,62 @@
 
 <script>
   (function () {
-    var btn = document.getElementById('playAgainBtn');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
+    'use strict';
+
+    // Default the date to today
+    var dateInput = document.getElementById('completionDate');
+    if (dateInput) {
+      var t = new Date();
+      var iso = t.getFullYear() + '-' +
+                String(t.getMonth() + 1).padStart(2, '0') + '-' +
+                String(t.getDate()).padStart(2, '0');
+      dateInput.value = iso;
+    }
+
+    function formatDate(iso) {
+      // iso = YYYY-MM-DD
+      var parts = iso.split('-');
+      if (parts.length !== 3) return iso;
+      var year = parseInt(parts[0], 10);
+      var month = parseInt(parts[1], 10) - 1;
+      var day = parseInt(parts[2], 10);
+      var months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+      if (month < 0 || month > 11 || isNaN(year) || isNaN(day)) return iso;
+      return months[month] + ' ' + day + ', ' + year;
+    }
+
+    var form    = document.getElementById('certFormForm');
+    var formBox = document.getElementById('certForm');
+    var stone   = document.getElementById('certStone');
+    var actions = document.getElementById('certActions');
+    var nameEl  = document.getElementById('certName');
+    var dateEl  = document.getElementById('certDate');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var first = document.getElementById('firstName').value.trim();
+      var last  = document.getElementById('lastName').value.trim();
+      var date  = document.getElementById('completionDate').value;
+      if (!first || !last || !date) return;
+
+      nameEl.textContent = first + ' ' + last;
+      dateEl.textContent = formatDate(date);
+
+      formBox.hidden = true;
+      stone.hidden = false;
+      actions.hidden = false;
+      stone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('makeAnotherBtn').addEventListener('click', function () {
+      stone.hidden = true;
+      actions.hidden = true;
+      formBox.hidden = false;
+      document.getElementById('firstName').focus();
+    });
+
+    document.getElementById('playAgainBtn').addEventListener('click', function () {
       try { localStorage.removeItem('eden_progress'); } catch (e) {}
       window.location.href = '/';
     });
