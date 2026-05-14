@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F0E8D6">
-  <title>The Seven &mdash; Headstone History</title>
-  <meta name="description" content="The end of the journey.">
+  <title>Congratulations &mdash; Headstone History</title>
+  <meta name="description" content="You found all seven graves.">
   <link rel="stylesheet" href="/styles.css">
   <script>
     // Gate: only show this page if all seven graves are completed.
@@ -25,7 +25,16 @@
 <body>
 
 <main>
-  <h1 class="hero-title">The Seven</h1>
+
+  <!-- Shooting star animation -->
+  <div class="sky" aria-hidden="true">
+    <span class="shooting-star shooting-star--a"></span>
+    <span class="shooting-star shooting-star--b"></span>
+    <span class="shooting-star shooting-star--c"></span>
+  </div>
+
+  <h1 class="hero-title congrats-title">Congratulations!</h1>
+  <p class="congrats-subtitle">You found all the graves.</p>
 
   <div class="rule" aria-hidden="true">
     <span class="rule-mark"></span>
@@ -41,14 +50,24 @@
     Thank you for listening.
   </p>
 
-  <div class="rule" aria-hidden="true">
-    <span class="rule-mark"></span>
+  <div class="cta-group">
+    <a href="/journey.html?grave=1" class="btn">Go back to your stories</a>
+    <button type="button" class="btn" id="playAgainBtn">Play again</button>
   </div>
-
-  <p class="small"><a href="/" style="color: var(--ink-muted);">Return to the beginning</a></p>
 
   <p class="page-footer">A project at the Mount Desert Street Cemetery &middot; Bar Harbor, Maine</p>
 </main>
+
+<script>
+  (function () {
+    var btn = document.getElementById('playAgainBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      try { localStorage.removeItem('eden_progress'); } catch (e) {}
+      window.location.href = '/';
+    });
+  })();
+</script>
 
 </body>
 </html>

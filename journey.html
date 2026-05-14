@@ -26,6 +26,9 @@
     <span class="rule-mark"></span>
   </div>
 
+  <!-- Per-grave "find the headstone" heading (hidden on revisit) -->
+  <p class="find-heading" id="findHeading">&nbsp;</p>
+
   <!-- Map (shown only until the year is entered) -->
   <figure class="map-block" id="mapBlock">
     <img id="mapImage" alt="Map showing the location of the grave">
@@ -66,6 +69,13 @@
       <button type="button" class="watch-again" id="watchAgainBtn">Watch again</button>
     </div>
   </div>
+
+  <!-- Stories panel — grows as graves are unlocked -->
+  <nav class="story-list hidden" id="storyList" aria-label="Your unlocked stories">
+    <p class="story-list-heading">Go back to your stories</p>
+    <ul id="storyListItems"></ul>
+    <p class="story-list-home"><a href="/">&larr; Go back home</a></p>
+  </nav>
 
   <!-- Chapter crumb -->
   <p class="crumb" id="crumb">Chapter &mdash; of seven</p>

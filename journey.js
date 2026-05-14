@@ -8,6 +8,7 @@
 
   var STORAGE_KEY = 'eden_progress';
   var TOTAL_GRAVES = 7;
+  var CHAPTER_WORDS = ['One','Two','Three','Four','Five','Six','Seven'];
 
   // ── Progress ───────────────────────────────
   function loadProgress() {
@@ -38,8 +39,7 @@
     var params = new URLSearchParams(window.location.search);
     var raw = params.get('grave');
     if (raw === null) {
-      // No query param — resume where they left off (highest unlocked),
-      // so clicking Home and coming back lands them on their latest page.
+      // No query param — resume where they left off (highest unlocked).
       return progress ? highestUnlocked(progress) : 1;
     }
     var n = parseInt(raw, 10);
@@ -47,13 +47,9 @@
     return n;
   }
 
-  // ── Chapter word (spelled out) ─────────────
-  var CHAPTER_WORDS = ['One','Two','Three','Four','Five','Six','Seven'];
-
   // ── Preload helpers ────────────────────────
   // Cell service is spotty at the cemetery; we aggressively preload so the
-  // next video is already in the browser cache by the time the user walks
-  // to the next stone.
+  // next video is already cached by the time the user walks to the next stone.
   var gravesData = null;
   var preloadedUrls = {};
 
@@ -61,7 +57,6 @@
     var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     if (!conn) return false;
     if (conn.saveData) return true;
-    // effectiveType is one of: 'slow-2g', '2g', '3g', '4g'
     if (conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g') return true;
     return false;
   }
@@ -100,32 +95,84 @@
       yearsEl.classList.add('hidden');
     }
 
+    document.getElementById('findHeading').textContent = grave.findHeading || '';
+
     var mapImg = document.getElementById('mapImage');
     mapImg.src = grave.mapImage;
     mapImg.alt = 'Map showing the location of ' + grave.name + "'s stone";
     document.getElementById('mapCaption').textContent = grave.mapCaption || '';
 
-    document.getElementById('prompt').textContent = grave.prompt || 'Enter the year';
+    document.getElementById('prompt').textContent = grave.unlockPrompt || grave.prompt || 'Enter the year';
 
     var videoEl = document.getElementById('video');
-    // Upgrade to aggressive preload while the user is typing the year,
-    // unless the connection is slow — then stick with metadata only.
     videoEl.preload = connectionIsSlow() ? 'metadata' : 'auto';
     videoEl.src = grave.video;
     preloadedUrls[grave.video] = true;
 
-    document.getElementById('crumb').textContent = 'Chapter ' + (CHAPTER_WORDS[num - 1] || num).toLowerCase() + ' of seven';
+    document.getElementById('crumb').textContent =
+      'Chapter ' + (CHAPTER_WORDS[num - 1] || num).toLowerCase() + ' of seven';
+  }
+
+  // ── Continue button text ───────────────────
+  function setContinueButton(num) {
+    var btn = document.getElementById('continueBtn');
+    if (!btn || !gravesData) return;
+    if (num >= TOTAL_GRAVES) {
+      btn.textContent = 'See your completion →';
+      btn.setAttribute('href', '/complete.html');
+      return;
+    }
+    var next = gravesData.find(function (g) { return g.id === num + 1; });
+    var label = next ? (next.shortName || next.name) : 'next story';
+    btn.textContent = 'Move on to ' + label + ' →';
+    btn.setAttribute('href', '/journey.html?grave=' + (num + 1));
+  }
+
+  // ── Story list (revisit panel) ─────────────
+  function renderStoryList(num, progress) {
+    var panel = document.getElementById('storyList');
+    var list  = document.getElementById('storyListItems');
+    if (!panel || !list || !gravesData) return;
+
+    // Build links for every completed grave other than the current one
+    var others = progress.completed
+      .filter(function (id) { return id !== num; })
+      .sort(function (a, b) { return a - b; });
+
+    list.innerHTML = '';
+    others.forEach(function (id) {
+      var g = gravesData.find(function (x) { return x.id === id; });
+      if (!g) return;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '/journey.html?grave=' + id;
+      a.textContent = 'Go back to ' + (g.shortName || g.name);
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    // Show the panel when there's at least one other completed grave to revisit.
+    if (others.length > 0) {
+      panel.classList.remove('hidden');
+    } else {
+      panel.classList.add('hidden');
+    }
+  }
+
+  // ── Reveal video block (first unlock OR revisit) ──
+  function revealVideo() {
+    document.getElementById('findHeading').classList.add('hidden');
+    document.getElementById('mapBlock').classList.add('hidden');
+    document.getElementById('formBlock').classList.add('hidden');
+    document.getElementById('videoBlock').classList.add('visible');
   }
 
   // ── Form: year submission ──────────────────
   function bindForm(grave, num, progress) {
-    var form      = document.getElementById('yearForm');
-    var input     = document.getElementById('yearInput');
-    var errorEl   = document.getElementById('formError');
-    var formBlock = document.getElementById('formBlock');
-    var videoBlock = document.getElementById('videoBlock');
+    var form    = document.getElementById('yearForm');
+    var input   = document.getElementById('yearInput');
+    var errorEl = document.getElementById('formError');
 
-    // Enforce 4-digit max via input handler (maxlength doesn't apply to type=number)
     input.addEventListener('input', function () {
       if (input.value.length > 4) input.value = input.value.slice(0, 4);
     });
@@ -133,10 +180,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var guess = parseInt(input.value, 10);
-      if (isNaN(guess)) {
-        showError();
-        return;
-      }
+      if (isNaN(guess)) { showError(); return; }
       if (guess === grave.unlockYear) {
         onCorrect();
       } else {
@@ -147,14 +191,12 @@
     function showError() {
       errorEl.classList.add('show');
       input.classList.remove('shake');
-      // force reflow to restart animation
       void input.offsetWidth;
       input.classList.add('shake');
       input.select();
     }
 
     function onCorrect() {
-      // Mark completed; unlock next grave
       if (progress.completed.indexOf(num) === -1) progress.completed.push(num);
       var next = num + 1;
       if (next <= TOTAL_GRAVES && progress.unlocked.indexOf(next) === -1) {
@@ -162,13 +204,8 @@
       }
       saveProgress(progress);
 
-      // Hide the map + form (they've served their purpose: find the
-      // stone, enter the year). Reveal the video.
-      formBlock.classList.add('hidden');
-      document.getElementById('mapBlock').classList.add('hidden');
-      videoBlock.classList.add('visible');
-
-      // Start buffering the next grave's video while they watch this one.
+      revealVideo();
+      renderStoryList(num, progress);
       preloadNextGrave(num);
     }
   }
@@ -182,12 +219,10 @@
     var watchAgain  = document.getElementById('watchAgainBtn');
     var hasPlayed   = false;
 
-    // Tap anywhere on the video → toggle play/pause
     wrap.addEventListener('click', function (e) {
-      // Don't toggle if user clicked a post-video button (they're outside wrap anyway, but guard)
       if (e.target.closest('.post-video')) return;
       if (video.paused || video.ended) {
-        video.play().catch(function () { /* autoplay blocked — the user tap should allow it */ });
+        video.play().catch(function () {});
       } else {
         video.pause();
       }
@@ -201,10 +236,6 @@
 
     video.addEventListener('pause', function () {
       wrap.classList.remove('playing');
-      // If the user has started watching and then paused (including by
-      // tapping "Done" in iOS's native fullscreen player before the clip
-      // ends), surface the Continue / Watch again controls so they have
-      // a way forward without having to replay to the end.
       if (hasPlayed && !video.ended) {
         postVideo.classList.add('visible');
       }
@@ -216,17 +247,12 @@
       postVideo.classList.add('visible');
     });
 
-    // Continue button — next grave or complete
     continueBtn.addEventListener('click', function (e) {
       e.preventDefault();
-      if (num >= TOTAL_GRAVES) {
-        window.location.href = '/complete.html';
-      } else {
-        window.location.href = '/journey.html?grave=' + (num + 1);
-      }
+      var href = continueBtn.getAttribute('href') || '/';
+      window.location.href = href;
     });
 
-    // Watch again — rewind and play
     watchAgain.addEventListener('click', function () {
       postVideo.classList.remove('visible');
       wrap.classList.remove('ended');
@@ -259,16 +285,16 @@
           window.location.replace('/journey.html?grave=1');
           return;
         }
+
         renderGrave(grave, num);
         bindForm(grave, num, progress);
         bindVideo(num);
+        setContinueButton(num);
+        renderStoryList(num, progress);
 
-        // If already completed, skip map + form and show video immediately,
-        // and start preloading the next grave so Continue is instant.
+        // Already completed → skip map/form, show video immediately.
         if (progress.completed.indexOf(num) !== -1) {
-          document.getElementById('mapBlock').classList.add('hidden');
-          document.getElementById('formBlock').classList.add('hidden');
-          document.getElementById('videoBlock').classList.add('visible');
+          revealVideo();
           preloadNextGrave(num);
         }
       })
