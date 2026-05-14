@@ -534,7 +534,9 @@ p {
 }
 .cert-form .btn { max-width: 360px; margin: 1.25rem auto 0; }
 
-/* Headstone */
+/* Headstone — the gravestone illustration is /maps/certificate-stone.jpg
+   (extracted from the masthead, with the original A. Von S. Barry
+   inscription painted out so we can lay user text on top). */
 .cert-stone {
   margin: 0 auto;
   max-width: 320px;
@@ -543,82 +545,59 @@ p {
 @media (min-width: 700px) {
   .cert-stone { max-width: 360px; }
 }
-.stone-arch {
-  background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 50% 50% 6px 6px / 38% 38% 6px 6px;
-  padding: 56px 22px 36px;
+.stone-wrap {
   position: relative;
-  box-shadow:
-    0 1px 0 rgba(38, 28, 20, 0.06),
-    0 18px 28px -16px rgba(38, 28, 20, 0.35);
+  width: 100%;
 }
-/* Inner decorative border that follows the arch */
-.stone-arch::before {
-  content: '';
-  position: absolute;
-  inset: 14px;
-  border: 1px solid var(--rule);
-  border-radius: 50% 50% 4px 4px / 38% 38% 4px 4px;
-  pointer-events: none;
-}
-
-.stone-ornament,
-.stone-bottom-ornament {
+.stone-bg {
   display: block;
-  color: var(--ink-muted);
-  font-size: 1.1rem;
-  line-height: 1;
-  margin: 0 0 0.6rem;
+  width: 100%;
+  height: auto;
 }
-.stone-bottom-ornament {
-  margin: 0.6rem 0 0;
+/* Overlay text sits in the painted-out inscription panel.
+   Source-image coordinates: 16%–84% horizontal, 34%–66% vertical. */
+.stone-overlay {
+  position: absolute;
+  left: 17%;
+  right: 17%;
+  top: 35%;
+  bottom: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
-
-.stone-eyebrow {
-  font-family: var(--font-banner);
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 0.6rem;
-}
-
 .stone-name {
   font-family: var(--font-display);
-  font-size: 1.85rem;
+  font-size: 1.2rem;
   line-height: 1.1;
   color: var(--ink);
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.35rem;
   overflow-wrap: anywhere;
 }
 @media (min-width: 700px) {
-  .stone-name { font-size: 2.2rem; }
+  .stone-name { font-size: 1.5rem; }
 }
-
-.stone-divider {
-  display: block;
-  width: 40%;
-  height: 1px;
-  margin: 0.5rem auto 0.75rem;
-  background: var(--rule);
-}
-
 .stone-body {
   font-family: var(--font-banner);
-  font-size: 0.88rem;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
+  font-size: 0.62rem;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
   color: var(--ink);
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.3rem;
 }
-
+@media (min-width: 700px) {
+  .stone-body { font-size: 0.78rem; }
+}
 .stone-date {
   font-family: var(--font-banner);
-  font-size: 1.05rem;
+  font-size: 0.78rem;
   letter-spacing: 0.04em;
   color: var(--ink);
   margin: 0;
+}
+@media (min-width: 700px) {
+  .stone-date { font-size: 0.95rem; }
 }
 
 .cert-hint {
