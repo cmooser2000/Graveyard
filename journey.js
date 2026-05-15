@@ -10,6 +10,12 @@
   var TOTAL_GRAVES = 7;
   var CHAPTER_WORDS = ['One','Two','Three','Four','Five','Six','Seven'];
 
+  // Virtual-tour mode lets visitors who aren't at the cemetery watch the
+  // videos without entering the unlock years. No progress is saved, no
+  // certificate is offered at the end.
+  var VIRTUAL_MODE = new URLSearchParams(window.location.search).get('virtual') === '1';
+  var VIRTUAL_SUFFIX = VIRTUAL_MODE ? '&virtual=1' : '';
+
   // ── Progress ───────────────────────────────
   function loadProgress() {
     try {
@@ -118,14 +124,19 @@
     var btn = document.getElementById('continueBtn');
     if (!btn || !gravesData) return;
     if (num >= TOTAL_GRAVES) {
-      btn.textContent = 'See your completion →';
-      btn.setAttribute('href', '/complete.html');
+      if (VIRTUAL_MODE) {
+        btn.textContent = 'Back to home →';
+        btn.setAttribute('href', '/');
+      } else {
+        btn.textContent = 'See your completion →';
+        btn.setAttribute('href', '/complete.html');
+      }
       return;
     }
     var next = gravesData.find(function (g) { return g.id === num + 1; });
     var label = next ? (next.shortName || next.name) : 'next story';
     btn.textContent = 'Move on to ' + label + ' →';
-    btn.setAttribute('href', '/journey.html?grave=' + (num + 1));
+    btn.setAttribute('href', '/journey.html?grave=' + (num + 1) + VIRTUAL_SUFFIX);
   }
 
   // ── Story list (revisit panel) ─────────────
@@ -263,11 +274,12 @@
 
   // ── Init ───────────────────────────────────
   function init() {
-    var progress = loadProgress();
+    var progress = VIRTUAL_MODE ? null : loadProgress();
     var num = getGraveNum(progress);
 
-    // Gate: if not unlocked, redirect to highest unlocked
-    if (progress.unlocked.indexOf(num) === -1) {
+    // Gate: if not unlocked, redirect to highest unlocked. Skipped in
+    // virtual-tour mode, where every grave is freely watchable.
+    if (!VIRTUAL_MODE && progress.unlocked.indexOf(num) === -1) {
       var target = highestUnlocked(progress);
       window.location.replace('/journey.html?grave=' + target);
       return;
@@ -282,20 +294,27 @@
         gravesData = graves;
         var grave = graves.find(function (g) { return g.id === num; });
         if (!grave) {
-          window.location.replace('/journey.html?grave=1');
+          window.location.replace('/journey.html?grave=1' + VIRTUAL_SUFFIX);
           return;
         }
 
         renderGrave(grave, num);
-        bindForm(grave, num, progress);
         bindVideo(num);
         setContinueButton(num);
-        renderStoryList(num, progress);
 
-        // Already completed → skip map/form, show video immediately.
-        if (progress.completed.indexOf(num) !== -1) {
+        if (VIRTUAL_MODE) {
+          // Virtual: skip the map + year form, go straight to the video.
           revealVideo();
           preloadNextGrave(num);
+        } else {
+          bindForm(grave, num, progress);
+          renderStoryList(num, progress);
+
+          // Already completed → skip map/form, show video immediately.
+          if (progress.completed.indexOf(num) !== -1) {
+            revealVideo();
+            preloadNextGrave(num);
+          }
         }
       })
       .catch(function (err) {
