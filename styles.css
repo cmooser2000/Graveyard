@@ -1003,6 +1003,17 @@ a.timeline-card:active { transform: scale(0.995); }
 .bio .bio-header .years {
   margin-bottom: 1rem;
 }
+.bio .bio-blurb {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 32rem;
+  margin: 0.6rem auto 1rem;
+}
+@media (min-width: 700px) {
+  .bio .bio-blurb { font-size: 1.2rem; }
+}
 .bio .epitaph {
   font-family: var(--font-body);
   font-style: italic;
