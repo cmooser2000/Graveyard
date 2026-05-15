@@ -1301,16 +1301,15 @@ a.timeline-card:active { transform: scale(0.995); }
   line-height: 1.2;
   color: var(--ink-muted);
 }
-.resident-years {
+.resident-pending .resident-name::after {
+  content: 'bio coming soon';
+  display: block;
+  margin-top: 0.2rem;
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--ink-muted);
-  letter-spacing: 0.03em;
-  margin-top: 0.2rem;
-}
-.resident-pending .resident-years::after {
-  content: ' · bio coming soon';
   font-style: italic;
+  letter-spacing: 0.03em;
+  color: var(--ink-muted);
 }
 .resident-link:hover,
 .resident-link:focus {

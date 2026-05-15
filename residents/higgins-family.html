@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F0E8D6">
+  <title>Higgins &mdash; Headstone History</title>
+  <meta name="description" content="The Higgins family of Bar Harbor, Maine: the founding settler Israel Higgins Sr., his sea-captain son lost at sea in 1823, and the family plot at Mount Desert Street Cemetery.">
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    /* ── Higgins family-tree styles (scoped to this page) ── */
+    .tree-section {
+      margin: 2rem -1rem 3rem;
+      padding: 2rem 1rem 2.5rem;
+      background: linear-gradient(180deg,
+        rgba(165, 140, 110, 0.06) 0%,
+        rgba(165, 140, 110, 0.14) 50%,
+        rgba(165, 140, 110, 0.06) 100%);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .tree-section h2 { text-align: center; margin-top: 0; }
+    .tree-blurb {
+      max-width: 36rem;
+      margin: 0 auto 2rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .tree-legend {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 0 auto 1.5rem;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+    .tree-legend > span { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .legend-marker {
+      display: inline-block;
+      width: 0.85rem; height: 0.85rem;
+      border-radius: 2px;
+      background: var(--paper);
+      border: 1.5px solid var(--rule);
+    }
+    .legend-marker.buried-here {
+      border-color: var(--cadmium);
+      border-width: 2px;
+      background: #E7DFCB;
+    }
+    .tree-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.5rem 0.5rem 1.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tree-svg-wrap { min-width: 1080px; margin: 0 auto; position: relative; }
+    svg.family-tree { display: block; width: 100%; height: auto; overflow: visible; }
+
+    .person-card { cursor: pointer; transition: filter 0.15s ease; }
+    .person-card:hover .card-bg,
+    .person-card:focus .card-bg { fill: #FFF6DD; stroke-width: 2.5; }
+    .person-card.selected .card-bg {
+      fill: #FFF0CD;
+      stroke: var(--cadmium);
+      stroke-width: 2.5;
+    }
+    .card-bg {
+      fill: var(--paper);
+      stroke: var(--rule);
+      stroke-width: 1.5;
+      rx: 4;
+    }
+    .card-bg.buried-here {
+      stroke: var(--cadmium);
+      stroke-width: 2;
+      fill: #E7DFCB;
+    }
+    .card-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      fill: var(--ink);
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .card-dates {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 11px;
+      fill: var(--ink-muted);
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .card-note {
+      font-family: Georgia, serif;
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      fill: var(--ink-muted);
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .tree-line { fill: none; stroke: var(--ink-muted); stroke-width: 1.2; }
+    .marriage-line { stroke: var(--moss); stroke-width: 1.5; }
+
+    .details-panel {
+      max-width: 36rem;
+      margin: 1.5rem auto 0;
+      padding: 1.5rem 1.75rem;
+      background: #E7DFCB;
+      border: 1px solid var(--rule);
+      text-align: left;
+      box-shadow: 0 4px 18px -8px rgba(43, 36, 24, 0.18);
+    }
+    .details-panel[hidden] { display: none; }
+    .details-panel h4 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.3rem;
+      margin: 0 0 0.25rem;
+      color: var(--ink);
+    }
+    .details-panel .panel-dates {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      margin: 0 0 1rem;
+    }
+    .details-panel .panel-burial {
+      font-family: Georgia, serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cadmium);
+      margin: 0 0 1rem;
+    }
+    .details-panel .panel-burial.elsewhere { color: var(--ink-muted); }
+    .details-panel p {
+      margin: 0 0 0.8rem;
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+    .details-panel p:last-child { margin-bottom: 0; }
+    .panel-close {
+      float: right;
+      background: none;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--ink-muted);
+      cursor: pointer;
+      padding: 0;
+      margin: -0.5rem -0.5rem 0 0;
+      line-height: 1;
+    }
+    .panel-close:hover { color: var(--ink); }
+
+    .scale-note {
+      margin-top: 1rem;
+      font-size: 0.86rem;
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <p class="back-home"><a href="/residents">&larr; Meet the Residents</a></p>
+
+  <div class="bio">
+
+    <header class="bio-header">
+      <p class="chapter">Mount Desert Street Cemetery</p>
+      <h1 class="hero-title">Higgins</h1>
+      <div class="rule" aria-hidden="true">
+        <span class="rule-mark"></span>
+      </div>
+    </header>
+
+
+  
+
+  
+
+  <article>
+
+    <section>
+      <p>
+        Some seventy people named Higgins are buried in the Mount
+        Desert Street Cemetery — by a long margin, the largest
+        concentration of any single family in this ground. They
+        include the first European settlers of Bar Harbor; sea
+        captains who took schooners and full-rigged ships to Labrador,
+        Portugal, the West Indies, and the open Atlantic; farmers who
+        cleared the original 200 acres at Eddy's Brook and the
+        adjoining lots along what is now Mount Desert Street; mill
+        owners; carpenters; town selectmen of Eden; and a commander in
+        the United States Coast Survey. Half a dozen of them died at
+        sea. Most did not.
+      </p>
+
+      <p>
+        Capt. Israel Higgins was lost at sea on March 23, 1823, when
+        the schooner <em>Julia Ann</em>, of Lubec, went down twenty-five
+        miles south of Sandy Hook, N.J. His twelve-year-old son Seth
+        was on board with him. His wife, Polly Hull Higgins, had been
+        buried five years earlier, on Feb. 26, 1818. The weathered
+        marble headstone in the cemetery — topped with a winged
+        hourglass and a pair of clasped hands — bears both their
+        names. A letter from his grandson to the
+        <em>Bangor Commercial</em> in 1931, on the occasion of the
+        USS <em>Constitution</em>'s visit to Mount Desert waters,
+        called hers "the very first grave to be placed in this old
+        time burying ground."
+      </p>
+
+      <figure>
+        <img src="/residents/images/higgins-family/captain-israel-headstone.jpg" alt="A weathered white marble headstone topped with a winged hourglass carving and a pair of clasped hands. The inscription names Capt. Israel Higgins, lost at sea March 23, 1823, and his wife Polly Higgins, died February 26, 1818.">
+        <figcaption>
+          <strong>The headstone of Capt. Israel Higgins and Polly Hull Higgins.</strong>
+          Erected by their son, Capt. Royal Grant Higgins.
+        </figcaption>
+      </figure>
+
+      <p>
+        The man named on the stone was born in Bar Harbor on March 5,
+        1778 — probably the first child of European descent born in
+        the place that would become this town. His father, Israel
+        Higgins Sr., had arrived from Cape Cod in 1771 with his wife
+        Mary Snow and built the family farm at Eddy's Brook, on land
+        for which no European had yet drawn up a clear title.
+      </p>
+    </section>
+
+    <aside class="plot-list" aria-label="Higgins family members in the plot">
+      <h3>The Plot — The Main Figures</h3>
+      <ul>
+        <li><strong>Capt. Israel Higgins, Jr.,</strong> 5 March 1778 – 23 March 1823 <span class="relation">— lost at sea on the schooner <em>Julia Ann</em></span></li>
+        <li><strong>Polly Hull Higgins,</strong> 1782 – 26 February 1818 <span class="relation">— his wife; daughter of Samuel Hull of Hull's Cove</span></li>
+        <li><strong>Capt. Royal Grant Higgins,</strong> 1809 – 1873 <span class="relation">— son of Israel &amp; Polly; commander of a US Coast Survey ship</span></li>
+        <li><strong>Mary F. Higgins,</strong> 1839 – 1915 <span class="relation">— Royal Grant's wife (Mary Frances Snow)</span></li>
+        <li><strong>Ella Frances Higgins,</strong> 1866 – 1902 <span class="relation">— daughter of Royal Grant &amp; Mary F.</span></li>
+        <li><strong>Stephen W. Higgins,</strong> 1869 – 1887 <span class="relation">— son of Royal Grant &amp; Mary F.; died at 18</span></li>
+        <li><strong>Capt. Stephen Higgins,</strong> 31 December 1804 – 4 September 1862 <span class="relation">— son of Israel &amp; Polly; died on a mountain</span></li>
+        <li><strong>Mary H. Higgins,</strong> d. 3 June 1847, age 21 <span class="relation">— Capt. Stephen II's daughter</span></li>
+        <li><strong>Stephen Higgins,</strong> 19 December 1852 (age 81) <span class="relation">— Israel Jr.'s elder brother; born 1771</span></li>
+        <li><strong>Deborah Wasgatt Higgins,</strong> 26 November 1845 (age 74) <span class="relation">— Stephen's wife</span></li>
+        <li><strong>Oliver Higgins,</strong> 22 January 1776 – 30 January 1862 <span class="relation">— Israel Jr.'s elder brother</span></li>
+        <li><strong>Rhoda Leland Higgins,</strong> 1782 – 29 September 1871 <span class="relation">— Oliver's wife</span></li>
+        <li><strong>Sally Higgins,</strong> c. 1805 – 28 August 1876, age 71 <span class="relation">— almost certainly Oliver &amp; Rhoda's daughter (per the 1935 recollection)</span></li>
+        <li><strong>Zacheus Higgins the Younger,</strong> 1807 – 3 November 1856, age 49 <span class="relation">— son of Oliver &amp; Rhoda</span></li>
+        <li><strong>Ezra L. Higgins,</strong> c. 1815 – 16 March 1855, age 40 <span class="relation">— almost certainly Oliver &amp; Rhoda's son (per the 1935 recollection)</span></li>
+        <li><strong>Oliver J. Higgins,</strong> 1825 – 11 November 1853, age 28 <span class="relation">— son of Oliver &amp; Rhoda</span></li>
+        <li><strong>Capt. Zaccheus Higgins,</strong> 13 December 1782 – 16 May 1867 <span class="relation">— Israel Jr.'s younger brother</span></li>
+        <li><strong>Sarah Leland Higgins,</strong> 1786 – 1869 <span class="relation">— Zaccheus's wife; sister of Rhoda</span></li>
+        <li><strong>Ann Maria Higgins,</strong> 1813 – 7 August 1883, age 69 <span class="relation">— daughter of Capt. Zaccheus &amp; Sarah; identified by full name in an 1848 deed</span></li>
+        <li><strong>Stephen Higgins Jr.,</strong> c. 1813 – 18 December 1891, age 78 <span class="relation">— Ann Maria's husband; a carpenter of Eden</span></li>
+        <li><strong>Henry Higgins,</strong> 3 July 1843 (age 53) <span class="relation">— husband of Huldah</span></li>
+        <li><strong>Huldah Leland Higgins,</strong> 9 January 1882 (age 89) <span class="relation">— Henry's wife; sister of Rhoda &amp; Sarah</span></li>
+        <li><strong>Amos Higgins,</strong> Aug 1825 (age 11 months) <span class="relation">— son of Henry &amp; Huldah</span></li>
+        <li><strong>Deborah Higgins,</strong> 1812 – 17 July 1831, age 19 <span class="relation">— daughter of Henry &amp; Huldah</span></li>
+        <li><strong>Hester A. Higgins,</strong> 1834 – 20 December 1852, age 18 <span class="relation">— daughter of Henry &amp; Huldah</span></li>
+        <li><strong>Deborah Higgins (second),</strong> 1832 – 15 September 1862, age 30 <span class="relation">— daughter of Henry &amp; Huldah</span></li>
+      </ul>
+      <span class="group-label">Mentioned, but buried elsewhere</span>
+      <ul>
+        <li>Israel Higgins, Sr., c. 1742 – 11 November 1818 <span class="relation">— the founding settler; died at Bar Island</span></li>
+        <li>Mary Snow Higgins, d. 2 November 1818 <span class="relation">— Israel Sr.'s wife</span></li>
+        <li>Zena Wasgatt Higgins, d. 18 September 1821 <span class="relation">— Israel Jr.'s second wife, m. 1819</span></li>
+        <li>Jonathan Higgins, b. 1800; d. June 1824 <span class="relation">— Israel &amp; Polly's eldest son; lost at sea on the brig <em>William</em>, voyage from Havana to Portland</span></li>
+        <li>Seth Higgins, 1810 – 23 March 1823 <span class="relation">— their son, lost at sea with his father, age 12; interred at Squam, Long Island</span></li>
+      </ul>
+      <p class="scale-note">
+        Some seventy people named Higgins are buried in this cemetery.
+        The list above names only the figures central to the
+        seventeenth- through nineteenth-century story of the founding
+        Higgins line; many more — children, grandchildren, in-laws,
+        and members of other Higgins branches — rest in the same
+        ground.
+      </p>
+    </aside>
+
+    <div class="ornament"></div>
+
+    <!-- ============ FAMILY TREE ============ -->
+    <section class="tree-section" id="family-tree" aria-label="Higgins family tree">
+      <h2>The Family</h2>
+      <p class="tree-blurb">
+        Five generations of the founding Higgins line — from the
+        Cape Cod founders through their five Bar Harbor sons and
+        their wives, the nine children of Capt. Israel and Polly,
+        and on through Capt. Royal Grant's descendants. Click any
+        person to read their story.
+      </p>
+      <div class="tree-legend" aria-hidden="true">
+        <span><span class="legend-marker buried-here"></span> Buried at Mount Desert Street Cemetery</span>
+        <span><span class="legend-marker"></span> Buried elsewhere</span>
+      </div>
+      <div class="tree-scroll">
+        <div class="tree-svg-wrap">
+          <svg class="family-tree" viewBox="0 0 1080 770" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Higgins family tree">
+            <!-- ===== Connection lines (drawn first so they're behind cards) ===== -->
+
+            <!-- Marriage lines for Generation 1 (Israel Sr. + Mary Snow) -->
+            <line class="marriage-line" x1="480" y1="50" x2="600" y2="50" />
+
+            <!-- Vertical down from Gen 1 to Gen 2 spine -->
+            <line class="tree-line" x1="540" y1="62" x2="540" y2="125" />
+            <!-- Horizontal across Gen 2 (over all 5 couples) -->
+            <line class="tree-line" x1="105" y1="125" x2="975" y2="125" />
+            <!-- Verticals down to each Gen 2 couple -->
+            <line class="tree-line" x1="105" y1="125" x2="105" y2="170" />
+            <line class="tree-line" x1="322" y1="125" x2="322" y2="170" />
+            <line class="tree-line" x1="540" y1="125" x2="540" y2="170" />
+            <line class="tree-line" x1="757" y1="125" x2="757" y2="170" />
+            <line class="tree-line" x1="975" y1="125" x2="975" y2="170" />
+
+            <!-- Marriage lines for Generation 2 couples -->
+            <line class="marriage-line" x1="60" y1="220" x2="150" y2="220" />
+            <line class="marriage-line" x1="277" y1="220" x2="367" y2="220" />
+            <line class="marriage-line" x1="495" y1="220" x2="585" y2="220" />
+            <line class="marriage-line" x1="712" y1="220" x2="802" y2="220" />
+            <line class="marriage-line" x1="930" y1="220" x2="1020" y2="220" />
+
+            <!-- From Henry & Huldah down to their 4 children (Gen 3a) -->
+            <line class="tree-line" x1="110" y1="232" x2="110" y2="305" />
+            <line class="tree-line" x1="32" y1="305" x2="185" y2="305" />
+            <line class="tree-line" x1="32" y1="305" x2="32" y2="330" />
+            <line class="tree-line" x1="83" y1="305" x2="83" y2="330" />
+            <line class="tree-line" x1="134" y1="305" x2="134" y2="330" />
+            <line class="tree-line" x1="185" y1="305" x2="185" y2="330" />
+
+            <!-- From Oliver & Rhoda down to their 4 children buried here (Gen 3a) -->
+            <line class="tree-line" x1="540" y1="232" x2="540" y2="305" />
+            <line class="tree-line" x1="463" y1="305" x2="616" y2="305" />
+            <line class="tree-line" x1="463" y1="305" x2="463" y2="330" />
+            <line class="tree-line" x1="514" y1="305" x2="514" y2="330" />
+            <line class="tree-line" x1="565" y1="305" x2="565" y2="330" />
+            <line class="tree-line" x1="616" y1="305" x2="616" y2="330" />
+
+            <!-- From Capt. Zaccheus & Sarah down to Ann Maria (Gen 3a) -->
+            <line class="tree-line" x1="977" y1="232" x2="977" y2="305" />
+            <line class="tree-line" x1="950" y1="305" x2="977" y2="305" />
+            <line class="tree-line" x1="950" y1="305" x2="950" y2="330" />
+
+            <!-- Marriage line between Ann Maria and Stephen Jr. -->
+            <line class="marriage-line" x1="950" y1="357" x2="1004" y2="357" />
+
+            <!-- From Israel Jr. & Polly couple down to their 9 children (Gen 3b) -->
+            <line class="tree-line" x1="757" y1="232" x2="757" y2="425" />
+            <!-- Horizontal across all 9 children -->
+            <line class="tree-line" x1="80" y1="425" x2="980" y2="425" />
+            <!-- Verticals down to each Gen 3b child -->
+            <line class="tree-line" x1="80" y1="425" x2="80" y2="440" />
+            <line class="tree-line" x1="195" y1="425" x2="195" y2="440" />
+            <line class="tree-line" x1="310" y1="425" x2="310" y2="440" />
+            <line class="tree-line" x1="425" y1="425" x2="425" y2="440" />
+            <line class="tree-line" x1="540" y1="425" x2="540" y2="440" />
+            <line class="tree-line" x1="655" y1="425" x2="655" y2="440" />
+            <line class="tree-line" x1="770" y1="425" x2="770" y2="440" />
+            <line class="tree-line" x1="885" y1="425" x2="885" y2="440" />
+            <line class="tree-line" x1="980" y1="425" x2="980" y2="440" />
+
+            <!-- From Capt. Stephen II down to his daughter Mary H. (Gen 4) -->
+            <line class="tree-line" x1="425" y1="510" x2="425" y2="560" />
+
+            <!-- From Capt. Royal Grant down to his wife Mary F. (Gen 4, marriage line) -->
+            <line class="marriage-line" x1="655" y1="510" x2="655" y2="560" />
+            <text x="665" y="540" style="font-family: 'IM Fell English', serif; font-style: italic; font-size: 11px; fill: var(--accent);">m.</text>
+
+            <!-- From Royal Grant & Mary F. couple down to their 2 children (Gen 5) -->
+            <line class="tree-line" x1="655" y1="620" x2="655" y2="655" />
+            <line class="tree-line" x1="618" y1="655" x2="692" y2="655" />
+            <line class="tree-line" x1="618" y1="655" x2="618" y2="680" />
+            <line class="tree-line" x1="692" y1="655" x2="692" y2="680" />
+
+            <!-- ===== GENERATION 1 (founders, NOT buried at MDSC) ===== -->
+            <g class="person-card" data-id="israel-sr" tabindex="0" role="button" aria-label="Israel Higgins Sr.">
+              <rect class="card-bg" x="400" y="10" width="160" height="80" />
+              <text class="card-name" x="480" y="34">Israel Higgins, Sr.</text>
+              <text class="card-dates" x="480" y="54">c. 1742 – 1818</text>
+              <text class="card-note" x="480" y="74">FOUNDING SETTLER</text>
+            </g>
+
+            <g class="person-card" data-id="mary-snow" tabindex="0" role="button" aria-label="Mary Snow Higgins">
+              <rect class="card-bg" x="520" y="10" width="160" height="80" />
+              <text class="card-name" x="600" y="34">Mary Snow Higgins</text>
+              <text class="card-dates" x="600" y="54">d. 1818</text>
+              <text class="card-note" x="600" y="74">FROM CAPE COD, 1771</text>
+            </g>
+
+            <!-- ===== GENERATION 2 (the five Bar Harbor sons + their wives) ===== -->
+            <!-- Henry & Huldah -->
+            <g class="person-card" data-id="henry" tabindex="0" role="button" aria-label="Henry Higgins">
+              <rect class="card-bg buried-here" x="25" y="180" width="80" height="80" />
+              <text class="card-name" x="65" y="208">Henry</text>
+              <text class="card-dates" x="65" y="227">d. 1843</text>
+              <text class="card-dates" x="65" y="243">age 53</text>
+            </g>
+            <g class="person-card" data-id="huldah" tabindex="0" role="button" aria-label="Huldah Leland Higgins">
+              <rect class="card-bg buried-here" x="105" y="180" width="90" height="80" />
+              <text class="card-name" x="150" y="208">Huldah</text>
+              <text class="card-name" x="150" y="224" style="font-size: 11px;">Leland</text>
+              <text class="card-dates" x="150" y="243">1793–1882</text>
+            </g>
+
+            <!-- Stephen & Deborah -->
+            <g class="person-card" data-id="stephen-i" tabindex="0" role="button" aria-label="Stephen Higgins">
+              <rect class="card-bg buried-here" x="242" y="180" width="80" height="80" />
+              <text class="card-name" x="282" y="208">Stephen</text>
+              <text class="card-dates" x="282" y="227">1771–1852</text>
+              <text class="card-dates" x="282" y="243">age 81</text>
+            </g>
+            <g class="person-card" data-id="deborah" tabindex="0" role="button" aria-label="Deborah Wasgatt Higgins">
+              <rect class="card-bg buried-here" x="322" y="180" width="90" height="80" />
+              <text class="card-name" x="367" y="208">Deborah</text>
+              <text class="card-name" x="367" y="224" style="font-size: 11px;">Wasgatt</text>
+              <text class="card-dates" x="367" y="243">1771–1845</text>
+            </g>
+
+            <!-- Oliver & Rhoda -->
+            <g class="person-card" data-id="oliver" tabindex="0" role="button" aria-label="Oliver Higgins">
+              <rect class="card-bg buried-here" x="460" y="180" width="80" height="80" />
+              <text class="card-name" x="500" y="208">Oliver</text>
+              <text class="card-dates" x="500" y="227">1776–1862</text>
+            </g>
+            <g class="person-card" data-id="rhoda" tabindex="0" role="button" aria-label="Rhoda Leland Higgins">
+              <rect class="card-bg buried-here" x="540" y="180" width="90" height="80" />
+              <text class="card-name" x="585" y="208">Rhoda</text>
+              <text class="card-name" x="585" y="224" style="font-size: 11px;">Leland</text>
+              <text class="card-dates" x="585" y="243">1782–1871</text>
+            </g>
+
+            <!-- Israel Jr. & Polly -->
+            <g class="person-card" data-id="israel-jr" tabindex="0" role="button" aria-label="Capt. Israel Higgins Jr.">
+              <rect class="card-bg buried-here" x="677" y="180" width="80" height="80" />
+              <text class="card-name" x="717" y="206" style="font-size: 11px;">Capt. Israel</text>
+              <text class="card-name" x="717" y="222" style="font-size: 11px;">Jr.</text>
+              <text class="card-dates" x="717" y="241">1778–1823</text>
+            </g>
+            <g class="person-card" data-id="polly" tabindex="0" role="button" aria-label="Polly Hull Higgins">
+              <rect class="card-bg buried-here" x="757" y="180" width="90" height="80" />
+              <text class="card-name" x="802" y="208">Polly</text>
+              <text class="card-name" x="802" y="224" style="font-size: 11px;">Hull</text>
+              <text class="card-dates" x="802" y="243">1782–1818</text>
+            </g>
+
+            <!-- Zaccheus & Sarah -->
+            <g class="person-card" data-id="zaccheus" tabindex="0" role="button" aria-label="Capt. Zaccheus Higgins">
+              <rect class="card-bg buried-here" x="895" y="180" width="80" height="80" />
+              <text class="card-name" x="935" y="206" style="font-size: 11px;">Capt.</text>
+              <text class="card-name" x="935" y="222" style="font-size: 11px;">Zaccheus</text>
+              <text class="card-dates" x="935" y="241">1782–1867</text>
+            </g>
+            <g class="person-card" data-id="sarah-leland" tabindex="0" role="button" aria-label="Sarah Leland Higgins">
+              <rect class="card-bg buried-here" x="975" y="180" width="90" height="80" />
+              <text class="card-name" x="1020" y="208">Sarah</text>
+              <text class="card-name" x="1020" y="224" style="font-size: 11px;">Leland</text>
+              <text class="card-dates" x="1020" y="243">1786–1869</text>
+            </g>
+
+            <!-- ===== GENERATION 3 (children of Israel Jr. & Polly) ===== -->
+            <g class="person-card" data-id="jonathan-3" tabindex="0" role="button" aria-label="Jonathan Higgins">
+              <rect class="card-bg" x="40" y="440" width="80" height="70" />
+              <text class="card-name" x="80" y="466" style="font-size: 12px;">Jonathan</text>
+              <text class="card-dates" x="80" y="483">1800–1824</text>
+              <text class="card-note" x="80" y="500">LOST AT SEA</text>
+            </g>
+            <g class="person-card" data-id="samuel-3" tabindex="0" role="button" aria-label="Samuel Higgins">
+              <rect class="card-bg" x="155" y="440" width="80" height="70" />
+              <text class="card-name" x="195" y="466" style="font-size: 12px;">Samuel</text>
+              <text class="card-dates" x="195" y="483">1801–1816</text>
+            </g>
+            <g class="person-card" data-id="eliza-3" tabindex="0" role="button" aria-label="Eliza Higgins">
+              <rect class="card-bg" x="270" y="440" width="80" height="70" />
+              <text class="card-name" x="310" y="466" style="font-size: 12px;">Eliza</text>
+              <text class="card-dates" x="310" y="483">b. 1803</text>
+            </g>
+            <g class="person-card" data-id="stephen-ii" tabindex="0" role="button" aria-label="Capt. Stephen Higgins">
+              <rect class="card-bg buried-here" x="385" y="440" width="80" height="70" />
+              <text class="card-name" x="425" y="461" style="font-size: 11px;">Capt. Stephen</text>
+              <text class="card-dates" x="425" y="481">1804–1862</text>
+              <text class="card-note" x="425" y="500">SEA CAPTAIN</text>
+            </g>
+            <g class="person-card" data-id="charlotte-3" tabindex="0" role="button" aria-label="Charlotte Higgins">
+              <rect class="card-bg" x="500" y="440" width="80" height="70" />
+              <text class="card-name" x="540" y="466" style="font-size: 12px;">Charlotte</text>
+              <text class="card-dates" x="540" y="483">b. 1806</text>
+            </g>
+            <g class="person-card" data-id="royal-3" tabindex="0" role="button" aria-label="Capt. Royal Grant Higgins">
+              <rect class="card-bg buried-here" x="615" y="440" width="80" height="70" />
+              <text class="card-name" x="655" y="461" style="font-size: 11px;">Capt. Royal</text>
+              <text class="card-name" x="655" y="476" style="font-size: 11px;">Grant</text>
+              <text class="card-dates" x="655" y="494">1809–1873</text>
+            </g>
+            <g class="person-card" data-id="seth-3" tabindex="0" role="button" aria-label="Seth Higgins">
+              <rect class="card-bg" x="730" y="440" width="80" height="70" />
+              <text class="card-name" x="770" y="466" style="font-size: 12px;">Seth</text>
+              <text class="card-dates" x="770" y="483">1810–1823</text>
+              <text class="card-note" x="770" y="500">LOST AT SEA, AGE 12</text>
+            </g>
+            <g class="person-card" data-id="sophia-3" tabindex="0" role="button" aria-label="Sophia Higgins">
+              <rect class="card-bg" x="845" y="440" width="80" height="70" />
+              <text class="card-name" x="885" y="466" style="font-size: 12px;">Sophia</text>
+              <text class="card-dates" x="885" y="483">1812–1897</text>
+            </g>
+            <g class="person-card" data-id="warren-3" tabindex="0" role="button" aria-label="Warren Higgins">
+              <rect class="card-bg" x="940" y="440" width="80" height="70" />
+              <text class="card-name" x="980" y="466" style="font-size: 12px;">Warren</text>
+              <text class="card-dates" x="980" y="483">b. 1814</text>
+            </g>
+
+            <!-- ===== GENERATION 3a (children of Henry & Huldah) ===== -->
+            <g class="person-card" data-id="amos-3a" tabindex="0" role="button" aria-label="Amos Higgins">
+              <rect class="card-bg buried-here" x="10" y="330" width="45" height="55" />
+              <text class="card-name" x="32" y="350" style="font-size: 11px;">Amos</text>
+              <text class="card-dates" x="32" y="365" style="font-size: 10px;">1824–25</text>
+              <text class="card-note" x="32" y="378" style="font-size: 7.5px;">AGE 11 MO.</text>
+            </g>
+            <g class="person-card" data-id="deborah-3a-1" tabindex="0" role="button" aria-label="Deborah Higgins (first)">
+              <rect class="card-bg buried-here" x="61" y="330" width="45" height="55" />
+              <text class="card-name" x="83" y="350" style="font-size: 11px;">Deborah</text>
+              <text class="card-dates" x="83" y="365" style="font-size: 10px;">1812–31</text>
+              <text class="card-note" x="83" y="378" style="font-size: 7.5px;">AGE 19</text>
+            </g>
+            <g class="person-card" data-id="hester-3a" tabindex="0" role="button" aria-label="Hester A. Higgins">
+              <rect class="card-bg buried-here" x="112" y="330" width="45" height="55" />
+              <text class="card-name" x="134" y="350" style="font-size: 11px;">Hester</text>
+              <text class="card-dates" x="134" y="365" style="font-size: 10px;">1834–52</text>
+              <text class="card-note" x="134" y="378" style="font-size: 7.5px;">AGE 18</text>
+            </g>
+            <g class="person-card" data-id="deborah-3a-2" tabindex="0" role="button" aria-label="Deborah Higgins (second)">
+              <rect class="card-bg buried-here" x="163" y="330" width="45" height="55" />
+              <text class="card-name" x="185" y="350" style="font-size: 11px;">Deborah</text>
+              <text class="card-dates" x="185" y="365" style="font-size: 10px;">1832–62</text>
+              <text class="card-note" x="185" y="378" style="font-size: 7.5px;">AGE 30</text>
+            </g>
+
+            <!-- ===== GENERATION 3a (children of Oliver & Rhoda) ===== -->
+            <g class="person-card" data-id="sally" tabindex="0" role="button" aria-label="Sally Higgins">
+              <rect class="card-bg buried-here" x="441" y="330" width="45" height="55" />
+              <text class="card-name" x="463" y="350" style="font-size: 11px;">Sally</text>
+              <text class="card-dates" x="463" y="365" style="font-size: 10px;">1805–76</text>
+              <text class="card-note" x="463" y="378" style="font-size: 7.5px;">AGE 71</text>
+            </g>
+            <g class="person-card" data-id="zacheus-younger" tabindex="0" role="button" aria-label="Zacheus Higgins the Younger">
+              <rect class="card-bg buried-here" x="492" y="330" width="45" height="55" />
+              <text class="card-name" x="514" y="349" style="font-size: 10.5px;">Zacheus</text>
+              <text class="card-name" x="514" y="361" style="font-size: 8px;">the Younger</text>
+              <text class="card-dates" x="514" y="378" style="font-size: 10px;">1807–56</text>
+            </g>
+            <g class="person-card" data-id="ezra-l" tabindex="0" role="button" aria-label="Ezra L. Higgins">
+              <rect class="card-bg buried-here" x="543" y="330" width="45" height="55" />
+              <text class="card-name" x="565" y="350" style="font-size: 11px;">Ezra L.</text>
+              <text class="card-dates" x="565" y="365" style="font-size: 10px;">1815–55</text>
+              <text class="card-note" x="565" y="378" style="font-size: 7.5px;">AGE 40</text>
+            </g>
+            <g class="person-card" data-id="oliver-j" tabindex="0" role="button" aria-label="Oliver J. Higgins">
+              <rect class="card-bg buried-here" x="594" y="330" width="45" height="55" />
+              <text class="card-name" x="616" y="350" style="font-size: 11px;">Oliver J.</text>
+              <text class="card-dates" x="616" y="365" style="font-size: 10px;">1825–53</text>
+              <text class="card-note" x="616" y="378" style="font-size: 7.5px;">AGE 28</text>
+            </g>
+
+            <!-- ===== GENERATION 3a (Ann Maria, daughter of Capt. Zaccheus & Sarah, with husband Stephen Jr.) ===== -->
+            <g class="person-card" data-id="ann-maria" tabindex="0" role="button" aria-label="Ann Maria Higgins">
+              <rect class="card-bg buried-here" x="925" y="330" width="50" height="55" />
+              <text class="card-name" x="950" y="349" style="font-size: 10.5px;">Ann Maria</text>
+              <text class="card-dates" x="950" y="365" style="font-size: 10px;">1813–83</text>
+              <text class="card-note" x="950" y="378" style="font-size: 7.5px;">AGE 69</text>
+            </g>
+            <g class="person-card" data-id="stephen-jr" tabindex="0" role="button" aria-label="Stephen Higgins Jr.">
+              <rect class="card-bg buried-here" x="979" y="330" width="50" height="55" />
+              <text class="card-name" x="1004" y="349" style="font-size: 10.5px;">Stephen Jr.</text>
+              <text class="card-dates" x="1004" y="365" style="font-size: 10px;">1813–91</text>
+              <text class="card-note" x="1004" y="378" style="font-size: 7.5px;">CARPENTER</text>
+            </g>
+
+            <!-- ===== GENERATION 4 (Mary H., daughter of Capt. Stephen II) ===== -->
+            <g class="person-card" data-id="mary-h" tabindex="0" role="button" aria-label="Mary H. Higgins">
+              <rect class="card-bg buried-here" x="385" y="560" width="80" height="60" />
+              <text class="card-name" x="425" y="582" style="font-size: 12px;">Mary H.</text>
+              <text class="card-dates" x="425" y="599">1826–1847</text>
+              <text class="card-note" x="425" y="613">AGE 21</text>
+            </g>
+
+            <!-- ===== GENERATION 4 (Mary F. Snow, wife of Capt. Royal Grant) ===== -->
+            <g class="person-card" data-id="mary-f" tabindex="0" role="button" aria-label="Mary Frances Snow Higgins">
+              <rect class="card-bg buried-here" x="615" y="560" width="80" height="60" />
+              <text class="card-name" x="655" y="580" style="font-size: 12px;">Mary F.</text>
+              <text class="card-name" x="655" y="593" style="font-size: 10px;">(Snow)</text>
+              <text class="card-dates" x="655" y="610">1839–1915</text>
+            </g>
+
+            <!-- ===== GENERATION 5 (children of Royal Grant & Mary F.) ===== -->
+            <g class="person-card" data-id="ella-frances" tabindex="0" role="button" aria-label="Ella Frances Higgins">
+              <rect class="card-bg buried-here" x="583" y="680" width="70" height="60" />
+              <text class="card-name" x="618" y="700" style="font-size: 11px;">Ella Frances</text>
+              <text class="card-dates" x="618" y="717">1866–1902</text>
+            </g>
+            <g class="person-card" data-id="stephen-w" tabindex="0" role="button" aria-label="Stephen W. Higgins">
+              <rect class="card-bg buried-here" x="657" y="680" width="70" height="60" />
+              <text class="card-name" x="692" y="700" style="font-size: 11px;">Stephen W.</text>
+              <text class="card-dates" x="692" y="717">1869–1887</text>
+              <text class="card-note" x="692" y="731" style="font-size: 7.5px;">AGE 18</text>
+            </g>
+
+          </svg>
+        </div>
+      </div>
+
+      <div class="details-panel" id="person-details" hidden role="region" aria-live="polite">
+        <button class="panel-close" id="panel-close" aria-label="Close details">×</button>
+        <h4 id="panel-name"></h4>
+        <p class="panel-dates" id="panel-dates"></p>
+        <p class="panel-burial" id="panel-burial"></p>
+        <div id="panel-body"></div>
+      </div>
+    </section>
+
+    <div class="ornament"></div>
+
+    <section>
+      <h2>The first settler</h2>
+      <p>
+        Israel Higgins Sr. was born about 1742 in Eastham, on Cape
+        Cod, the son of Zaccheus Higgins and Rebecca Young. The family
+        traced its line to Richard Higgins, an original settler of
+        Plymouth Colony in the 1630s.
+      </p>
+      <p>
+        He married Mary Snow at Eastham in November 1767. Three years
+        later, in 1771, the couple sailed north and made landfall at
+        Mount Desert Island. The town of Eden — what is now Bar
+        Harbor — did not yet exist. According to George E. Street's
+        <em>History of Mount Desert</em>, Israel "went from Cape Cod
+        with his wife Mary Snow and settled on the shore near Eddy's
+        Brook. They took up some two hundred acres of land ever since
+        known as the Israel Higgins lot." Street called him "one of
+        the first, perhaps the first, settler of Bar Harbor."
+      </p>
+      <p>
+        He served the early settlement as constable and deer-reeve.
+        In July 1779 he volunteered for the Penobscot Expedition, the
+        American attempt to dislodge British forces from what is now
+        Castine. Eden's payroll records show him serving from July 28
+        to Sept. 28, 1779, in the company of Capt. Daniel Sullivan.
+        The expedition collapsed when a British fleet arrived; some
+        700 Americans, six small cannon and 10 ships were "totally
+        destroyed," and the survivors escaped overland. Israel made
+        it home.
+      </p>
+
+      <figure>
+        <img src="/residents/images/higgins-family/bagaduce-map.jpg" alt="An 18th-century British engraving of an attack on Fort Penobscot, showing the river, naval and infantry positions, and ships drawn in pen and ink.">
+        <figcaption>
+          <strong>"Attack of the Rebels upon Fort Penobscot."</strong>
+          British engraving of the 1779 action in which the American
+          fleet "was totally destroyed and their Army dispersed."
+          Israel Higgins Sr. was among the volunteers who escaped
+          overland.
+        </figcaption>
+      </figure>
+
+      <p>
+        He and Mary Snow had at least seven children. Two boys died
+        young at Eastham. Of those who lived, five sons established
+        themselves along the Bar Harbor shore: Henry, Stephen, Oliver,
+        Israel Jr., and Zaccheus.
+      </p>
+    </section>
+
+    <section>
+      <h2>How settlers got their land</h2>
+      <p>
+        The shore on which Israel Higgins built his farm had been
+        Wabanaki territory for thousands of years before he arrived.
+        The Penobscot, Passamaquoddy, and other peoples of the
+        Wabanaki Confederacy — "the People of the Dawnland" — had
+        fished, gathered shellfish, and maintained seasonal
+        settlements along the coast of what is now Maine for longer
+        than any European map had recorded it. By the time the
+        Higginses sailed up from Cape Cod, however, two and a half
+        centuries of contact with Europeans had transformed the
+        region. Successive epidemics of smallpox, measles, and
+        influenza had killed an estimated three-quarters or more of
+        the Indigenous population of coastal Maine. Repeated wars
+        between the English and French, with their respective Native
+        allies, had displaced most of the survivors inland or
+        northward. To Israel Higgins, sailing up from Cape Cod, the
+        island appeared to be empty. It was not.
+      </p>
+      <p>
+        Nor was it, in any clear legal sense, his to take. The
+        competing European paper claims on Mount Desert Island ran
+        four-deep. The French king Louis XIV had granted the island
+        in 1688 to Antoine de la Mothe Cadillac. Cadillac did
+        little with it. After Britain took Maine from France in the
+        Seven Years' War, the Massachusetts royal governor, Francis
+        Bernard, received the island as a personal grant in 1762; he
+        too did little with it, and lost the claim entirely when he
+        sided with the Crown during the Revolution. The Wabanaki,
+        meanwhile, continued to assert that the land was theirs.
+      </p>
+      <p>
+        The matter was complicated further in 1786, when Cadillac's
+        granddaughter, Maria Therese de la Motte Cadillac, and her
+        husband, Bartholomy de Gregoire, came over from France to
+        Boston with the help of Thomas Jefferson and the Marquis de
+        Lafayette, intending to revive the original royal grant. The
+        Massachusetts General Court, sympathetic to French claims
+        after the Revolution, issued a Resolve on June 29, 1787, that
+        split the difference. The de Gregoires were assigned clear
+        title to roughly 60,000 acres of unimproved land — about 60
+        percent of the original Cadillac grant. The improved
+        portions — the cleared fields, the homesteads, the wharves —
+        were assigned to the settlers who had built them.
+      </p>
+      <p>
+        On March 28, 1792, Bartholomy and Maria Therese de Gregoire
+        made their way around Mount Desert Island and executed
+        quitclaim deeds for each established household. Israel
+        Higgins received title to 200 acres "in conformity to the
+        Resolve of the General Court... passed the 29th day of June
+        1787." The deed describes the bounds: from "a stump the
+        bounds between Solomon Higgins and Israel Higgins" —
+        Solomon being a relative who had settled nearby and who
+        would later wander away from home in a snowstorm and fall to
+        his death from a cliff near Cromwell's Harbor — running 437
+        rods south, then 77 rods east, then north to the shore. The
+        same day, the de Gregoires deeded 100 adjacent acres to
+        Henry Higgins, Israel's eldest son, then twenty-two. The
+        deeds were witnessed by Ebenezer Leland and Philip Langley,
+        acknowledged before Paul Dudley Sargent, J.P., at Mount
+        Desert on April 4, 1792, and recorded at the Hancock County
+        Registry of Deeds on Sept. 1, 1794.
+      </p>
+
+      <figure class="clipping">
+        <img src="/residents/images/higgins-family/1792-degregoire-deed.jpg" alt="A page of handwritten 18th-century legal manuscript with two signatures at the bottom: Bartholomy De Gregoire and Maria Theresa de la Motte Cadillac.">
+        <figcaption>
+          <strong>The 1792 deed from the de Gregoires to Israel Higgins.</strong>
+          The signatures at the bottom are those of Bartholomy de
+          Gregoire and Maria Theresa de la Motte Cadillac — Cadillac's
+          granddaughter. Hancock County Registry of Deeds, Book 2,
+          p. 556.
+        </figcaption>
+      </figure>
+
+      <p>
+        The price named in the deed is "five Spanish-milled Dollars."
+        The real consideration, in the language the new state
+        recognized, was Israel's standing as "a settler on the Lands
+        herein limited to him." He paid neither the French Crown, nor
+        the Massachusetts royal governor, nor the de Gregoires for
+        the property. He did not pay the Wabanaki. The price, in the
+        terms a young Massachusetts government recognized, had been
+        twenty years of clearing trees.
+      </p>
+    </section>
+
+    <section>
+      <h2>Captain Israel</h2>
+      <p>
+        The fourth surviving son, and the first child born on the
+        island, was Israel Higgins Jr., born March 5, 1778. He grew
+        up a sailor. On Jan. 26, 1800, at twenty-one, he married
+        Mary "Polly" Hull, eighteen, the daughter of Capt. Samuel
+        Hull. Polly's father had settled at the cove on the south
+        side of Mount Desert that came to be named for him by 1789;
+        he kept a store there, built a number of vessels, and held
+        the first town meeting at his own house, where he was chosen
+        Eden's first selectman. His brother was Isaac Hull, who would
+        later command the frigate USS <em>Constitution</em> against
+        the British in the War of 1812.
+      </p>
+
+      <figure class="clipping">
+        <img src="/residents/images/higgins-family/1931-constitution-recollection.jpg" alt="Newspaper article titled 'Bar Harbor Memories Recalled by Recent Visit of Constitution,' a 1931 letter to the Bangor Commercial by A. L. Higgins describing the Higgins and Hull family histories.">
+        <figcaption>
+          <strong>Bar Harbor Memories Recalled by Recent Visit of Constitution.</strong>
+          A. L. Higgins's 1931 letter to the
+          <em>Bangor Commercial</em> recounting the inscription on
+          Capt. Israel's stone, the family's connection to Commodore
+          Isaac Hull, and the descendants of the line.
+        </figcaption>
+      </figure>
+
+      <p>
+        By the time his son married, Israel Sr.'s business life had
+        grown beyond the original Eddy's Brook farm. On Oct. 14, 1790,
+        he had purchased a sawmill on Cromwell's Harbor Stream from
+        Thomas Wasgatt Jr. for 24 pounds; the deed was witnessed by
+        William Wasgatt and Solomon Higgins. Four years later, on
+        Sept. 2, 1794 — two months after the de Gregoire deeds had
+        been recorded at Castine — Israel, Henry, and Stephen Higgins
+        jointly executed a mortgage bond to Samuel Jackson, a
+        merchant of Plymouth, Mass., for £285, securing it with three
+        separate mortgage deeds covering tracts of Mount Desert
+        land. The brothers were operating as a financial unit,
+        leveraging their newly-titled property for working capital.
+        Israel retired the debt in June of 1800.
+      </p>
+      <p>
+        Israel Jr. himself served as a selectman of Eden in 1802,
+        1803, and 1809. On May 12, 1809, he took command of the
+        schooner <em>Hazard</em>, a 120-ton, 63-foot vessel built that
+        year for Samuel Hadlock of Little Cranberry Island. The
+        <em>Hazard</em> was the first ship ever built in the town of
+        Eden. She had been paid for, the records say, with the
+        proceeds of Hadlock's haul of fish carried from Labrador to
+        Oporto, Portugal, and home again with a cargo of citrus,
+        onions, and salt.
+      </p>
+      <p>
+        Israel and Polly had nine children between 1800 and 1814:
+        Jonathan, Samuel, Eliza, Stephen, Charlotte, Royal Grant,
+        Seth, Sophia, and Warren. The farmhouse where they lived
+        stood, A. L. Higgins's 1931 letter recorded, "on what is now
+        Mt. Desert St., and just where the St. Sauveur Hotel is now
+        located." The house was bought and converted into a small
+        summer boarding house by F. J. Alley around 1869, destroyed
+        by fire in October 1881, and rebuilt as the St. Sauveur
+        Hotel the following year.
+      </p>
+    </section>
+
+    <section>
+      <h2>The year of three deaths</h2>
+      <p>
+        In 1818, the family lost three of its members within nine
+        months. On Feb. 26, Polly Hull Higgins died at the age of
+        thirty-six. She was the first person buried in the new
+        village burying ground — the cemetery that is now called
+        Mount Desert Street — and the white marble stone with the
+        winged hourglass was set down over her.
+      </p>
+      <p>
+        On Nov. 2 of the same year, Mary Snow Higgins, Israel Sr.'s
+        wife and the woman who had come from Cape Cod with him in
+        1771, died. Nine days later, on Nov. 11, Israel Sr. himself
+        died at Bar Island.
+      </p>
+      <p>
+        Capt. Israel Jr. remarried the following summer, on Aug. 31,
+        1819 — Mrs. Zena Stanwood, a widow. She died less than two
+        years later, on Sept. 18, 1821. He was twice widowed at
+        forty-three.
+      </p>
+    </section>
+
+    <section>
+      <h2>The <em>Julia Ann</em></h2>
+      <p>
+        On March 23, 1823 — by the date carved on his stone — Capt.
+        Israel Higgins was lost at sea twenty-five miles south of
+        Sandy Hook, N.J., on board the schooner <em>Julia Ann</em>,
+        of Lubec. He was forty-five. With him was his son Seth,
+        twelve.
+      </p>
+
+      <figure class="clipping">
+        <img src="/residents/images/higgins-family/1823-portland-gazette.jpg" alt="A newspaper notice from 1823 reading: 'The body of Capt. Israel Higgins, and that of a lad, about 15, supposed to be his son, have been found, and interred at squam, L. I. They belonged to the schr. Julia Ann, of Lubec, from T. Island for N. York, wrecked 30th ult. From papers found, it appears there were 9 persons on board. Another account states that all the crew, 5 in number, had been found, half buried in the sand, and were buried 4th inst.'">
+        <figcaption>
+          <strong>Portland Gazette,</strong> 1823.
+        </figcaption>
+      </figure>
+
+      <p>
+        Their bodies were recovered and interred at Squam, on Long
+        Island, with the rest of the ship's company. The stone at
+        Mount Desert Street is a memorial only; the bodies were never
+        brought home.
+      </p>
+      <p>
+        Of Israel and Polly's nine children, Jonathan, the eldest,
+        was also lost at sea — in June 1824, on board the brig
+        <em>William</em>, on a voyage from Havana to Portland. He was
+        twenty-four. Samuel, the second son, had died at fifteen in
+        1816. Seth had gone down with his father at twelve. Four of
+        the nine children were dead by the end of 1824. Three
+        more — Stephen, Royal Grant, and Sophia — would live well
+        into adulthood. Charlotte's and Warren's lives after Bar
+        Harbor are not recorded in the sources at hand.
+      </p>
+    </section>
+
+    <div class="ornament"></div>
+
+    <section>
+      <h2>The brothers along Mount Desert Street</h2>
+      <p>
+        Capt. Israel's elder and younger brothers — Stephen, Oliver,
+        and Zaccheus — all stayed in Bar Harbor. The eldest brother,
+        Henry, born 1769, married Anna Coggins; another Henry Higgins,
+        almost certainly of a younger generation, is buried in the
+        plot with his wife Huldah Leland.
+      </p>
+      <p>
+        Stephen Higgins (1771–1852) married Deborah Wasgatt, born the
+        same year. They lived to be eighty-one and seventy-four
+        respectively and are buried together at Mount Desert Street.
+      </p>
+      <p>
+        Oliver Higgins (1776–1862) married Rhoda Leland (1782–1871).
+        Their farm, according to A. L. Higgins's 1935 recollection of
+        the old Mt. Desert Street houses, stood "a few rods" from his
+        brother Capt. Israel's farmhouse — "the comfortable farm home
+        and a very old weather beaten barn, and the dwelling of aged
+        Mr. and Mrs. Oliver Higgins." They were
+        cared for in old age by their sons William and Ezra and their
+        daughter "Sally"; the property became, in time, the Ashurst
+        Cottage. Four of their children lie in the plot with them:
+        Sally (c. 1805–1876); Zacheus the Younger (1807–1856), who
+        took his uncle's name; Ezra L. (c. 1815–1855); and Oliver J.,
+        who died at twenty-eight in November of 1853. The Sally and
+        Ezra of the cemetery rolls are, by their dates, almost
+        certainly two of the three siblings named in the 1935
+        recollection; William's stone, if he had one, is not recorded.
+      </p>
+      <p>
+        Capt. Zaccheus Higgins (1782–1867) — the youngest brother,
+        born the same year as his sister-in-law Polly — married
+        Rhoda's sister, Sarah Leland (1786–1869). He lived to be
+        eighty-four. He owned the schooner <em>Augusta Jane</em> and
+        ran wood from Kebo Mountain to Rockland. He and Sarah had at
+        least nine children. One of their daughters, Betsey Higgins
+        (1812–1869), married Sparrow Nickerson and is buried
+        elsewhere in this cemetery with her own daughter Juliette.
+        Another daughter, <strong>Ann Maria Higgins</strong>
+        (1813–1883), married another Higgins — a carpenter named
+        Stephen Higgins Jr. (c. 1813–1891) — and is buried with him
+        in the plot. The marriage is documented by a deed in the
+        Hancock County registry: on Jan. 14, 1848, the couple
+        conveyed a 24-square-rod lot at Bay Harbor to Tobias Roberts
+        for $45, with Ann Maria signing the deed to release her dower
+        rights.
+      </p>
+
+      <figure class="clipping">
+        <img src="/residents/images/higgins-family/1848-stephen-jr-deed.jpg" alt="A printed-form deed from 1848 conveying land at Bay Harbor from Stephen Higgins Jr. to Tobias Roberts, signed at the bottom by both Stephen Higgins Jr. and Ann Maria Higgins.">
+        <figcaption>
+          <strong>The 1848 deed of Stephen Higgins Jr. and Ann Maria
+          Higgins to Tobias Roberts.</strong> Both signatures appear
+          at the bottom of the page. Hancock County Registry of Deeds,
+          Book 7, p. 230.
+        </figcaption>
+      </figure>
+
+      <p>
+        Stephen Higgins Jr.'s own parentage is not established in the
+        records at hand. The "Jr." he used in 1848 distinguished him
+        from the older Stephen Higgins (1771–1852), then seventy-seven,
+        and from Capt. Stephen Higgins (1804–1862), then
+        forty-four — both also buried in this plot. The most natural
+        reading would make him a son of one of the two older Stephens,
+        but the documents do not confirm it.
+      </p>
+      <p>
+        A third Leland sister, Huldah (1792–1882), is also buried in
+        the plot, with her husband Henry; her connection to the
+        founding Israel Sr. is less certain in the records than her
+        sisters'. Henry and Huldah lost four children to the plot
+        before her: Amos, at eleven months, in 1825; Deborah, at
+        nineteen, in 1831; Hester, at eighteen, in 1852; and a
+        second Deborah — named for the elder sister who had died
+        the year before she was born — at thirty, in 1862. Huldah
+        outlived all four of them, and her husband, by twenty years
+        or more, dying in 1882 at the age of eighty-nine.
+      </p>
+    </section>
+
+    <section>
+      <h2>The next generation</h2>
+      <p>
+        Of Capt. Israel and Polly's nine children, three lived into
+        old age. Two of them are buried in the plot beside their
+        parents.
+      </p>
+      <p>
+        Capt. Stephen Higgins, born Dec. 31, 1804, followed his
+        father to sea. He commanded full-rigged ships, including the
+        <em>Manto</em>, and was preparing to retire from "a
+        seagoing, square-rigged ship life," in A. L. Higgins's
+        phrase, when he died of apoplexy on Sept. 4, 1862. He died
+        on a mountain — the place the family later called "Dry
+        Mountain" or "Flying Squadron Mountain" — and not, in spite
+        of the anchor cut into his marker, at sea. He was
+        fifty-seven. His daughter Mary H., born to him and his wife
+        Margaret, whose own stone is not in this plot, is buried
+        here; she died at twenty-one, in June 1847, the eldest
+        grandchild of Capt. Israel Jr. and Polly Hull to be laid in
+        this ground.
+      </p>
+      <p>
+        Capt. Royal Grant Higgins, born Jan. 31, 1809, also followed
+        his father and brother to sea. He commanded full-rigged ships
+        in his time; later he served for several years as master of a
+        United States Coast Survey ship. He was the son who, with a
+        "S. Higgins" — his sister, or his first wife Sarah F.
+        Suminsby — erected the family memorial stone over their
+        mother and over his father and brother who were never brought
+        home. He died about 1873. He had married twice; his second
+        wife was Mary Frances Snow (1839–1915). His daughter Ella
+        Frances (1866–1902) and son Stephen W. (1869–1887) are buried
+        in the plot with him, along with Mary Frances.
+      </p>
+      <p>
+        Sophia Higgins, born Sept. 17, 1812, married William E.
+        Burleigh of Sanbornton, N.H. They settled first at Great
+        Pond — now Eagle Lake — in Eden, then in Ellsworth, where
+        William died in September 1863. Sophia outlived him by more
+        than three decades and died at Ellsworth on Feb. 9, 1897, at
+        the age of eighty-four. She is buried in Ellsworth.
+      </p>
+      <p>
+        Of the third surviving child, Warren Higgins, born February
+        1814, A. L. Higgins's 1931 letter records only that he "lived
+        away from the vicinity of his old home on Mt. Desert Island."
+      </p>
+    </section>
+
+    <section>
+      <p>
+        Some seventy Higginses lie at Mount Desert Street — a
+        concentration without parallel among the families of the
+        cemetery. The founder of their Bar Harbor line did not come
+        to be buried among them: Israel Sr. died at Bar Island and
+        was laid down somewhere else. His wife Mary Snow died nine
+        days before him, in 1818, in the same season that took their
+        daughter-in-law Polly. The first stone set in this ground was
+        Polly's. The man whose name is carved with hers — lost at sea
+        five years later off Sandy Hook and never brought home — has
+        a place in the earth only by the courtesy of his son's chisel.
+      </p>
+      <p>
+        Of the nine children Capt. Israel and Polly had together,
+        four were dead by the end of 1824; two — Capt. Stephen and
+        Capt. Royal Grant — lie nearby. The three Leland sisters from
+        up the Leland Cove road, who married Israel's brothers
+        Oliver, Zaccheus, and Henry, lie in the same earth as their
+        husbands. The 200 acres at Eddy's Brook, the 100 acres next
+        to it, the sawmill on Cromwell's Harbor Stream — none of it
+        had been paid for in cash. Their many descendants, and the
+        descendants of the Hulls of Hulls Cove, and the Brewers and
+        the Suminsbys and the Stanleys and the Brookses and the
+        Jordans, scatter through the cemetery and through the town
+        that grew up around the farm at Eddy's Brook.
+      </p>
+    </section>
+
+  </article>
+
+  <footer class="sources" id="sources">
+    <h2>Sources</h2>
+    <ol>
+      <li>
+        A. L. Higgins, "Bar Harbor Memories Recalled by Recent Visit
+        of Constitution" (letter to the editor).
+        <cite>Bangor Commercial</cite>, August 1931.
+      </li>
+      <li>
+        Notice of the wreck of the schooner <em>Julia Ann</em> and
+        recovery of the body of Capt. Israel Higgins and his son.
+        <cite>Portland Gazette</cite>, April 1823.
+      </li>
+      <li>
+        Recollection of the houses along Mt. Desert Street.
+        <cite>Bar Harbor Times</cite>, 18 October 1935.
+        <a href="https://islandhistory.newspaperarchive.com/bar-harbor-times/1935-10-18/page-4/">islandhistory.newspaperarchive.com</a>.
+      </li>
+      <li>
+        Hancock County Registry of Deeds: Bartholomy and Maria
+        Therese de Gregoire to Israel Higgins, 28 March 1792 (Book 2,
+        p. 556); de Gregoires to Henry Higgins, same date (Book 2);
+        Thomas Wasgatt Jr. to Israel Higgins, 14 October 1790
+        (sawmill on Cromwell's Harbor Stream); Israel, Henry, and
+        Stephen Higgins to Samuel Jackson, 2 September 1794
+        (mortgage bond); Samuel Jackson to Israel Higgins, 16 June
+        1800 (release); Stephen Higgins Jr. and Ann Maria Higgins to
+        Tobias Roberts, 14 January 1848 (Book 7, p. 230).
+      </li>
+      <li>
+        Katharine W. Street, <cite>The History of Mount Desert
+        Island</cite>, on Israel Higgins's settlement at Eddy's
+        Brook in 1771.
+      </li>
+      <li>
+        <cite>Richard Higgins and his Descendants</cite> (Higgins
+        genealogical compendium), entries 52, 61, 96, 122, 127, 150,
+        and 305, on the Plymouth–Eastham–Mt. Desert line of the
+        family.
+      </li>
+      <li>
+        <cite>Maine in the Revolution</cite> and Eden plantation
+        records on Israel Higgins Sr.'s service in the 1779
+        expedition against Bagaduce.
+      </li>
+      <li>
+        "More Permanent Settlers Arrive" and related entries on the
+        Cadillac grant and the 1787 Massachusetts Resolve, in the
+        Maine Memory Network's
+        <cite>Mount Desert Island: Shaped by Nature</cite>.
+      </li>
+      <li>
+        Find a Grave memorial records for the Higgins family at
+        Mount Desert Street Cemetery, Bar Harbor, Maine.
+      </li>
+      <li>
+        Gravestone inscriptions, Higgins family plot, Mount Desert
+        Street Cemetery, Bar Harbor.
+      </li>
+    </ol>
+  </footer>
+
+  
+
+  </div>
+
+  <p class="page-footer">A project at the Mount Desert Street Cemetery &middot; Bar Harbor, Maine</p>
+</main>
+
+<script>
+  (function() {
+    'use strict';
+
+    const PEOPLE = {
+      'israel-sr': {
+        name: 'Israel Higgins, Sr.',
+        dates: 'c. 1742 – 11 November 1818',
+        buriedHere: false,
+        burialNote: 'Died at Bar Island, Mount Desert. Burial place not recorded at this cemetery.',
+        body: `
+          <p>The founder of the Bar Harbor Higgins line. Born about 1742 at Eastham, on Cape Cod. Came north with his wife Mary Snow in 1771 and took up some two hundred acres of land near Eddy's Brook, in what would become Bar Harbor. According to Street's <em>History of Mt. Desert</em>, he was "one of the first, perhaps the first, settler of Bar Harbor, and one of the leading men of the island of Mt. Desert."</p>
+          <p>Served as constable and deer-reeve of the early settlement. In July 1779 he was a volunteer in the Penobscot Expedition against Bagaduce, in Capt. Daniel Sullivan's company. Died at Bar Island on 11 November 1818, nine days after his wife.</p>
+        `
+      },
+      'mary-snow': {
+        name: 'Mary Snow Higgins',
+        dates: 'd. 2 November 1818',
+        buriedHere: false,
+        burialNote: 'Burial place not recorded at this cemetery.',
+        body: `
+          <p>Born at Eastham, Cape Cod. Married Israel Higgins Sr. on 26 November 1767. Came north with him to Mount Desert Island in 1771 and lived on the family lot at Eddy's Brook for nearly half a century. Mother of at least seven children, five of whom — Henry, Stephen, Oliver, Israel Jr., and Zaccheus — settled at Bar Harbor.</p>
+          <p>Died on 2 November 1818, nine days before her husband. She and her daughter-in-law Polly Hull, who died nine months earlier, and her husband, who died nine days later, were lost to the family within a single year.</p>
+        `
+      },
+      'henry': {
+        name: 'Henry Higgins',
+        dates: 'd. 3 July 1843, age 53',
+        buriedHere: true,
+        body: `
+          <p>Husband of Huldah Leland Higgins. The exact connection of this Henry to the founding Israel Sr. is not clear in the documents — Israel Sr.'s eldest son was also named Henry, born 1769, who married Anna Coggins; the Henry buried in this plot was born about 1790 and married a Leland.</p>
+          <p>He and Huldah had at least four children, three of whom died young and are buried with them: Amos (d. 1825, age 11 months), Deborah (d. 1831, age 19), and Hester (d. 1852, age 18). Another daughter Deborah lived to thirty.</p>
+        `
+      },
+      'huldah': {
+        name: 'Huldah Leland Higgins',
+        dates: '1793 – 9 January 1882, age 89',
+        buriedHere: true,
+        body: `
+          <p>Wife of Henry Higgins. One of the Leland sisters of Leland's Cove — daughters of Ezra Leland and Sally Hamor — who married into the Higgins family. Her sister Rhoda married Oliver Higgins; her sister Sarah married Capt. Zaccheus Higgins. The three couples lived along the same stretch of road in Bar Harbor.</p>
+          <p>According to A. L. Higgins's 1935 recollection of the old houses, Huldah Leland Higgins was his own grandmother.</p>
+        `
+      },
+      'stephen-i': {
+        name: 'Stephen Higgins',
+        dates: '21 November 1771 – 19 December 1852, age 81',
+        buriedHere: true,
+        body: `
+          <p>Second surviving son of Israel Higgins Sr. and Mary Snow. Born at Eastham, Cape Cod, shortly after the family's arrival on Mount Desert Island. Married Deborah Wasgatt, born the same year.</p>
+          <p>Lived to be eighty-one. The 1935 newspaper recollection records his cottage as standing "a few rods away" from his brother Capt. Israel's farmhouse on Mt. Desert Street.</p>
+        `
+      },
+      'deborah': {
+        name: 'Deborah Wasgatt Higgins',
+        dates: '1771 – 26 November 1845, age 74',
+        buriedHere: true,
+        body: `
+          <p>Wife of Stephen Higgins (b. 1771). Of one of the Wasgatt families of Mount Desert Island.</p>
+        `
+      },
+      'oliver': {
+        name: 'Oliver Higgins',
+        dates: '22 January 1776 – 30 January 1862',
+        buriedHere: true,
+        body: `
+          <p>Third surviving son of Israel Higgins Sr. and Mary Snow. Born at Eastham five years after the family's move to the island. Married Rhoda Leland (1782–1871) of Leland's Cove. Brother to Capt. Israel Jr. and to Capt. Zaccheus, who also married Lelands.</p>
+          <p>Their farm on Mt. Desert Street was, in the 1935 recollection, "the comfortable farm home and a very old weather beaten barn." They were cared for in old age by their sons William and Ezra and their daughter "Sally." Their son Zacheus the Younger (1807–1856) is also buried in this plot.</p>
+        `
+      },
+      'rhoda': {
+        name: 'Rhoda Leland Higgins',
+        dates: '1782 – 29 September 1871',
+        buriedHere: true,
+        body: `
+          <p>Wife of Oliver Higgins, and one of three Leland sisters of Leland's Cove who married three of Israel Higgins Sr.'s sons. Her sister Sarah married Capt. Zaccheus Higgins; her sister Huldah married a Henry Higgins.</p>
+        `
+      },
+      'israel-jr': {
+        name: 'Capt. Israel Higgins, Jr.',
+        dates: '5 March 1778 – 23 March 1823',
+        buriedHere: true,
+        burialNote: 'Memorialized at Mount Desert Street Cemetery; body interred at Squam, Long Island, after the wreck of the Julia Ann.',
+        body: `
+          <p>Probably the first child of European descent born on what would become Bar Harbor. Fourth surviving son of Israel Sr. and Mary Snow. A sea captain, or "master mariner." On the 12th of May, 1809, he took command of the schooner <em>Hazard</em>, the first vessel built in the town of Eden. Served as a selectman of Eden in 1802, 1803, and 1809.</p>
+          <p>Married Mary "Polly" Hull on 26 January 1800; she died in February 1818. Married Mrs. Zena Stanwood on 31 August 1819; she died on 18 September 1821.</p>
+          <p>On the 23rd of March, 1823, the date carved on his stone, he was lost at sea on board the schooner <em>Julia Ann</em>, of Lubec, twenty-five miles south of Sandy Hook, New Jersey. His son Seth, twelve years old, was lost with him.</p>
+        `
+      },
+      'polly': {
+        name: 'Polly Hull Higgins',
+        dates: '1782 – 26 February 1818',
+        buriedHere: true,
+        burialNote: 'The first burial ever made at Mount Desert Street Cemetery.',
+        body: `
+          <p>Daughter of Capt. Samuel Hull, the first selectman of Eden and the man for whom Hulls Cove is named. Her uncle was Commodore Isaac Hull, who commanded the USS <em>Constitution</em> in the War of 1812.</p>
+          <p>Married Capt. Israel Higgins Jr. on the 26th of January, 1800, when she was seventeen or eighteen. Bore nine children between 1800 and 1814.</p>
+          <p>Died on the 26th of February, 1818, at thirty-six. According to A. L. Higgins's 1931 letter to the <em>Bangor Commercial</em>, her grave "was the very first grave to be placed in this old time burying ground." The white marble stone above her, with its winged hourglass and clasped hands, was erected by her son Capt. Royal Grant Higgins, and bears her husband's name as well.</p>
+        `
+      },
+      'zaccheus': {
+        name: 'Capt. Zaccheus Higgins',
+        dates: '13 December 1782 – 16 May 1867, age 84',
+        buriedHere: true,
+        body: `
+          <p>Youngest of the surviving Bar Harbor Higgins sons. Born the same year as his sister-in-law Polly Hull. Married Sarah Leland of Leland's Cove — sister of Rhoda Leland, who married his brother Oliver.</p>
+          <p>Owned the schooner <em>Augusta Jane</em>, which he ran from Rockland with cargoes of wood cut from Kebo Mountain. In summer kept a fishing crew off Mt. Desert Hills. The 1935 recollection finds him in old age "sitting in a chair in his tall 'beaver' splitting fire wood" — still active at his work.</p>
+          <p>He and Sarah had at least nine children, including Betsey Higgins (1812–1869), who married Sparrow Nickerson and was the mother of Juliette Nickerson.</p>
+        `
+      },
+      'sarah-leland': {
+        name: 'Sarah Leland Higgins',
+        dates: '1786 – 1869',
+        buriedHere: true,
+        body: `
+          <p>Wife of Capt. Zaccheus Higgins. The eighth child of Ezra Leland and Sally Hamor of Leland's Cove. Her sister Rhoda married Oliver Higgins; her sister Huldah married a Henry Higgins.</p>
+        `
+      },
+      'jonathan-3': {
+        name: 'Jonathan Higgins',
+        dates: '16 May 1800 – June 1824, age 24',
+        buriedHere: false,
+        burialNote: 'Lost at sea on the brig William, voyage from Havana to Portland.',
+        body: `
+          <p>The eldest of the nine children of Capt. Israel Higgins Jr. and Polly Hull. Born in May 1800, four months after his parents' marriage.</p>
+          <p>Lost at sea in June of 1824, the year after his father, on board the brig <em>William</em>, on a voyage from Havana, Cuba, to Portland, Maine. He was twenty-four.</p>
+        `
+      },
+      'samuel-3': {
+        name: 'Samuel Higgins',
+        dates: '10 September 1801 – 29 March 1816, age 14',
+        buriedHere: false,
+        burialNote: 'Burial not recorded among the family stones at this cemetery.',
+        body: `
+          <p>Second son of Capt. Israel Higgins Jr. and Polly Hull. Died at fourteen, two years before his mother.</p>
+        `
+      },
+      'eliza-3': {
+        name: 'Eliza Higgins',
+        dates: 'b. 20 January 1803',
+        buriedHere: false,
+        burialNote: 'Burial not recorded at this cemetery.',
+        body: `
+          <p>Eldest daughter of Capt. Israel Higgins Jr. and Polly Hull. The genealogy notes only that she "perhaps married Ezra Hamor, b. 1798." No further record is available here.</p>
+        `
+      },
+      'stephen-ii': {
+        name: 'Capt. Stephen Higgins',
+        dates: '31 December 1804 – 4 September 1862',
+        buriedHere: true,
+        body: `
+          <p>Fourth child of Capt. Israel Higgins Jr. and Polly Hull, and the eldest of those who lived into adulthood. Followed his father to sea and commanded full-rigged ships, including the <em>Manto</em>.</p>
+          <p>He was preparing to retire from "a seagoing, square-rigged ship life" when he died of apoplexy on the mountain — "Dry Mountain" or "Flying Squadron Mountain," in the family's later telling — on the 4th of September, 1862. He was fifty-seven. The anchor cut into his marker memorializes his profession, not the place of his death.</p>
+        `
+      },
+      'charlotte-3': {
+        name: 'Charlotte Higgins',
+        dates: 'b. 10 September 1806',
+        buriedHere: false,
+        burialNote: 'Burial not recorded at this cemetery.',
+        body: `
+          <p>Daughter of Capt. Israel Higgins Jr. and Polly Hull. No further record of her life is available in the sources at hand.</p>
+        `
+      },
+      'royal-3': {
+        name: 'Capt. Royal Grant Higgins',
+        dates: '31 January 1809 – 1873',
+        buriedHere: true,
+        body: `
+          <p>Sixth child of Capt. Israel Higgins Jr. and Polly Hull. Born in January of 1809. Followed his father and brother to sea, commanded full-rigged ships, and later served for several years as Master of a United States Coast Survey ship.</p>
+          <p>With a "S. Higgins" — believed to be his first wife, Sarah F. Suminsby — he erected the family memorial stone over his mother and over his father and brother lost at sea. Married second Mary Frances Snow (1839–1915), buried with him. His daughter Ella Frances (1866–1902) and son Stephen W. (1869–1887) are also in the plot.</p>
+        `
+      },
+      'seth-3': {
+        name: 'Seth Higgins',
+        dates: '5 September 1810 – 23 March 1823, age 12',
+        buriedHere: false,
+        burialNote: 'Interred at Squam, Long Island, with his father.',
+        body: `
+          <p>Seventh child of Capt. Israel Higgins Jr. and Polly Hull. Lost at sea with his father on board the schooner <em>Julia Ann</em> on the 23rd of March, 1823. The Portland Gazette notice, transcribed in the family records, identifies his recovered body as that of "a lad, about 15, supposed to be his son" — though the genealogy fixes his age at twelve.</p>
+        `
+      },
+      'sophia-3': {
+        name: 'Sophia Higgins',
+        dates: '17 September 1812 – 9 February 1897, age 84',
+        buriedHere: false,
+        burialNote: 'Buried at Ellsworth, Maine.',
+        body: `
+          <p>Eighth child of Capt. Israel Higgins Jr. and Polly Hull. Born seven months before her mother's death. Married William E. Burleigh of Sanbornton, New Hampshire (b. 1810); they settled at Great Pond (now Eagle Lake) in Eden, then moved to Ellsworth, where William died in September 1863.</p>
+          <p>Sophia outlived him by thirty-four years and died at Ellsworth on the 9th of February, 1897.</p>
+        `
+      },
+      'warren-3': {
+        name: 'Warren Higgins',
+        dates: 'b. 27 February 1814',
+        buriedHere: false,
+        burialNote: 'Burial not recorded at this cemetery.',
+        body: `
+          <p>Youngest of Capt. Israel and Polly Hull Higgins's nine children. Married Mary A. Manchester. A. L. Higgins's 1931 letter records only that he "lived away from the vicinity of his old home on Mt. Desert Island."</p>
+        `
+      },
+      'amos-3a': {
+        name: 'Amos Higgins',
+        dates: 'b. c. September 1824 – d. August 1825, age 11 months',
+        buriedHere: true,
+        body: `
+          <p>Son of Henry and Huldah Leland Higgins. Died at eleven months old. The first of four children of Henry and Huldah to be laid in the plot — his three sisters Deborah, Hester, and a second Deborah would all follow before their mother.</p>
+        `
+      },
+      'deborah-3a-1': {
+        name: 'Deborah Higgins',
+        dates: 'b. c. 1812 – d. 17 July 1831, age 19',
+        buriedHere: true,
+        body: `
+          <p>Daughter of Henry and Huldah Leland Higgins. The eldest of their four children buried here. Died at nineteen.</p>
+          <p>The family named a second daughter Deborah the year after her death.</p>
+        `
+      },
+      'hester-3a': {
+        name: 'Hester A. Higgins',
+        dates: 'b. c. October 1834 – d. 20 December 1852, age 18 years, 2 months',
+        buriedHere: true,
+        body: `
+          <p>Daughter of Henry and Huldah Leland Higgins. Died at eighteen, twenty-one years after her elder sister Deborah and a decade before her younger sister of the same name.</p>
+        `
+      },
+      'deborah-3a-2': {
+        name: 'Deborah Higgins (second)',
+        dates: 'b. c. 1832 – d. 15 September 1862, age 30',
+        buriedHere: true,
+        body: `
+          <p>Daughter of Henry and Huldah Leland Higgins, born the year after her elder sister of the same name died. The longest-lived of Henry and Huldah's four children to be buried here, she nevertheless died at thirty, twenty years before her mother.</p>
+        `
+      },
+      'zacheus-younger': {
+        name: 'Zacheus Higgins the Younger',
+        dates: 'b. c. April 1807 – d. 3 November 1856, age 49 years, 7 months',
+        buriedHere: true,
+        body: `
+          <p>Son of Oliver Higgins and Rhoda Leland Higgins. Named for his uncle Capt. Zaccheus Higgins. Died at forty-nine, six years before his father, who survived him to 1862.</p>
+        `
+      },
+      'oliver-j': {
+        name: 'Oliver J. Higgins',
+        dates: 'b. c. 1825 – d. 11 November 1853, age 28',
+        buriedHere: true,
+        body: `
+          <p>Son of Oliver Higgins and Rhoda Leland Higgins. Died at twenty-eight, in November of 1853 — a few weeks after his cousin Mary H., daughter of Capt. Stephen II, had been laid in the plot at twenty-one. He predeceased both his father and his elder brother Zacheus.</p>
+        `
+      },
+      'sally': {
+        name: 'Sally Higgins',
+        dates: 'c. 1805 – 28 August 1876, age 71',
+        buriedHere: true,
+        body: `
+          <p>Almost certainly the "Sally" who, with her brothers William and Ezra, cared for her parents Oliver and Rhoda in their old age, as recorded in A. L. Higgins's 1935 recollection of the Mt. Desert Street houses. The cemetery list gives her name without parent attribution, but her dates align — born about 1805, when Oliver was twenty-nine and Rhoda twenty-three — and the recollection makes the connection explicit.</p>
+          <p>Outlived her parents and most of her siblings, dying at seventy-one in 1876.</p>
+        `
+      },
+      'ezra-l': {
+        name: 'Ezra L. Higgins',
+        dates: 'c. 1815 – 16 March 1855, age 40',
+        buriedHere: true,
+        body: `
+          <p>The "Ezra" recorded in A. L. Higgins's 1935 recollection as one of the children — with his siblings William and Sally — who cared for their aging parents Oliver and Rhoda Higgins on Mt. Desert Street. The cemetery records list him as "Ezra L." The "L." possibly stands for Leland, his mother's family name. As with his sister Sally, the parent attribution rests on the recollection rather than on the gravestone itself.</p>
+          <p>Died at forty, the year before his elder brother Zacheus the Younger.</p>
+        `
+      },
+      'ann-maria': {
+        name: 'Ann Maria Higgins',
+        dates: 'b. 1813 – d. 7 August 1883, age 69',
+        buriedHere: true,
+        body: `
+          <p>Daughter of Capt. Zaccheus Higgins and Sarah Leland Higgins. Sister of Adaline (1809–1845), Betsey (1812–1869, who married Sparrow Nickerson and was the mother of Juliette Nickerson), Sarah (1815–1875), Mariam (b. 1817), Samuel (1819–1824, who died at five), Zenas W. (1822–1882), Zene Wasgatt (1822–1896), and Zena W. (1824–1896).</p>
+          <p>The cemetery records identify her only as "Ann M., wife of Stephen." Her full name is preserved in an 1848 deed at the Hancock County registry in which she joined her husband, Stephen Higgins Jr., in selling a small lot at Bay Harbor to Tobias Roberts for $45, releasing her dower rights to the conveyance.</p>
+        `
+      },
+      'stephen-jr': {
+        name: 'Stephen Higgins Jr.',
+        dates: 'c. 1813 – 18 December 1891, age 78',
+        buriedHere: true,
+        body: `
+          <p>A carpenter of Eden, and the husband of Ann Maria Higgins. The 1848 deed in which the couple conveyed a 24-square-rod lot at Bay Harbor to Tobias Roberts identifies his trade and residence; he signed himself "Stephen Higgins Jr."</p>
+          <p>The suffix distinguished him, at age thirty-five, from the older Stephen Higgins (1771–1852), then seventy-seven, and Capt. Stephen Higgins (1804–1862), then forty-four — both also buried in this plot. His own parents are not identified in the records at hand. The most natural reading would make him a son of one of the two older Stephens, but the documents do not confirm it.</p>
+        `
+      },
+      'mary-h': {
+        name: 'Mary H. Higgins',
+        dates: 'b. c. May 1826 – d. 3 June 1847, age 21 years, 26 days',
+        buriedHere: true,
+        body: `
+          <p>Daughter of Capt. Stephen Higgins (the son of Capt. Israel Jr. and Polly Hull) and his wife Margaret. Margaret has no stone in the plot; whether she is buried here without a marker, or buried elsewhere, the records do not say.</p>
+          <p>Mary was twenty-one when she died, the eldest grandchild of Capt. Israel Jr. and Polly Hull to be laid in this ground.</p>
+        `
+      },
+      'mary-f': {
+        name: 'Mary Frances Snow Higgins',
+        dates: 'b. 1839 – d. 1915',
+        buriedHere: true,
+        body: `
+          <p>Second wife of Capt. Royal Grant Higgins, whom he married after the death of his first wife Sarah F. Suminsby. A Snow, like Mary Snow Higgins three generations before her — though the genealogical link, if any, is not recorded in the sources at hand.</p>
+          <p>Bore at least two children to Royal Grant: Ella Frances (1866–1902) and Stephen W. (1869–1887). Outlived both of them, and her husband by more than four decades. Died in 1915 at the age of seventy-six.</p>
+        `
+      },
+      'ella-frances': {
+        name: 'Ella Frances Higgins',
+        dates: 'b. 1866 – d. 1902, age 35 or 36',
+        buriedHere: true,
+        body: `
+          <p>Daughter of Capt. Royal Grant Higgins and his second wife Mary Frances Snow. Born seven years before her father's death, she lived to be thirty-five or thirty-six. Buried with her parents and her brother Stephen W. in the Higgins plot.</p>
+        `
+      },
+      'stephen-w': {
+        name: 'Stephen W. Higgins',
+        dates: 'b. 1869 – d. 1887, age 18',
+        buriedHere: true,
+        body: `
+          <p>Son of Capt. Royal Grant Higgins and Mary Frances Snow. Died at eighteen, fourteen years after his father, while his mother and elder sister still lived.</p>
+          <p>Named, presumably, for his uncle Capt. Stephen Higgins, lost on Dry Mountain twenty-five years before he was born.</p>
+        `
+      }
+    };
+
+    // ---- Wire up the tree ----
+    const cards = document.querySelectorAll('.person-card');
+    const panel = document.getElementById('person-details');
+    const panelName = document.getElementById('panel-name');
+    const panelDates = document.getElementById('panel-dates');
+    const panelBurial = document.getElementById('panel-burial');
+    const panelBody = document.getElementById('panel-body');
+    const panelClose = document.getElementById('panel-close');
+
+    function selectPerson(id) {
+      const person = PEOPLE[id];
+      if (!person) return;
+      cards.forEach(c => c.classList.toggle('selected', c.dataset.id === id));
+      panelName.textContent = person.name;
+      panelDates.textContent = person.dates;
+      if (person.buriedHere) {
+        panelBurial.textContent = 'Buried at Mount Desert Street Cemetery';
+        panelBurial.classList.remove('elsewhere');
+        if (person.burialNote) {
+          panelBurial.textContent += ' — ' + person.burialNote;
+        }
+      } else {
+        panelBurial.textContent = person.burialNote || 'Buried elsewhere';
+        panelBurial.classList.add('elsewhere');
+      }
+      panelBody.innerHTML = person.body;
+      panel.hidden = false;
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closePanel() {
+      panel.hidden = true;
+      cards.forEach(c => c.classList.remove('selected'));
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => selectPerson(card.dataset.id));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectPerson(card.dataset.id);
+        }
+      });
+    });
+
+    panelClose.addEventListener('click', closePanel);
+  })();
+</script>
+
+</body>
+</html>
