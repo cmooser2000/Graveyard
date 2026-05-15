@@ -4,24 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F0E8D6">
-  <title>Meet the Residents &mdash; Headstone History</title>
-  <meta name="description" content="Longer biographies of the seven people whose graves you visit on the Headstone History walk.">
+  <title>Learn more &mdash; Headstone History</title>
+  <meta name="description" content="A deeper look at what we know about the people buried at the Mount Desert Street Cemetery, drawn from newspapers, census records, and historical archives.">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
 <main>
-  <p class="back-home"><a href="/about">&larr; About</a></p>
+  <p class="back-home"><a href="/">&larr; Home</a></p>
 
-  <h1 class="hero-title">Meet the Residents</h1>
+  <h1 class="hero-title">Learn more</h1>
 
   <div class="rule" aria-hidden="true">
     <span class="rule-mark"></span>
   </div>
 
   <p class="intro-line">
-    A longer look at the lives behind the seven graves &mdash; drawn from newspapers, census records, and family papers.
+    Take a deeper look into what we know about the people buried here, drawn from newspapers, census records, and historical archives.
   </p>
+
+  <div class="residents-search">
+    <label class="visually-hidden" for="residentSearch">Search for a person</label>
+    <input
+      type="search"
+      id="residentSearch"
+      class="residents-search-input"
+      placeholder="Search for a person…"
+      autocomplete="off"
+      spellcheck="false">
+    <p class="residents-search-empty" id="residentSearchEmpty" hidden>No one by that name &mdash; try a different spelling.</p>
+    <ul class="residents-search-results" id="residentSearchResults" hidden></ul>
+  </div>
+
+  <h2 class="families-heading">Families buried here</h2>
 
   <nav class="residents-list" aria-label="Resident biographies">
     <a href="/residents/alley-family" class="resident-link">
@@ -59,6 +74,93 @@
 
   <p class="page-footer">A project at the Mount Desert Street Cemetery &middot; Bar Harbor, Maine</p>
 </main>
+
+<script>
+  (function () {
+    'use strict';
+
+    var input    = document.getElementById('residentSearch');
+    var results  = document.getElementById('residentSearchResults');
+    var emptyMsg = document.getElementById('residentSearchEmpty');
+    if (!input || !results) return;
+
+    var index = null;
+    var indexLoading = null;
+
+    function loadIndex() {
+      if (index) return Promise.resolve(index);
+      if (indexLoading) return indexLoading;
+      indexLoading = fetch('/data/residents-search.json', { cache: 'no-cache' })
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (data) { index = data; return data; })
+        .catch(function () { index = []; return []; });
+      return indexLoading;
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function render(matches) {
+      results.innerHTML = '';
+      if (!matches.length) {
+        results.hidden = true;
+        emptyMsg.hidden = false;
+        return;
+      }
+      emptyMsg.hidden = true;
+      matches.slice(0, 30).forEach(function (m) {
+        var li = document.createElement('li');
+        // Text fragment scrolls + highlights the first occurrence in
+        // Chrome/Edge/Safari; in Firefox the page just loads normally.
+        var target = '/residents/' + m.slug + '#:~:text=' + encodeURIComponent(m.name);
+        var a = document.createElement('a');
+        a.href = target;
+        a.className = 'residents-search-result';
+        a.innerHTML =
+          '<span class="result-name">' + escapeHtml(m.name) + '</span>' +
+          '<span class="result-family">' + escapeHtml(m.family) + '</span>' +
+          (m.note ? '<span class="result-note">' + escapeHtml(m.note) + '</span>' : '');
+        li.appendChild(a);
+        results.appendChild(li);
+      });
+      results.hidden = false;
+    }
+
+    function filter(query) {
+      var q = query.trim().toLowerCase();
+      if (q.length < 2) {
+        results.hidden = true;
+        emptyMsg.hidden = true;
+        return;
+      }
+      loadIndex().then(function (data) {
+        var matches = data.filter(function (e) {
+          return e.name.toLowerCase().indexOf(q) !== -1
+              || (e.note && e.note.toLowerCase().indexOf(q) !== -1);
+        });
+        // Promote exact name-start matches.
+        matches.sort(function (a, b) {
+          var aStart = a.name.toLowerCase().indexOf(q) === 0 ? 0 : 1;
+          var bStart = b.name.toLowerCase().indexOf(q) === 0 ? 0 : 1;
+          return aStart - bStart;
+        });
+        render(matches);
+      });
+    }
+
+    var debounce;
+    input.addEventListener('input', function () {
+      clearTimeout(debounce);
+      debounce = setTimeout(function () { filter(input.value); }, 80);
+    });
+
+    // Pre-load the index on focus to make the first keystroke snappy.
+    input.addEventListener('focus', loadIndex, { once: true });
+  })();
+</script>
 
 </body>
 </html>
