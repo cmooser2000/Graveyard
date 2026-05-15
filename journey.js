@@ -304,7 +304,10 @@
 
         if (VIRTUAL_MODE) {
           // Virtual: skip the map + year form, go straight to the video.
+          // Also reveal the continue button up front so visitors can move
+          // on without waiting for the video to end.
           revealVideo();
+          document.getElementById('postVideo').classList.add('visible');
           preloadNextGrave(num);
         } else {
           bindForm(grave, num, progress);
