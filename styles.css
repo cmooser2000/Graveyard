@@ -28,6 +28,8 @@
   --moss:        #4F6B3A;
   --cadmium:     #006B3C;
   --cadmium-dk:  #004D2A;
+  --tour-blue:    #1F3D5C;
+  --tour-blue-dk: #142A42;
 
   --font-display: 'Demo Love Struck', Georgia, serif;
   --font-body:    Georgia, serif;
@@ -229,6 +231,13 @@ p {
 }
 .cta-group .btn:active {
   background: var(--cadmium-dk);
+}
+/* "Start the Tour" — the primary, standout CTA in a deeper Prussian blue */
+.cta-group .btn.btn-tour {
+  background: var(--tour-blue);
+}
+.cta-group .btn.btn-tour:active {
+  background: var(--tour-blue-dk);
 }
 
 /* ── Form input ───────────────────────────── */
@@ -903,13 +912,66 @@ a.timeline-card:active { transform: scale(0.995); }
   text-decoration-color: var(--ink);
 }
 
-/* ── Homepage timeline disclosure ────────── */
-.home-timeline {
+/* ── Homepage explore section ────────────── */
+.home-explore {
   width: 100%;
-  margin-top: 2.5rem;
+  max-width: 520px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  text-align: center;
 }
-.home-timeline[hidden] { display: none; }
-.home-timeline .timeline { padding-top: 0.5rem; }
+.explore-intro {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 420px;
+  margin: 0 auto 2rem;
+}
+.explore-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  width: 100%;
+}
+.explore-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.explore-link {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.explore-link:hover,
+.explore-link:focus { color: var(--ink-muted); outline: none; }
+
+.explore-sub {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+.explore-sub a {
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+.explore-sub a:hover,
+.explore-sub a:focus { color: var(--ink); text-decoration-color: var(--ink); outline: none; }
 
 /* ── About page ─────────────────────────── */
 .intro-line {

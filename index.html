@@ -40,23 +40,31 @@
   </div>
 
   <p class="intro">
-    Before it was Bar Harbor, it was called Eden. Before that, Man-es-ayd'ik. However they called it, the people who lived here before us shaped the island we know.
-  </p>
-  <p class="intro">
-    Take a walk with us through the old village burial ground on Mount Desert Street, and into some of the lives of the people who used to call this place home.
+    Before it was Bar Harbor, it was called Eden. Before that, Man-es-ayd'ik. However they referred to their home, the people who lived here before us shaped the island we know. Take a journey through time with some of them buried here.
   </p>
 
   <div class="cta-group">
-    <a href="/journey.html" class="btn" id="startBtn">Start Your Journey</a>
-    <a href="/about.html" class="btn">About This Project</a>
-    <button type="button" class="btn" id="timelineToggleBtn"
-            aria-expanded="false" aria-controls="homeTimelineSection">
-      Open Timeline
-    </button>
+    <a href="/journey.html" class="btn btn-tour" id="startBtn">Start the Tour</a>
   </div>
 
-  <section id="homeTimelineSection" class="home-timeline" hidden>
-    <div id="homeTimeline" class="timeline"></div>
+  <section class="home-explore" aria-label="Explore">
+    <p class="explore-intro">
+      Not at the graveyard? Learn more about the lives of the people buried here and how this project came together.
+    </p>
+
+    <nav class="explore-nav" aria-label="Explore">
+      <div class="explore-group">
+        <a href="/about.html" class="explore-link">About this project</a>
+        <ul class="explore-sub">
+          <li><a href="/contributors.html">Contributors</a></li>
+          <li><a href="/sources.html">Sources</a></li>
+          <li><a href="/process.html">Process</a></li>
+          <li><a href="/educator-hub.html">For educators</a></li>
+        </ul>
+      </div>
+      <a href="/residents" class="explore-link">Search graves</a>
+      <a href="/timeline.html" class="explore-link">Timeline</a>
+    </nav>
   </section>
 
   <script>
@@ -72,30 +80,14 @@
         if (highest <= 1) return;
         var btn = document.getElementById('startBtn');
         if (!btn) return;
-        btn.textContent = 'Continue Your Journey';
+        btn.textContent = 'Continue the Tour';
         btn.href = '/journey.html?grave=' + highest;
       } catch (e) {}
-    })();
-
-    // Lazy-mount the timeline only when the visitor opens it.
-    (function () {
-      var btn = document.getElementById('timelineToggleBtn');
-      var sec = document.getElementById('homeTimelineSection');
-      var mount = document.getElementById('homeTimeline');
-      btn.addEventListener('click', function () {
-        var open = sec.hidden;
-        sec.hidden = !open;
-        btn.setAttribute('aria-expanded', String(open));
-        btn.textContent = open ? 'Close Timeline' : 'Open Timeline';
-        if (open && window.renderTimelineInto) window.renderTimelineInto(mount);
-      });
     })();
   </script>
 
   <p class="page-footer">A project at the Mount Desert Street Cemetery &middot; Bar Harbor, Maine</p>
 </main>
-
-<script src="/timeline.js" defer></script>
 
 </body>
 </html>
