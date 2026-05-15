@@ -669,6 +669,19 @@ p {
   letter-spacing: 0.08em;
   text-align: center;
 }
+.page-footer a {
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+  -webkit-tap-highlight-color: transparent;
+}
+.page-footer a:hover,
+.page-footer a:focus {
+  color: var(--ink);
+  text-decoration-color: var(--ink);
+  outline: none;
+}
 
 /* ── Back-home link (journey pages) ──────── */
 .back-home {
