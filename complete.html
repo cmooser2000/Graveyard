@@ -67,11 +67,16 @@
           <p class="stone-date" id="certDate"></p>
         </div>
       </div>
-      <figcaption class="cert-hint">Screenshot to save your certificate.</figcaption>
+      <figcaption class="cert-hint" id="certHint">Save or share your certificate below.</figcaption>
     </figure>
 
     <div class="cert-actions" id="certActions" hidden>
-      <button type="button" class="cert-link" id="makeAnotherBtn">&larr; Make another</button>
+      <div class="cert-share">
+        <button type="button" class="btn cert-share-btn" id="shareBtn">Share certificate</button>
+        <button type="button" class="btn btn-secondary cert-share-btn" id="downloadBtn">Download image</button>
+        <a class="cert-link" id="emailBtn" href="#">Email a link to a friend</a>
+      </div>
+      <button type="button" class="cert-link cert-link--secondary" id="makeAnotherBtn">&larr; Make another</button>
     </div>
 
   </section>
@@ -145,8 +150,123 @@
       try { localStorage.removeItem('eden_progress'); } catch (e) {}
       window.location.href = '/';
     });
+
+    // ── Share / Download / Email ─────────────────────────────────
+    var shareBtn    = document.getElementById('shareBtn');
+    var downloadBtn = document.getElementById('downloadBtn');
+    var emailBtn    = document.getElementById('emailBtn');
+    var hintEl      = document.getElementById('certHint');
+    var stoneWrap   = document.querySelector('.stone-wrap');
+
+    var SHARE_URL   = 'https://headstonehistory.org/';
+    var SHARE_TITLE = 'Headstone History — Mount Desert Street Cemetery Tour';
+    var SHARE_TEXT  = 'I just completed the Headstone History tour at the Mount Desert Street Cemetery in Bar Harbor, Maine. You can take it too: ' + SHARE_URL;
+    var EMAIL_SUBJECT = SHARE_TITLE;
+    var EMAIL_BODY  = 'I just completed the Headstone History tour at the Mount Desert Street Cemetery in Bar Harbor, Maine. A scavenger hunt through seven 19th-century graves — you can take it too:\n\n' + SHARE_URL + '\n';
+
+    // Wire the mailto link
+    if (emailBtn) {
+      emailBtn.href = 'mailto:?subject=' + encodeURIComponent(EMAIL_SUBJECT)
+                    + '&body=' + encodeURIComponent(EMAIL_BODY);
+    }
+
+    // Render the certificate stone-wrap to a PNG blob via html-to-image.
+    async function renderCertificateBlob() {
+      if (!window.htmlToImage) throw new Error('html-to-image not loaded');
+      // Wait for fonts so Demo Love Struck / Long Island Antiqua render correctly
+      if (document.fonts && document.fonts.ready) {
+        try { await document.fonts.ready; } catch (e) {}
+      }
+      // pixelRatio 3 → exports at 960×1473 for crisp display + email inline preview
+      return window.htmlToImage.toBlob(stoneWrap, {
+        pixelRatio: 3,
+        backgroundColor: '#F0E8D6',
+        cacheBust: true,
+      });
+    }
+
+    function blobToFile(blob, filename) {
+      try { return new File([blob], filename, { type: blob.type || 'image/png' }); }
+      catch (e) { return blob; }
+    }
+
+    function triggerDownload(blob, filename) {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    }
+
+    function setHint(msg) { if (hintEl) hintEl.textContent = msg; }
+
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async function () {
+        shareBtn.disabled = true;
+        var originalText = shareBtn.textContent;
+        shareBtn.textContent = 'Rendering…';
+        try {
+          var blob = await renderCertificateBlob();
+          if (!blob) throw new Error('render failed');
+          var file = blobToFile(blob, 'headstone-history-certificate.png');
+
+          // Use Web Share API with file if supported (best on mobile)
+          if (navigator.canShare && file instanceof File && navigator.canShare({ files: [file] })) {
+            try {
+              await navigator.share({
+                files: [file],
+                title: SHARE_TITLE,
+                text:  SHARE_TEXT,
+              });
+              setHint('Thanks for sharing!');
+            } catch (err) {
+              // User cancelled — silent
+              if (err && err.name !== 'AbortError') {
+                triggerDownload(blob, 'headstone-history-certificate.png');
+                setHint('Your certificate has been downloaded.');
+              }
+            }
+          } else {
+            // Fallback: download the image
+            triggerDownload(blob, 'headstone-history-certificate.png');
+            setHint('Your certificate has been downloaded — attach it to an email to share.');
+          }
+        } catch (err) {
+          console.error(err);
+          setHint('Sorry — couldn’t render the certificate. Try the Download button.');
+        } finally {
+          shareBtn.disabled = false;
+          shareBtn.textContent = originalText;
+        }
+      });
+    }
+
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', async function () {
+        downloadBtn.disabled = true;
+        var originalText = downloadBtn.textContent;
+        downloadBtn.textContent = 'Rendering…';
+        try {
+          var blob = await renderCertificateBlob();
+          triggerDownload(blob, 'headstone-history-certificate.png');
+          setHint('Your certificate has been downloaded.');
+        } catch (err) {
+          console.error(err);
+          setHint('Sorry — couldn’t render the certificate. Try taking a screenshot instead.');
+        } finally {
+          downloadBtn.disabled = false;
+          downloadBtn.textContent = originalText;
+        }
+      });
+    }
   })();
 </script>
+
+<!-- Vendored locally so the share/download buttons work offline at the cemetery. -->
+<script src="/js/html-to-image.min.js"></script>
 
 </body>
 </html>
