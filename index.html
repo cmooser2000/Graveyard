@@ -28,6 +28,28 @@
     @media (min-width: 700px) {
       .masthead { max-width: 680px; }
     }
+
+    /* ── Cemetery map under the intro line ─────────────── */
+    .home-map {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto -1.25rem; /* negative bottom margin pulls the CTA up onto the map's lower edge */
+      position: relative;
+      z-index: 0;
+    }
+    .home-map img {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* Dissolve the watercolor's near-white paper background into the cream page. */
+      mix-blend-mode: darken;
+    }
+    /* Lift the CTA into the overlap zone */
+    .cta-group { position: relative; z-index: 1; }
+
+    @media (min-width: 700px) {
+      .home-map { max-width: 600px; margin-bottom: -1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -42,6 +64,10 @@
   <p class="intro">
     Take a journey through time with some of the people buried here.
   </p>
+
+  <div class="home-map" aria-hidden="true">
+    <img src="/maps/01-alley.jpg" alt="">
+  </div>
 
   <div class="cta-group">
     <a href="/journey.html" class="btn btn-tour" id="startBtn">Start the Tour</a>
