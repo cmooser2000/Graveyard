@@ -139,8 +139,8 @@
     {
       "id": "captain-higgins-born",
       "type": "person",
-      "date": "1778 – 1823",
-      "body": "Captain Israel Higgins, born on Mount Desert Island in the middle of the Revolution; lost at sea aboard the schooner Julia Ann off Sandy Hook in March 1823. The story of his line is on the Higgins family page.",
+      "date": "1778",
+      "body": "Captain Israel Higgins born on Mount Desert Island in the middle of the Revolution.",
       "link": "/residents/higgins-family",
       "image": "/timeline-images/israel-higgins.jpg"
     },
@@ -151,6 +151,14 @@
       "body": "Battle of Bagaduce / Penobscot Expedition.",
       "link": "https://en.wikipedia.org/wiki/Penobscot_Expedition",
       "image": "/timeline-images/penobscot-expedition.jpg"
+    },
+    {
+      "id": "polly-higgins-born",
+      "type": "person",
+      "date": "1782",
+      "body": "Polly (\"Mary\") Hull born — daughter of Captain Samuel Hull and future wife of Captain Israel Higgins.",
+      "link": "/residents/higgins-family",
+      "image": "/timeline-images/polly-higgins.jpg"
     },
     {
       "id": "samuel-hull-settles",
@@ -179,16 +187,16 @@
     {
       "id": "tobias-roberts-born",
       "type": "person",
-      "date": "1806 – 1879",
-      "body": "Tobias Lord Roberts Sr., founder of the Agamont House and Bar Harbor's first wharf. The full story of the family he built is on the Roberts family page.",
+      "date": "1806",
+      "body": "Tobias Lord Roberts Sr. born — future founder of the Agamont House and Bar Harbor's first wharf.",
       "link": "/residents/roberts-family",
       "image": "/timeline-images/tobias-roberts.jpg"
     },
     {
       "id": "polly-higgins-dies",
       "type": "person",
-      "date": "1782 – 1818",
-      "body": "Polly (\"Mary\") Hull Higgins — daughter of Captain Samuel Hull, wife of Captain Israel Higgins — dies at age 36, two months before her husband's father and nine months before her husband himself.",
+      "date": "1818",
+      "body": "Polly Hull Higgins dies, age 36.",
       "link": "/residents/higgins-family",
       "image": "/timeline-images/polly-higgins.jpg"
     },
@@ -199,6 +207,14 @@
       "body": "Maine becomes a state.",
       "link": "https://en.wikipedia.org/wiki/Maine",
       "image": "/timeline-images/maine-statehood.png"
+    },
+    {
+      "id": "captain-higgins-dies",
+      "type": "person",
+      "date": "1823",
+      "body": "Captain Israel Higgins lost at sea aboard the schooner Julia Ann off Sandy Hook.",
+      "link": "/residents/higgins-family",
+      "image": "/timeline-images/israel-higgins.jpg"
     },
     {
       "id": "johnson-mcintosh",
@@ -217,37 +233,28 @@
       "image": "/timeline-images/maine-statehood.png"
     },
     {
-      "id": "frederick-alley-life",
+      "id": "frederick-alley-born",
       "type": "person",
-      "date": "1838 – 1911",
-      "body": "Frederick Jarvis Alley, born on Bartlett's Island, builder of the St. Sauveur Hotel, husband of Irene Roberts. Story on the Alley family page.",
+      "date": "1838",
+      "body": "Frederick Jarvis Alley born on Bartlett's Island, the future builder of the St. Sauveur Hotel.",
       "link": "/residents/alley-family",
       "image": "/timeline-images/frederick-alley.jpg"
     },
     {
-      "id": "irene-alley-life",
+      "id": "irene-alley-born",
       "type": "person",
-      "date": "1838 – 1897",
-      "body": "Irene Ophelia Roberts Alley, daughter of Tobias Roberts and matriarch of the St. Sauveur. Story on the Alley family page.",
+      "date": "1838",
+      "body": "Irene Ophelia Roberts born, daughter of Tobias Roberts and future wife of Frederick Alley.",
       "link": "/residents/alley-family",
       "image": "/timeline-images/irene-alley.jpg"
     },
     {
-      "id": "lucretia-douglass",
+      "id": "lucretia-douglass-born",
       "type": "person",
-      "date": "1841 – 1853",
-      "body": "Lucretia Douglass — twelve years old when she died in a fall on Newport Mountain. Her story is on the Douglass family page.",
+      "date": "1841",
+      "body": "Lucretia Douglass born.",
       "link": "/residents/douglass-family",
       "image": "/timeline-images/lucretia-douglass.jpg"
-    },
-    {
-      "id": "hudson-river-school",
-      "type": "history",
-      "date": "1840s–1850s",
-      "body": "Hudson River School artists come to the island. Frederic Edwin Church paints \"Sunset, Bar Harbor\" in 1854.",
-      "link": "https://en.wikipedia.org/wiki/Hudson_River_School",
-      "image": "/timeline-images/hudson-river-school.jpg",
-      "imageCredit": "Frederic Edwin Church, \"Sunset, Bar Harbor\" (1854). Olana State Historic Site, NY. Public domain."
     },
     {
       "id": "passamaquoddy-rep",
@@ -258,12 +265,29 @@
       "image": "/timeline-images/passamaquoddy-rep.jpg"
     },
     {
-      "id": "juliette-nickerson-life",
+      "id": "juliette-nickerson-born",
       "type": "person",
-      "date": "1843 – 1929",
-      "body": "Juliette Nickerson — born in the first house built in Bar Harbor; lived her entire life in the village; an early adopter of bobbed hair, \"mannish\" clothing, and the typewriter; died at eighty-six. Story on her page.",
+      "date": "1843",
+      "body": "Juliette Nickerson born in the first house ever built in what would become Bar Harbor.",
       "link": "/residents/juliette-nickerson",
       "image": "/timeline-images/juliette-nickerson.jpg"
+    },
+    {
+      "id": "lucretia-douglass-dies",
+      "type": "person",
+      "date": "1853",
+      "body": "Lucretia Douglass dies in a fall on Newport Mountain, age 12.",
+      "link": "/residents/douglass-family",
+      "image": "/timeline-images/lucretia-douglass.jpg"
+    },
+    {
+      "id": "hudson-river-school",
+      "type": "history",
+      "date": "1854",
+      "body": "Hudson River School artists come to the island in the 1840s and 50s. Frederic Edwin Church paints \"Sunset, Bar Harbor\" in 1854.",
+      "link": "https://en.wikipedia.org/wiki/Hudson_River_School",
+      "image": "/timeline-images/hudson-river-school.jpg",
+      "imageCredit": "Frederic Edwin Church, \"Sunset, Bar Harbor\" (1854). Olana State Historic Site, NY. Public domain."
     },
     {
       "id": "agamont-hotel",
@@ -282,28 +306,20 @@
       "image": "/timeline-images/civil-war.png"
     },
     {
-      "id": "elmer-wasgatt-life",
+      "id": "elmer-wasgatt-born",
       "type": "person",
-      "date": "1862 – 1877",
-      "body": "Elmer Ellsworth Wasgatt, named for the first Union officer killed in the Civil War. He outlived his father by fourteen years and never reached sixteen. Story on the Wasgatt family page.",
+      "date": "1862",
+      "body": "Elmer Ellsworth Wasgatt born, named for the first Union officer killed in the Civil War.",
       "link": "/residents/wasgatt-family",
       "image": "/timeline-images/elmer-wasgatt.jpg"
-    },
-    {
-      "id": "wabanaki-encampments",
-      "type": "history",
-      "date": "1860s–1890",
-      "body": "Wabanaki encampments rotate among six different locations in Bar Harbor — most commonly the foot of Bridge Street, Albert Meadow, and the end of Ledgelawn Avenue (\"Squaw Hollow\").",
-      "link": "https://www.abbemuseum.org/s/Naming-the-Dawnland-George-Neptune_web.pdf",
-      "image": "/timeline-images/wabanaki-encampments.jpg"
     },
     {
       "id": "wasgatt-father-dies",
       "type": "person",
       "date": "1863",
-      "body": "Elmer Wasgatt's father, Benjamin R. Wasgatt of the 26th Maine, dies of consumption in a New Orleans military hospital.",
+      "body": "Elmer Wasgatt's father, Benjamin R. Wasgatt of the 26th Maine, dies of consumption in a New Orleans military hospital and is buried at Chalmette National Cemetery.",
       "link": "/residents/wasgatt-family",
-      "image": "/timeline-images/elmer-wasgatt.jpg"
+      "image": "/timeline-images/benji-wasgatt-stone.jpg"
     },
     {
       "id": "roberts-wharf",
@@ -311,7 +327,7 @@
       "date": "1868",
       "body": "Roberts builds a Bar Harbor wharf, boosting tourism.",
       "link": "/residents/roberts-family",
-      "image": "/timeline-images/tobias-roberts.jpg"
+      "image": "/timeline-images/steamboat-wharf-1870s.jpg"
     },
     {
       "id": "saint-sauveur-hotel-built",
@@ -319,7 +335,7 @@
       "date": "1870",
       "body": "St. Sauveur Hotel built by Frederick Alley.",
       "link": "/residents/alley-family",
-      "image": "/timeline-images/frederick-alley.jpg"
+      "image": "/timeline-images/st-sauveur-hotel.jpg"
     },
     {
       "id": "disease-outbreak",
@@ -330,18 +346,34 @@
       "image": "/timeline-images/disease-outbreak.jpg"
     },
     {
+      "id": "elmer-wasgatt-dies",
+      "type": "person",
+      "date": "1877",
+      "body": "Elmer Ellsworth Wasgatt dies, age 15.",
+      "link": "/residents/wasgatt-family",
+      "image": "/timeline-images/elmer-wasgatt.jpg"
+    },
+    {
+      "id": "tobias-roberts-dies",
+      "type": "person",
+      "date": "1879",
+      "body": "Tobias Lord Roberts Sr. dies.",
+      "link": "/residents/roberts-family",
+      "image": "/timeline-images/tobias-roberts.jpg"
+    },
+    {
       "id": "saint-sauveur-burns",
       "type": "person",
       "date": "1881",
       "body": "St. Sauveur Hotel burns and is rebuilt.",
       "link": "/residents/alley-family",
-      "image": "/timeline-images/frederick-alley.jpg"
+      "image": "/timeline-images/st-sauveur-hotel.jpg"
     },
     {
       "id": "cleveland-1",
       "type": "history",
-      "date": "1885–1889",
-      "body": "Grover Cleveland, U.S. president (1st term).",
+      "date": "1885",
+      "body": "Grover Cleveland elected U.S. president.",
       "link": "https://en.wikipedia.org/wiki/Grover_Cleveland",
       "image": "/timeline-images/cleveland-1.jpg"
     },
@@ -364,8 +396,8 @@
     {
       "id": "cleveland-2",
       "type": "history",
-      "date": "1893–1897",
-      "body": "Grover Cleveland, U.S. president (2nd term).",
+      "date": "1893",
+      "body": "Grover Cleveland elected to a second term.",
       "link": "https://en.wikipedia.org/wiki/Grover_Cleveland",
       "image": "/timeline-images/cleveland-2.jpg"
     },
@@ -373,7 +405,7 @@
       "id": "encampments-banned",
       "type": "history",
       "date": "1893",
-      "body": "Wabanaki encampments banned from the Bar Harbor shoreline.",
+      "body": "Wabanaki homes banned from the Bar Harbor shoreline.",
       "link": "https://www.abbemuseum.org/s/Naming-the-Dawnland-George-Neptune_web.pdf",
       "image": "/timeline-images/wabanaki-encampments.jpg"
     },
@@ -381,7 +413,7 @@
       "id": "irene-alley-dies",
       "type": "person",
       "date": "1897",
-      "body": "Irene Ophelia Alley dies. Bar Harbor Civil War monument erected.",
+      "body": "Irene Ophelia Roberts Alley dies. Bar Harbor Civil War monument erected.",
       "link": "/residents/alley-family",
       "image": "/timeline-images/irene-alley.jpg"
     },
