@@ -292,14 +292,19 @@ p {
 /* ── Map block ────────────────────────────── */
 .map-block {
   width: 100%;
-  max-width: 320px;
+  max-width: 540px;
   margin: 0 auto 2rem;
 }
 .map-block img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--radius);
+  /* Dissolve the near-white paper background of the watercolor map into
+     the cream page background, the same way the hero masthead does. */
+  mix-blend-mode: darken;
+}
+@media (min-width: 700px) {
+  .map-block { max-width: 600px; }
 }
 .map-caption {
   margin-top: 0.75rem;
