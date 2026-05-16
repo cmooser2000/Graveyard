@@ -21,7 +21,7 @@
       "type": "history",
       "date": "~3,000 years ago",
       "body": "Wabanaki living in a natural world very similar to today's Maine.",
-      "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
+      "link": "https://www.abbemuseum.org/educatorhub",
       "image": "/timeline-images/wabanaki-3000.jpg"
     },
     {
@@ -29,7 +29,7 @@
       "type": "history",
       "date": "~2,800 years ago",
       "body": "People begin using fired clay pottery (start of the Ceramic Period).",
-      "link": "https://en.wikipedia.org/wiki/Woodland_period",
+      "link": "https://www.abbemuseum.org/educatorhub",
       "image": "/timeline-images/woodland-pottery.gif"
     },
     {
@@ -37,16 +37,8 @@
       "type": "history",
       "date": "~2,300–2,200 years ago",
       "body": "Birchbark canoes in widespread use.",
-      "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
+      "link": "https://www.abbemuseum.org/educatorhub",
       "image": "/timeline-images/birchbark-canoes.jpg"
-    },
-    {
-      "id": "corn-beans-squash",
-      "type": "history",
-      "date": "~1100 A.D.",
-      "body": "Corn, bean, and squash horticulture arrives in southernmost Maine. Mount Desert Island is believed to be used seasonally.",
-      "link": "https://www.maine.gov/mhpc/programs/education/prehistoric-archaeology",
-      "image": "/timeline-images/corn-beans-squash.jpg"
     },
     {
       "id": "dum-diversas",
@@ -61,7 +53,7 @@
       "type": "history",
       "date": "1604",
       "body": "Samuel de Champlain and Pierre Dugua de Monts sail past Mount Desert Island. Champlain names it Île des Monts Déserts (\"island of the bare/lonely mountains\").",
-      "link": "https://en.wikipedia.org/wiki/Mount_Desert_Island",
+      "link": "https://digitalmaine.com/do/search/?q=asticou%27s%20island%20domain%20volume%201&start=0&context=13577884",
       "image": "/timeline-images/champlain-mdi.jpg"
     },
     {
@@ -77,7 +69,7 @@
       "type": "history",
       "date": "May 1613",
       "body": "French Jesuits aboard the Jonah found Saint Sauveur somewhere in Frenchman Bay near MDI, after being invited by Asticou, the local Wabanaki sakom (chief).",
-      "link": "https://en.wikipedia.org/wiki/Mount_Desert_Island",
+      "link": "https://digitalmaine.com/do/search/?q=asticou%27s%20island%20domain%20volume%201&start=0&context=13577884",
       "image": "/timeline-images/saint-sauveur-founded.jpg"
     },
     {
@@ -85,30 +77,30 @@
       "type": "history",
       "date": "Summer 1613",
       "body": "English Captain Samuel Argall destroys Saint Sauveur after less than three months.",
-      "link": "https://en.wikipedia.org/wiki/Mount_Desert_Island",
+      "link": "https://digitalmaine.com/do/search/?q=asticou%27s%20island%20domain%20volume%201&start=0&context=13577884",
       "image": "/timeline-images/saint-sauveur-destroyed.jpg"
     },
     {
       "id": "great-dying",
       "type": "history",
       "date": "1616–1619",
-      "body": "\"The Great Dying\" — pandemic kills up to 95% of Native people from Penobscot Bay to Cape Cod (likely closer to 75% east of the Penobscot, including MDI).",
-      "link": "https://en.wikipedia.org/wiki/1616%E2%80%931619_New_England_epidemic",
+      "body": "A pandemic later called \"The Great Dying\" wipes out over 75 percent of the inhabitants along the New England coast.",
+      "link": "https://nhpbs.org/greatdying/",
       "image": "/timeline-images/great-dying.jpg"
     },
     {
-      "id": "higgins-sr-born",
-      "type": "person",
-      "date": "1742",
-      "body": "Israel Higgins Sr. born.",
-      "link": null,
-      "image": "/timeline-images/israel-higgins.jpg"
+      "id": "queen-annes-war",
+      "type": "history",
+      "date": "1703–1713",
+      "body": "Queen Anne's War. Massachusetts and other colonial governments offer cash bounties for the scalps of Native Americans throughout the conflict.",
+      "link": "https://en.wikipedia.org/wiki/Queen_Anne%27s_War",
+      "image": "/timeline-images/queen-annes-war.jpg"
     },
     {
       "id": "french-indian-war",
       "type": "history",
       "date": "1754–1763",
-      "body": "French and Indian War. Higgins Sr. fights as a British subject.",
+      "body": "French and Indian War. Captain Israel Higgins's father, Israel Sr., fights as a British subject.",
       "link": "https://en.wikipedia.org/wiki/French_and_Indian_War",
       "image": "/timeline-images/french-indian-war.png"
     },
@@ -117,7 +109,7 @@
       "type": "history",
       "date": "1755",
       "body": "The Phips Proclamation declares the Penobscot \"enemies, rebels and traitors\" and offers cash bounties for the scalps of Penobscot men, women, and children.",
-      "link": "https://en.wikipedia.org/wiki/Spencer_Phips",
+      "link": "https://upstanderproject.org/learn/guides-and-resources/first-light/phips-bounty-proclamation",
       "image": "/timeline-images/phips-proclamation.jpg"
     },
     {
@@ -132,32 +124,24 @@
       "id": "higgins-first-settlers",
       "type": "person",
       "date": "1771",
-      "body": "Israel and Mary Higgins become the first European settlers in present-day Bar Harbor.",
-      "link": null,
-      "image": "/timeline-images/israel-higgins.jpg"
+      "body": "Israel and Mary Higgins — the parents of Captain Israel Higgins — become the first European settlers in present-day Bar Harbor.",
+      "link": "/residents/higgins-family",
+      "image": "/timeline-images/1771.jpg"
     },
     {
       "id": "revolutionary-war",
       "type": "history",
       "date": "1775",
-      "body": "American Revolutionary War begins. Christopher Bartlett settles on the island.",
+      "body": "American Revolutionary War begins. Frederick Alley's grandfather Christopher Bartlett settles on what is now Bartlett's Island.",
       "link": "https://en.wikipedia.org/wiki/American_Revolutionary_War",
       "image": "/timeline-images/revolutionary-war.jpg"
     },
     {
-      "id": "washington-letter",
-      "type": "history",
-      "date": "1777",
-      "body": "General George Washington writes a letter promising to respect Penobscot territory and provide aid, but this is largely forgotten after the war.",
-      "link": "https://wabanakialliance.com/penobscot-nation/",
-      "image": "/timeline-images/washington-letter.jpg"
-    },
-    {
       "id": "captain-higgins-born",
       "type": "person",
-      "date": "1778",
-      "body": "Captain Israel Higgins born.",
-      "link": null,
+      "date": "1778 – 1823",
+      "body": "Captain Israel Higgins, born on Mount Desert Island in the middle of the Revolution; lost at sea aboard the schooner Julia Ann off Sandy Hook in March 1823. The story of his line is on the Higgins family page.",
+      "link": "/residents/higgins-family",
       "image": "/timeline-images/israel-higgins.jpg"
     },
     {
@@ -172,8 +156,8 @@
       "id": "samuel-hull-settles",
       "type": "person",
       "date": "1783",
-      "body": "Revolutionary War ends. Captain Samuel Hull settles Hull's Cove.",
-      "link": null,
+      "body": "Revolutionary War ends. Captain Samuel Hull settles Hull's Cove; his daughter Polly will marry Captain Israel Higgins.",
+      "link": "/residents/higgins-family",
       "image": "/timeline-images/samuel-hull-settles.jpg"
     },
     {
@@ -185,27 +169,27 @@
       "image": "/timeline-images/george-washington.jpg"
     },
     {
-      "id": "tobias-roberts-born",
-      "type": "person",
-      "date": "1806",
-      "body": "Tobias Lord Roberts Sr. born.",
-      "link": null,
-      "image": "/timeline-images/tobias-roberts.jpg"
+      "id": "trade-intercourse-act-1790",
+      "type": "history",
+      "date": "1790",
+      "body": "George Washington and his administration formally promised to protect Native American lands through a series of treaties and the Trade and Intercourse Act of 1790. However, these promises were frequently broken.",
+      "link": "https://www.mountvernon.org/library/digital-history/digital-encyclopedia/article/native-american-policy",
+      "image": "/timeline-images/washington-letter.jpg"
     },
     {
-      "id": "war-of-1812",
-      "type": "history",
-      "date": "1812–1815",
-      "body": "War of 1812.",
-      "link": "https://en.wikipedia.org/wiki/War_of_1812",
-      "image": "/timeline-images/war-of-1812.jpg"
+      "id": "tobias-roberts-born",
+      "type": "person",
+      "date": "1806 – 1879",
+      "body": "Tobias Lord Roberts Sr., founder of the Agamont House and Bar Harbor's first wharf. The full story of the family he built is on the Roberts family page.",
+      "link": "/residents/roberts-family",
+      "image": "/timeline-images/tobias-roberts.jpg"
     },
     {
       "id": "polly-higgins-dies",
       "type": "person",
-      "date": "January 26, 1818",
-      "body": "Polly \"Mary\" Hull Higgins dies, age 36.",
-      "link": null,
+      "date": "1782 – 1818",
+      "body": "Polly (\"Mary\") Hull Higgins — daughter of Captain Samuel Hull, wife of Captain Israel Higgins — dies at age 36, two months before her husband's father and nine months before her husband himself.",
+      "link": "/residents/higgins-family",
       "image": "/timeline-images/polly-higgins.jpg"
     },
     {
@@ -225,19 +209,35 @@
       "image": "/timeline-images/johnson-mcintosh.jpg"
     },
     {
-      "id": "alley-roberts-born",
+      "id": "penobscot-townships-1833",
+      "type": "history",
+      "date": "1833",
+      "body": "Four Penobscot Townships are \"sold\" by the State of Maine.",
+      "link": "https://www.penobscotnation.org/departments/cultural-historic-preservation/historic-preservation/tribal-timeline/",
+      "image": "/timeline-images/maine-statehood.png"
+    },
+    {
+      "id": "frederick-alley-life",
       "type": "person",
-      "date": "1838",
-      "body": "Frederick Jarvis Alley and Irene Ophelia Roberts born.",
-      "link": null,
+      "date": "1838 – 1911",
+      "body": "Frederick Jarvis Alley, born on Bartlett's Island, builder of the St. Sauveur Hotel, husband of Irene Roberts. Story on the Alley family page.",
+      "link": "/residents/alley-family",
+      "image": "/timeline-images/frederick-alley.jpg"
+    },
+    {
+      "id": "irene-alley-life",
+      "type": "person",
+      "date": "1838 – 1897",
+      "body": "Irene Ophelia Roberts Alley, daughter of Tobias Roberts and matriarch of the St. Sauveur. Story on the Alley family page.",
+      "link": "/residents/alley-family",
       "image": "/timeline-images/irene-alley.jpg"
     },
     {
       "id": "lucretia-douglass",
       "type": "person",
-      "date": "1841–1853",
-      "body": "Life and death of Lucretia Douglass — dies in a fall at age 12.",
-      "link": null,
+      "date": "1841 – 1853",
+      "body": "Lucretia Douglass — twelve years old when she died in a fall on Newport Mountain. Her story is on the Douglass family page.",
+      "link": "/residents/douglass-family",
       "image": "/timeline-images/lucretia-douglass.jpg"
     },
     {
@@ -258,11 +258,19 @@
       "image": "/timeline-images/passamaquoddy-rep.jpg"
     },
     {
+      "id": "juliette-nickerson-life",
+      "type": "person",
+      "date": "1843 – 1929",
+      "body": "Juliette Nickerson — born in the first house built in Bar Harbor; lived her entire life in the village; an early adopter of bobbed hair, \"mannish\" clothing, and the typewriter; died at eighty-six. Story on her page.",
+      "link": "/residents/juliette-nickerson",
+      "image": "/timeline-images/juliette-nickerson.jpg"
+    },
+    {
       "id": "agamont-hotel",
       "type": "person",
       "date": "1855",
       "body": "Tobias Roberts Sr. opens The Agamont Hotel.",
-      "link": null,
+      "link": "/residents/roberts-family",
       "image": "/timeline-images/tobias-roberts.jpg"
     },
     {
@@ -274,11 +282,11 @@
       "image": "/timeline-images/civil-war.png"
     },
     {
-      "id": "wasgatt-born",
+      "id": "elmer-wasgatt-life",
       "type": "person",
-      "date": "1862",
-      "body": "Elmer Ellsworth Wasgatt born.",
-      "link": null,
+      "date": "1862 – 1877",
+      "body": "Elmer Ellsworth Wasgatt, named for the first Union officer killed in the Civil War. He outlived his father by fourteen years and never reached sixteen. Story on the Wasgatt family page.",
+      "link": "/residents/wasgatt-family",
       "image": "/timeline-images/elmer-wasgatt.jpg"
     },
     {
@@ -293,8 +301,8 @@
       "id": "wasgatt-father-dies",
       "type": "person",
       "date": "1863",
-      "body": "Wasgatt's father dies of tuberculosis while serving the Union.",
-      "link": null,
+      "body": "Elmer Wasgatt's father, Benjamin R. Wasgatt of the 26th Maine, dies of consumption in a New Orleans military hospital.",
+      "link": "/residents/wasgatt-family",
       "image": "/timeline-images/elmer-wasgatt.jpg"
     },
     {
@@ -302,7 +310,7 @@
       "type": "person",
       "date": "1868",
       "body": "Roberts builds a Bar Harbor wharf, boosting tourism.",
-      "link": null,
+      "link": "/residents/roberts-family",
       "image": "/timeline-images/tobias-roberts.jpg"
     },
     {
@@ -310,7 +318,7 @@
       "type": "person",
       "date": "1870",
       "body": "St. Sauveur Hotel built by Frederick Alley.",
-      "link": null,
+      "link": "/residents/alley-family",
       "image": "/timeline-images/frederick-alley.jpg"
     },
     {
@@ -318,7 +326,7 @@
       "type": "person",
       "date": "1873",
       "body": "Disease outbreak leads Bar Harbor to modernize water and sewage systems.",
-      "link": null,
+      "link": "/residents/other-burials",
       "image": "/timeline-images/disease-outbreak.jpg"
     },
     {
@@ -326,7 +334,7 @@
       "type": "person",
       "date": "1881",
       "body": "St. Sauveur Hotel burns and is rebuilt.",
-      "link": null,
+      "link": "/residents/alley-family",
       "image": "/timeline-images/frederick-alley.jpg"
     },
     {
@@ -342,7 +350,7 @@
       "type": "person",
       "date": "1886",
       "body": "Diphtheria kills Aquaie and Ophelia Alley.",
-      "link": null,
+      "link": "/residents/alley-family",
       "image": "/timeline-images/irene-alley.jpg"
     },
     {
@@ -350,8 +358,8 @@
       "type": "history",
       "date": "1890s",
       "body": "The richest Americans arrive: Rockefellers, Morgans, Astors.",
-      "link": "https://en.wikipedia.org/wiki/Bar_Harbor,_Maine",
-      "image": "/timeline-images/bar-harbor-1890s.jpg"
+      "link": "https://barharborhistorical.org/town-history/",
+      "image": "/timeline-images/1890.jpg"
     },
     {
       "id": "cleveland-2",
@@ -374,7 +382,7 @@
       "type": "person",
       "date": "1897",
       "body": "Irene Ophelia Alley dies. Bar Harbor Civil War monument erected.",
-      "link": null,
+      "link": "/residents/alley-family",
       "image": "/timeline-images/irene-alley.jpg"
     },
     {
@@ -382,16 +390,8 @@
       "type": "person",
       "date": "1911",
       "body": "Frederick Jarvis Alley dies.",
-      "link": null,
+      "link": "/residents/alley-family",
       "image": "/timeline-images/frederick-alley.jpg"
-    },
-    {
-      "id": "world-war-1",
-      "type": "history",
-      "date": "1914–1918",
-      "body": "World War I.",
-      "link": "https://en.wikipedia.org/wiki/World_War_I",
-      "image": "/timeline-images/world-war-1.jpg"
     },
     {
       "id": "acadia-national-park",
@@ -399,7 +399,7 @@
       "date": "1919",
       "body": "Mount Desert Island recognized as a National Park (originally Lafayette National Park, later renamed Acadia in 1929). Woodrow Wilson president.",
       "link": "https://en.wikipedia.org/wiki/Acadia_National_Park",
-      "image": "/timeline-images/acadia-national-park.jpg"
+      "image": "/timeline-images/1919.jpg"
     },
     {
       "id": "diphtheria-vaccine",
@@ -407,14 +407,14 @@
       "date": "1923",
       "body": "Diphtheria toxoid vaccine developed by Gaston Ramon.",
       "link": "https://en.wikipedia.org/wiki/Diphtheria_vaccine",
-      "image": "/timeline-images/diphtheria-vaccine.jpg"
+      "image": "/timeline-images/vaccine.jpg"
     },
     {
       "id": "juliette-nickerson-dies",
       "type": "person",
-      "date": "1925",
-      "body": "Juliette Nickerson dies.",
-      "link": null,
+      "date": "1929",
+      "body": "Juliette Nickerson dies at eighty-six.",
+      "link": "/residents/juliette-nickerson",
       "image": "/timeline-images/juliette-nickerson.jpg"
     },
     {
@@ -422,7 +422,7 @@
       "type": "person",
       "date": "1945",
       "body": "St. Sauveur Hotel demolished.",
-      "link": null,
+      "link": "/residents/alley-family",
       "image": "/timeline-images/saint-sauveur-demolished.jpg"
     },
     {
