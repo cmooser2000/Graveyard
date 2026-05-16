@@ -244,9 +244,10 @@
       "id": "hudson-river-school",
       "type": "history",
       "date": "1840s–1850s",
-      "body": "Hudson River School artists come to the island.",
+      "body": "Hudson River School artists come to the island. Frederic Edwin Church paints \"Sunset, Bar Harbor\" in 1854.",
       "link": "https://en.wikipedia.org/wiki/Hudson_River_School",
-      "image": "/timeline-images/hudson-river-school.jpg"
+      "image": "/timeline-images/hudson-river-school.jpg",
+      "imageCredit": "Frederic Edwin Church, \"Sunset, Bar Harbor\" (1854). Olana State Historic Site, NY. Public domain."
     },
     {
       "id": "passamaquoddy-rep",
