@@ -17,7 +17,7 @@
     "name": "Israel & Polly Higgins",
     "shortName": "Israel & Polly Higgins",
     "years": "",
-    "unlockYear": 1832,
+    "unlockYear": 1823,
     "mapImage": "/maps/02-higgins.jpg",
     "findHeading": "Find Israel and Polly's shared headstone.",
     "unlockPrompt": "When you find their stone, enter the year of Israel's death to unlock their story.",
@@ -29,10 +29,10 @@
     "name": "Tobias Lord Roberts, Sr.",
     "shortName": "Tobias Roberts",
     "years": "",
-    "unlockYear": 1870,
+    "unlockYear": 1806,
     "mapImage": "/maps/03-roberts.jpg",
-    "findHeading": "Find Tobias Roberts's headstone.",
-    "unlockPrompt": "When you find his stone, enter the year of his death to unlock his story.",
+    "findHeading": "Find Tobias Roberts Sr.'s headstone. His son and grandson are also named Tobias — make sure you've found the eldest of the three.",
+    "unlockPrompt": "Enter the year Tobias Sr. was born to unlock his story.",
     "video": "/videos/03-roberts.mp4"
   },
   {
@@ -77,10 +77,10 @@
     "name": "Juliette Nickerson",
     "shortName": "Juliette Nickerson",
     "years": "",
-    "unlockYear": 1925,
+    "unlockYear": 1880,
     "mapImage": "/maps/07-nickerson.jpg",
-    "findHeading": "Find Juliette Nickerson's headstone.",
-    "unlockPrompt": "When you find her stone, enter the year of her death to unlock her story.",
+    "findHeading": "Find Juliette Nickerson's headstone, with her sister Albertina's beside it.",
+    "unlockPrompt": "When you find her stone, enter the year of Albertina Nickerson's death to unlock her story.",
     "video": "/videos/07-nickerson.mp4"
   }
 ]
