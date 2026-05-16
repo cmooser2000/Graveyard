@@ -12,7 +12,7 @@
     .masthead {
       width: 100%;
       max-width: 600px;
-      margin: 0 auto 1.25rem;
+      margin: 0 auto 0.25rem;
     }
     .masthead img {
       display: block;
@@ -29,11 +29,16 @@
       .masthead { max-width: 680px; }
     }
 
+    /* ── Intro line: pull it down so it sits in the top of the map ───── */
+    .intro {
+      margin-bottom: -0.75rem;
+    }
+
     /* ── Cemetery map under the intro line ─────────────── */
     .home-map {
       width: 100%;
       max-width: 540px;
-      margin: 0 auto -1.25rem; /* negative bottom margin pulls the CTA up onto the map's lower edge */
+      margin: 0 auto -1.5rem; /* negative bottom margin pulls the CTA up onto the map's lower edge */
       /* NOTE: do not set position/z-index here — it would create a new
          stacking context and break mix-blend-mode. */
     }
@@ -46,10 +51,23 @@
     }
     /* Lift the CTA into the overlap zone — relative without z-index avoids
        creating a stacking context on the map. */
-    .cta-group { position: relative; }
+    .cta-group {
+      position: relative;
+      margin-top: 0;
+    }
+
+    /* Tighten the Explore section under the CTA */
+    .home-explore {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+    }
+    .explore-intro {
+      margin-bottom: 1.25rem;
+    }
 
     @media (min-width: 700px) {
-      .home-map { max-width: 600px; margin-bottom: -1.5rem; }
+      .home-map { max-width: 600px; margin-bottom: -1.75rem; }
+      .intro    { margin-bottom: -1rem; }
     }
   </style>
 </head>
