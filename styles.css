@@ -1567,6 +1567,19 @@ a.timeline-card:active { transform: scale(0.995); }
   outline: none;
 }
 
+/* ── Collaborators list on /about ──────────── */
+.bio .collaborators {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  border-top: 1px solid rgba(165, 140, 110, 0.35);
+}
+.bio .collaborators li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(165, 140, 110, 0.35);
+  line-height: 1.5;
+}
+
 /* ── Research disclaimer at the bottom of /residents ─── */
 .research-disclaimer {
   max-width: var(--content-max);

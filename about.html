@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F0E8D6">
   <title>About &mdash; Headstone History</title>
-  <meta name="description" content="About the Headstone History project.">
+  <meta name="description" content="The story of how the Headstone History project came together — research, voice, video, AI tools, and the collaborators who made it possible.">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -13,49 +13,144 @@
 <main>
   <p class="back-home"><a href="/">&larr; Home</a></p>
 
-  <h1 class="hero-title">About This Project</h1>
+  <div class="bio">
 
-  <div class="rule" aria-hidden="true">
-    <span class="rule-mark"></span>
+    <header class="bio-header">
+      <p class="chapter">Headstone History</p>
+      <h1 class="hero-title">About This Project</h1>
+      <div class="rule" aria-hidden="true">
+        <span class="rule-mark"></span>
+      </div>
+    </header>
+
+    <article>
+
+      <section>
+        <p class="lede">
+          Back when I was in high school, walking through the Bar Harbor cemetery always raised questions that the headstones couldn&rsquo;t answer. Who were these people, really? How exactly did they die? What were their daily lives like? Answering these questions in the 1990s meant spending hours in the basement of the historical society, which as a high schooler was time I didn&rsquo;t have. But in the intervening years, what would have required a research team with a budget became something one person could do at the kitchen table, in the hours between teaching and raising kids.
+        </p>
+      </section>
+
+      <div class="ornament" aria-hidden="true"></div>
+
+      <!-- ============================================================
+           THE PROCESS
+           ============================================================ -->
+      <section>
+        <h2>The Process</h2>
+
+        <p>During the pandemic I brought my family back to the island, and started thinking about the graveyard again. By then I had two things I hadn&rsquo;t had as a teenager: my years in graduate school had taught me how to research, and my years teaching had taught me how to turn primary sources into a story about the world. I also discovered that many archives had been digitized and were now available online; free archives like Maine Memory Net, Digital Maine, and the Library of Congress let me search documents and images from the period; paid tools like Ancestry.com and Newspapers.com let me find information about specific people.</p>
+
+        <figure class="clipping">
+          <img src="/images/about/research-notebooks.jpg" alt="A photograph of physical research materials: open notebooks with handwritten notes in pencil and red ink, marked-up printed pages, family-tree diagrams on graph paper, and the spiral-bound book Cemeteries of Cranberry Isles and the Outer Mount Desert Island spread across a wood floor." loading="lazy">
+          <figcaption>
+            <strong>Five years at the kitchen table.</strong> Notebooks, marked-up census pages, family-tree sketches on graph paper, and Bunny McBride&rsquo;s <em>Cemeteries of Cranberry Isles and the Outer Mount Desert Island</em>.
+          </figcaption>
+        </figure>
+
+        <p>I spent five years compiling hundreds of pages about the people buried in the graveyard, and their stories told the history of Maine and the country as a whole. I ultimately chose seven graves that represented a cross-section of the island in the 18th and 19th centuries. Each connected to some larger piece of history: settler-colonialism, the revolution and civil war, the National Parks, and Gilded Age tourism. I had 300 pages of material, but I wanted to walk through the graveyard and hear from the inhabitants themselves. I started with static stories and images. But when I showed them to my kids, they glazed over. &ldquo;You know,&rdquo; they told me, &ldquo;kids our age need videos.&rdquo;</p>
+
+        <figure class="clipping">
+          <img src="/images/about/research-pages-grid.jpg" alt="A grid view in macOS Preview showing several hundred thumbnail pages of a PDF titled Graveyard.pdf — typed prose interspersed with scanned newspaper clippings, census records, and old photographs." loading="lazy">
+          <figcaption>
+            <strong>The working research doc.</strong> Three hundred and twenty-five pages by the end &mdash; typed notes, newspaper clippings, census scans, gravestone photographs.
+          </figcaption>
+        </figure>
+      </section>
+
+      <div class="ornament" aria-hidden="true"></div>
+
+      <!-- ============================================================
+           THE VIDEOS
+           ============================================================ -->
+      <section>
+        <h2>The Videos</h2>
+
+        <p>My husband makes kids&rsquo; animation. People in his industry were worried that advances in AI would allow big studios to cut out artists and filmmakers, but he&rsquo;d begun doing the opposite: helping independent artists and filmmakers use those same AI tools to cut out the big studios. Yes, these tools can be used to make AI slop, but they can also be used by independent filmmakers to create meaningful work that never would have been made otherwise.</p>
+
+        <p>Specifically, I used Midjourney and Google&rsquo;s Nano Banana image model to turn archival images I&rsquo;d found into images I could animate using video models like Runway and Kling. For the actual performances, I reached out to an old high school friend who is now a voice actor, Matt Haynes. He performed all the scripts, and in the instances where I needed to transform his voice to fit a character&rsquo;s age or gender, I used ElevenLabs. I put his audio recordings into Kling to make the performances.</p>
+
+        <figure class="clipping">
+          <img src="/images/about/midjourney-early-attempt.jpg" alt="A Midjourney prompt interface showing two early stylized illustrations of a confident 19th-century woman, rendered in a bookplate-lithograph style rather than as a photorealistic period photograph." loading="lazy">
+          <figcaption>
+            <strong>Early attempts.</strong> Midjourney&rsquo;s default illustration styles were too storybook for the period feel I was after.
+          </figcaption>
+        </figure>
+
+        <figure class="clipping">
+          <img src="/images/about/nano-banana-colorize.jpg" alt="The Nano Banana 2 web interface showing a colorized 1880s group portrait of a Bar Harbor family on a wooden porch with a large dog, beside the prompt 'Colorize this photo from the 1800s but keep the antique photo look.'" loading="lazy">
+          <figcaption>
+            <strong>Colorizing an 1880s portrait.</strong> Nano Banana takes a black-and-white archival photograph and adds period-appropriate color while keeping the antique grain.
+          </figcaption>
+        </figure>
+
+        <figure class="clipping">
+          <img src="/images/about/nano-banana-juliette.jpg" alt="The Nano Banana 2 interface showing a generated full-body portrait of Juliette Nickerson — an older woman in a long dark coat, flat cap, and bow tie, standing confidently with hands at her sides — beside the prompt that produced her." loading="lazy">
+          <figcaption>
+            <strong>Building a character.</strong> A reference image (the small thumbnail in the prompt) plus a short text description &mdash; <em>&ldquo;Show this woman standing with her hands at her sides. She&rsquo;s looking confidently into the &hellip;&rdquo;</em> &mdash; produces a usable full-body avatar of Juliette Nickerson.
+          </figcaption>
+        </figure>
+
+        <figure class="clipping">
+          <img src="/images/about/midjourney-stills.jpg" alt="A grid of generated illustrations titled 'Victorian Era Bedroom Scene': period-styled drawings of a sickbed, a woman in mourning dress at a young man's bedside, captioned 'A Sickbed Vow' in the lower margin." loading="lazy">
+          <figcaption>
+            <strong>Stills for a scene.</strong> Once the character is locked, the next step is generating still frames for the moments of a scene &mdash; here, a Victorian-era sickbed.
+          </figcaption>
+        </figure>
+
+        <figure class="clipping">
+          <img src="/images/about/video-generation.jpg" alt="The Seedance 2.0 video-generation interface showing a 15-second animated clip of a 19th-century mother caring for her sick son in bed, with the prompt 'Show this mother caring for her sick son in the 1800s. She is tending to him and soothing him.'" loading="lazy">
+          <figcaption>
+            <strong>Stills into motion.</strong> A video model (Seedance / Runway / Kling, depending on the shot) takes the still and a sentence of direction and produces fifteen seconds of animated scene.
+          </figcaption>
+        </figure>
+
+        <figure class="clipping">
+          <img src="/images/about/kling-avatar.jpg" alt="The Kling AI Avatar interface showing the Juliette Nickerson character on the right, with the audio file 'Fredrick Juliette 2.wav' loaded as the speech source and the avatar prompt 'Standing confidently with hands in pockets, wearing a hat and bow tie, he gazes directly at the camera with a warm, welcoming smile.'" loading="lazy">
+          <figcaption>
+            <strong>Voice meets face.</strong> In Kling, Matt&rsquo;s voice recording (sometimes shifted in ElevenLabs to fit the character&rsquo;s age or gender) drives the avatar&rsquo;s mouth and gaze.
+          </figcaption>
+        </figure>
+      </section>
+
+      <div class="ornament" aria-hidden="true"></div>
+
+      <!-- ============================================================
+           THE WEBSITE
+           ============================================================ -->
+      <section>
+        <h2>The Website</h2>
+
+        <p>I had an idea for how I wanted to make a scavenger hunt&ndash;type tour, but I don&rsquo;t know how to code a website, and didn&rsquo;t have the budget to hire someone like that, so again I turned to technology. I taught myself how to &ldquo;vibe code&rdquo; with Claude Code. I knew a map would be the centerpiece, so I asked my good friend Anne Wheeler to create the beautiful watercolor map that guides the experience.</p>
+
+        <p>My project was finished, but I still had many pages of unused research. Even though they weren&rsquo;t complete stories, I wanted a way to share what I&rsquo;d found. So I gave Claude Code the list of everyone buried in the graveyard from Find a Grave and asked it to search my notes for relevant information to fill in the &ldquo;Families Buried Here&rdquo; section. When given free reign, large language models like Claude have been known to make up facts, so I gave it strict instructions to only use information from the document I&rsquo;d researched myself over several years. Once that was done, I let it look online for information about anyone else I was still missing, with links to sources. Because I didn&rsquo;t have time to fact-check everything in this bonus material section, I included a disclaimer and sources so visitors and descendants of the families can contact me to fill in the gaps.</p>
+      </section>
+
+      <div class="ornament" aria-hidden="true"></div>
+
+      <!-- ============================================================
+           COLLABORATORS
+           ============================================================ -->
+      <section>
+        <h2>Collaborators</h2>
+
+        <p>In addition to my robot collaborators, it was the human ones who made this possible.</p>
+
+        <ul class="collaborators">
+          <li><strong>Nikki Moser</strong> at the Bar Harbor Historical Society provided endless context, guidance, and encouragement and a home for the project.</li>
+          <li><strong>Matt Haynes</strong>&rsquo;s readings brought the characters to life.</li>
+          <li><strong>Anne Wheeler</strong> made the beautiful map that anchors the website.</li>
+          <li><strong>Genie Thorndike</strong> at Hidden Barn Books gave the project its starting point and focus.</li>
+          <li><strong>Anna Durrand</strong> offered extra context and brainstorming sessions.</li>
+        </ul>
+      </section>
+
+    </article>
+
   </div>
-
-  <p class="intro-line">
-    This project was a labor of love with the help of friends, family, and technology.
-  </p>
-
-  <details class="read-more" id="readMore">
-    <summary>Read more</summary>
-    <div class="prose read-more-body">
-      <p>
-        As a high school kid in Bar Harbor, I used to wander the cemetery wishing the headstones gave me more information about who the people buried below me were. How did they die? What were their lives like? But in those days, finding out meant hours in the basement of the historical society, and I didn't have the time.
-      </p>
-      <p>
-        Years passed: I moved away, became a teacher, had kids. When the pandemic brought my family back to the island, just down the street from the graveyard, I started researching in earnest, pulling from newly-digitized archives like Maine Memory Net, Digital Maine, Ancestry, and <a href="https://www.newspapers.com" target="_blank" rel="noopener noreferrer">Newspapers.com</a>. Over five years I gathered hundreds of pages, then narrowed them to seven graves that, together, trace the settler-colonial history of Mount Desert Island: the National Park, Gilded Age tourism, the Revolutionary War.
-      </p>
-    </div>
-  </details>
-
-  <nav class="about-menu" aria-label="About sections">
-    <a href="/residents" class="menu-item">Meet the Residents</a>
-    <a href="/contributors.html" class="menu-item">Contributors</a>
-    <a href="/sources.html" class="menu-item">Sources</a>
-    <a href="/process.html" class="menu-item">Process</a>
-    <a href="/timeline.html" class="menu-item">Timeline</a>
-  </nav>
 
   <p class="page-footer">A project at the Mount Desert Street Cemetery &middot; Bar Harbor, Maine</p>
 </main>
-
-<script>
-  (function () {
-    var det = document.getElementById('readMore');
-    if (!det) return;
-    var sum = det.querySelector('summary');
-    det.addEventListener('toggle', function () {
-      sum.textContent = det.open ? 'Show less' : 'Read more';
-    });
-  })();
-</script>
 
 </body>
 </html>
